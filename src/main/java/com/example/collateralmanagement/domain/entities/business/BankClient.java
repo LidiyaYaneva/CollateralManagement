@@ -18,6 +18,7 @@ public class BankClient {
     private String name;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private ClientType clientType;
 
     @Column(name = "identification_number", nullable = false, unique = true)

@@ -1,18 +1,12 @@
 package com.example.collateralmanagement.domain.dtos.business;
 
-import com.example.collateralmanagement.domain.entities.business.BankClient;
-import com.example.collateralmanagement.domain.entities.property.Collateral;
-import jakarta.persistence.*;
-
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
 
 public class ImportLoanDTO {
 
     private String loanNumber;
 
-    private LocalDate issueDate;
+    private String issueDate;
 
 //    @ManyToMany
 //    @JoinTable(name = "loans_collaterals",
@@ -25,17 +19,17 @@ public class ImportLoanDTO {
 
     private String riskStatus;
 
-    private Long clientId;
+    private String clientIdNumber;
 
     public ImportLoanDTO() {
     }
 
-    public ImportLoanDTO(String loanNumber, LocalDate issueDate, boolean isActive, String riskStatus, Long clientId) {
+    public ImportLoanDTO(String loanNumber, String issueDate, boolean isActive, String riskStatus, String clientIdNumber) {
         this.loanNumber = loanNumber;
         this.issueDate = issueDate;
         this.isActive = isActive;
         this.riskStatus = riskStatus;
-        this.clientId = clientId;
+        this.clientIdNumber = clientIdNumber;
         //this.collaterals = new HashSet<>();
     }
 
@@ -47,11 +41,11 @@ public class ImportLoanDTO {
         this.loanNumber = loanNumber;
     }
 
-    public LocalDate getIssueDate() {
+    public String getIssueDate() {
         return issueDate;
     }
 
-    public void setIssueDate(LocalDate issueDate) {
+    public void setIssueDate(String issueDate) {
         this.issueDate = issueDate;
     }
 
@@ -71,11 +65,11 @@ public class ImportLoanDTO {
         this.riskStatus = riskStatus;
     }
 
-    public Long getClientId() {
-        return clientId;
+    public String getClientIdNumber() {
+        return clientIdNumber;
     }
 
-    public void setClientId(Long clientId) {
-        this.clientId = clientId;
+    public void setClientIdNumber(String clientIdNumber) {
+        this.clientIdNumber = clientIdNumber;
     }
 }

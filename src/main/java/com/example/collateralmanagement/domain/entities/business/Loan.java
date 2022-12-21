@@ -4,6 +4,7 @@ import com.example.collateralmanagement.domain.entities.property.Collateral;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -20,12 +21,6 @@ public class Loan {
     @Column(name = "issue_date", nullable = false)
     private LocalDate issueDate;
 
-    @ManyToMany
-    @JoinTable(name = "loans_collaterals",
-            joinColumns = @JoinColumn(name = "collateral_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "loan_id", referencedColumnName = "id"))
-    private Set<Collateral> collaterals;
-
     @Column(name = "is_active",nullable = false)
     private boolean isActive;
 
@@ -36,7 +31,15 @@ public class Loan {
     @JoinColumn(name = "client_id", referencedColumnName = "id")
     private BankClient client;
 
-    public Loan () {}
+    @ManyToMany
+    @JoinTable(name = "loans_collaterals",
+            joinColumns = @JoinColumn(name = "collateral_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "loan_id", referencedColumnName = "id"))
+    private Set<Collateral> collaterals;
+
+    public Loan () {
+        this.collaterals = new HashSet<>();
+    }
 
     public Long getId() {
         return id;
@@ -51,7 +54,7 @@ public class Loan {
     }
 
     public void setLoanNumber(String loanNumber) {
-        loanNumber = loanNumber;
+        this.loanNumber = loanNumber;
     }
 
     public LocalDate getIssueDate() {

@@ -30,22 +30,24 @@ public class LoanServiceImpl implements LoanService {
     @Override
     public String addLoan(ImportLoanDTO importLoanDTO) {
 
-        String loanNumber = importLoanDTO.getLoanNumber();
-        Optional<Loan> optLoan = this.loanRepository.findByLoanNumber(loanNumber);
-
-        Long clientId = importLoanDTO.getClientId();
-        Optional<BankClient> optClient = this.bankClientRepository.findById(clientId);
+        String clientIdNumber = importLoanDTO.getClientIdNumber();
+        Optional<BankClient> optClient = this.bankClientRepository
+                .findByIdentificationNumber(clientIdNumber);
 
         if(optClient.isEmpty())
-            //kjhohpi
+            return "Incorrect client!";
+        else {
+            String loanNumber = importLoanDTO.getLoanNumber();
+            Optional<Loan> optLoan = this.loanRepository.findByLoanNumber(loanNumber);
 
-        if (optLoan.isEmpty()){
+            if (optLoan.isEmpty()) {
 
-            Loan loan = this.modelMapper.map(importLoanDTO, Loan.class);
-            optClient.ifPresent(loan::setClient);
-            this.loanRepository.save(loan);
-            return "Successfully added loan";
+                Loan loan = this.modelMapper.map(importLoanDTO, Loan.class);
+                optClient.ifPresent(loan::setClient);
+                this.loanRepository.save(loan);
+                return "Successfully added loan";
+            }
+            return "Loan already exists!";
         }
-        return "Loan already exists!";
     }
 }
