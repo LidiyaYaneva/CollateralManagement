@@ -37,6 +37,7 @@ public class LoanServiceImpl implements LoanService {
         Optional<BankClient> optClient = this.bankClientRepository.findById(clientId);
 
         if(optClient.isEmpty())
+            //kjhohpi
 
         if (optLoan.isEmpty()){
 
