@@ -1,4 +1,4 @@
-package com.example.collateralmanagement;
+package com.example.collateralmanagement.config;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

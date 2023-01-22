@@ -1,7 +1,7 @@
 package com.example.collateralmanagement;
 
-import com.example.collateralmanagement.domain.dtos.business.ImportClientDTO;
-import com.example.collateralmanagement.domain.dtos.business.ImportLoanDTO;
+import com.example.collateralmanagement.models.dtos.business.ImportClientDTO;
+import com.example.collateralmanagement.models.dtos.business.ImportLoanDTO;
 import com.example.collateralmanagement.services.BankClientService;
 import com.example.collateralmanagement.services.LoanService;
 import org.springframework.boot.CommandLineRunner;

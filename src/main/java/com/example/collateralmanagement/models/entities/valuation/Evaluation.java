@@ -1,6 +1,6 @@
-package com.example.collateralmanagement.domain.entities.valuation;
+package com.example.collateralmanagement.models.entities.valuation;
 
-import com.example.collateralmanagement.domain.entities.property.PropertyItem;
+import com.example.collateralmanagement.models.entities.property.PropertyItem;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;

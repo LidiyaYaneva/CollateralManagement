@@ -1,6 +1,6 @@
 package com.example.collateralmanagement.repositories;
 
-import com.example.collateralmanagement.domain.entities.valuation.ValuationMethodsDetails;
+import com.example.collateralmanagement.models.entities.valuation.ValuationMethodsDetails;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

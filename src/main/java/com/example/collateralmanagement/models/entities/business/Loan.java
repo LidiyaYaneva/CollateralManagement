@@ -1,6 +1,6 @@
-package com.example.collateralmanagement.domain.entities.business;
+package com.example.collateralmanagement.models.entities.business;
 
-import com.example.collateralmanagement.domain.entities.property.Collateral;
+import com.example.collateralmanagement.models.entities.property.Collateral;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;

@@ -1,6 +1,6 @@
-package com.example.collateralmanagement.domain.entities.property;
+package com.example.collateralmanagement.models.entities.property;
 
-import com.example.collateralmanagement.domain.entities.enums.CollateralCategory;
+import com.example.collateralmanagement.models.entities.enums.CollateralCategory;
 import jakarta.persistence.*;
 
 @Entity

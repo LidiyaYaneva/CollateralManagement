@@ -1,4 +1,4 @@
-package com.example.collateralmanagement.domain.entities.property;
+package com.example.collateralmanagement.models.entities.property;
 
 import jakarta.persistence.*;
 

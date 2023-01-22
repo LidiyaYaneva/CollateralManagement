@@ -1,8 +1,8 @@
 package com.example.collateralmanagement.services.impl.businessServices;
 
-import com.example.collateralmanagement.domain.dtos.business.ImportLoanDTO;
-import com.example.collateralmanagement.domain.entities.business.BankClient;
-import com.example.collateralmanagement.domain.entities.business.Loan;
+import com.example.collateralmanagement.models.dtos.business.ImportLoanDTO;
+import com.example.collateralmanagement.models.entities.business.BankClient;
+import com.example.collateralmanagement.models.entities.business.Loan;
 import com.example.collateralmanagement.repositories.BankClientRepository;
 import com.example.collateralmanagement.repositories.LoanRepository;
 import com.example.collateralmanagement.services.LoanService;

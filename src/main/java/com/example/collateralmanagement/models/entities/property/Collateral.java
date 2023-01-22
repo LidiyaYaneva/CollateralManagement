@@ -1,6 +1,6 @@
-package com.example.collateralmanagement.domain.entities.property;
+package com.example.collateralmanagement.models.entities.property;
 
-import com.example.collateralmanagement.domain.entities.business.Loan;
+import com.example.collateralmanagement.models.entities.business.Loan;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
