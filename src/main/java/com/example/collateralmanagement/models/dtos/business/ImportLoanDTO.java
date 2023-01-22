@@ -1,6 +1,4 @@
-package com.example.collateralmanagement.domain.dtos.business;
-
-import java.time.LocalDate;
+package com.example.collateralmanagement.models.dtos.business;
 
 public class ImportLoanDTO {
 

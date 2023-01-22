@@ -1,6 +1,6 @@
 package com.example.collateralmanagement.repositories;
 
-import com.example.collateralmanagement.domain.entities.business.Department;
+import com.example.collateralmanagement.models.entities.business.Department;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

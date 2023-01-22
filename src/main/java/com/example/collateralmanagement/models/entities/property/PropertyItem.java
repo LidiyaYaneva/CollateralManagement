@@ -1,7 +1,7 @@
-package com.example.collateralmanagement.domain.entities.property;
+package com.example.collateralmanagement.models.entities.property;
 
-import com.example.collateralmanagement.domain.entities.business.Department;
-import com.example.collateralmanagement.domain.entities.valuation.Evaluation;
+import com.example.collateralmanagement.models.entities.business.Department;
+import com.example.collateralmanagement.models.entities.valuation.Evaluation;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -18,8 +18,8 @@ public class PropertyItem {
     @Column(nullable = false, columnDefinition = "TEXT")
     protected String description;
 
-    @OneToMany(mappedBy = "propertyItem", targetEntity = PropertyOwnerRecord.class)
-    protected Set<PropertyOwnerRecord> ownershipHistory;
+   @Column(nullable = false)
+   protected String owner;
 
     @OneToMany (mappedBy = "propertyItem", targetEntity = Evaluation.class)
     protected Set<Evaluation> evaluations;
@@ -74,11 +74,11 @@ public class PropertyItem {
         this.evaluations = evaluations;
     }
 
-    public Set<PropertyOwnerRecord> getOwnershipHistory() {
-        return ownershipHistory;
+    public String getOwner() {
+        return owner;
     }
 
-    public void setOwnershipHistory(Set<PropertyOwnerRecord> ownershipHistory) {
-        this.ownershipHistory = ownershipHistory;
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 }
