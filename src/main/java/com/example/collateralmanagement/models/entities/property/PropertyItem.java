@@ -18,8 +18,14 @@ public class PropertyItem {
     @Column(nullable = false, columnDefinition = "TEXT")
     protected String description;
 
+//    @Column(name = "description_keyword", nullable = false)
+//    protected String keyword;
+
    @Column(nullable = false)
    protected String owner;
+
+   @Column(name = "ownership_document", nullable = true)
+   private String ownershipDocument;
 
     @OneToMany (mappedBy = "propertyItem", targetEntity = Evaluation.class)
     protected Set<Evaluation> evaluations;
@@ -80,5 +86,13 @@ public class PropertyItem {
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    public String getOwnershipDocument() {
+        return ownershipDocument;
+    }
+
+    public void setOwnershipDocument(String ownershipDocument) {
+        this.ownershipDocument = ownershipDocument;
     }
 }
