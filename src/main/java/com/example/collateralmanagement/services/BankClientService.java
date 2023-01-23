@@ -1,10 +1,10 @@
 package com.example.collateralmanagement.services;
 
 
-import com.example.collateralmanagement.models.dtos.business.ImportClientDTO;
+import com.example.collateralmanagement.models.dtos.business.AddClientDTO;
 
 public interface BankClientService {
 
-    String addClient (ImportClientDTO importClientDTO);
+    String addClient (AddClientDTO addClientDTO);
 
 }

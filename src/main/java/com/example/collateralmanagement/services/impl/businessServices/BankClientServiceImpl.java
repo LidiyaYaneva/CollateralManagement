@@ -1,6 +1,6 @@
 package com.example.collateralmanagement.services.impl.businessServices;
 
-import com.example.collateralmanagement.models.dtos.business.ImportClientDTO;
+import com.example.collateralmanagement.models.dtos.business.AddClientDTO;
 import com.example.collateralmanagement.models.entities.business.BankClient;
 import com.example.collateralmanagement.repositories.BankClientRepository;
 import com.example.collateralmanagement.services.BankClientService;
@@ -23,14 +23,14 @@ public class BankClientServiceImpl implements BankClientService {
     }
 
     @Override
-    public String addClient(ImportClientDTO importClientDTO) {
+    public String addClient(AddClientDTO addClientDTO) {
 
-        String identificationNumber = importClientDTO.getIdentificationNumber();
+        String identificationNumber = addClientDTO.getIdentificationNumber();
         Optional<BankClient> optClient = this.bankClientRepository
                .findByIdentificationNumber(identificationNumber);
 
         if (optClient.isEmpty()){
-            BankClient bankClient = this.modelMapper.map(importClientDTO, BankClient.class);
+            BankClient bankClient = this.modelMapper.map(addClientDTO, BankClient.class);
             this.bankClientRepository.save(bankClient);
             return "Successfully added client";
         }

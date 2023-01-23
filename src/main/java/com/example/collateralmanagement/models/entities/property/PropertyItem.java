@@ -18,14 +18,14 @@ public class PropertyItem {
     @Column(nullable = false, columnDefinition = "TEXT")
     protected String description;
 
-//    @Column(name = "description_keyword", nullable = false)
-//    protected String keyword;
+    @Column(name = "description_keyword", nullable = false)
+    protected String keyword;
 
    @Column(nullable = false)
    protected String owner;
 
-   @Column(name = "ownership_document", nullable = true)
-   private String ownershipDocument;
+    @Column(name = "ownership_document", nullable = true)
+    protected String ownershipDocument;
 
     @OneToMany (mappedBy = "propertyItem", targetEntity = Evaluation.class)
     protected Set<Evaluation> evaluations;
@@ -43,9 +43,10 @@ public class PropertyItem {
         this.currentAccountableDepartment= currentAccountableDepartment;
     }
 
-    public PropertyItem(String description, Department currentAccountableDepartment){
+    public PropertyItem(String description, String keyword, Department currentAccountableDepartment){
         this(currentAccountableDepartment);
         this.description = description;
+        this.keyword = keyword;
     }
 
     public Long getId() {
@@ -62,6 +63,14 @@ public class PropertyItem {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
     }
 
     public Department getCurrentAccountableDepartment() {

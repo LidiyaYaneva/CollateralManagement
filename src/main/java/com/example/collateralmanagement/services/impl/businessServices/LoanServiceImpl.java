@@ -1,6 +1,6 @@
 package com.example.collateralmanagement.services.impl.businessServices;
 
-import com.example.collateralmanagement.models.dtos.business.ImportLoanDTO;
+import com.example.collateralmanagement.models.dtos.business.AddLoanDTO;
 import com.example.collateralmanagement.models.entities.business.BankClient;
 import com.example.collateralmanagement.models.entities.business.Loan;
 import com.example.collateralmanagement.repositories.BankClientRepository;
@@ -28,21 +28,21 @@ public class LoanServiceImpl implements LoanService {
     }
 
     @Override
-    public String addLoan(ImportLoanDTO importLoanDTO) {
+    public String addLoan(AddLoanDTO addLoanDTO) {
 
-        String clientIdNumber = importLoanDTO.getClientIdNumber();
+        String clientIdNumber = addLoanDTO.getClientIdNumber();
         Optional<BankClient> optClient = this.bankClientRepository
                 .findByIdentificationNumber(clientIdNumber);
 
         if(optClient.isEmpty())
             return "Incorrect client!";
         else {
-            String loanNumber = importLoanDTO.getLoanNumber();
+            String loanNumber = addLoanDTO.getLoanNumber();
             Optional<Loan> optLoan = this.loanRepository.findByLoanNumber(loanNumber);
 
             if (optLoan.isEmpty()) {
 
-                Loan loan = this.modelMapper.map(importLoanDTO, Loan.class);
+                Loan loan = this.modelMapper.map(addLoanDTO, Loan.class);
                 optClient.ifPresent(loan::setClient);
                 this.loanRepository.save(loan);
                 return "Successfully added loan";

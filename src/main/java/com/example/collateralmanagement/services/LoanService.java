@@ -1,8 +1,8 @@
 package com.example.collateralmanagement.services;
 
-import com.example.collateralmanagement.models.dtos.business.ImportLoanDTO;
+import com.example.collateralmanagement.models.dtos.business.AddLoanDTO;
 
 public interface LoanService {
 
-    String addLoan (ImportLoanDTO importLoanDTO);
+    String addLoan (AddLoanDTO addLoanDTO);
 }

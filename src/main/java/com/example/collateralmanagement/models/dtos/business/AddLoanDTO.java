@@ -1,6 +1,8 @@
 package com.example.collateralmanagement.models.dtos.business;
 
-public class ImportLoanDTO {
+import java.math.BigDecimal;
+
+public class AddLoanDTO {
 
     private String loanNumber;
 
@@ -17,17 +19,20 @@ public class ImportLoanDTO {
 
     private String riskStatus;
 
+    private BigDecimal amount;
+
     private String clientIdNumber;
 
-    public ImportLoanDTO() {
+    public AddLoanDTO() {
     }
 
-    public ImportLoanDTO(String loanNumber, String issueDate, boolean isActive, String riskStatus, String clientIdNumber) {
+    public AddLoanDTO(String loanNumber, String issueDate, boolean isActive, String riskStatus, BigDecimal amount, String clientIdNumber) {
         this.loanNumber = loanNumber;
         this.issueDate = issueDate;
         this.isActive = isActive;
         this.riskStatus = riskStatus;
         this.clientIdNumber = clientIdNumber;
+        this.amount= amount;
         //this.collaterals = new HashSet<>();
     }
 
@@ -69,5 +74,13 @@ public class ImportLoanDTO {
 
     public void setClientIdNumber(String clientIdNumber) {
         this.clientIdNumber = clientIdNumber;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
     }
 }

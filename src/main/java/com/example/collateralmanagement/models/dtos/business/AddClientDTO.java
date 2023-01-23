@@ -3,7 +3,7 @@ package com.example.collateralmanagement.models.dtos.business;
 
 import com.example.collateralmanagement.models.entities.enums.ClientType;
 
-public class ImportClientDTO {
+public class AddClientDTO {
 
     private String name;
 
@@ -14,10 +14,10 @@ public class ImportClientDTO {
     private String contacts;
 
 
-    public ImportClientDTO() {
+    public AddClientDTO() {
     }
 
-    public ImportClientDTO(String name, String clientTypeText, String identificationNumber, String contacts){
+    public AddClientDTO(String name, String clientTypeText, String identificationNumber, String contacts){
         this.name = name;
         this.clientType = Enum.valueOf(ClientType.class, clientTypeText);
         this.identificationNumber = identificationNumber;

@@ -3,6 +3,7 @@ package com.example.collateralmanagement.models.entities.business;
 import com.example.collateralmanagement.models.entities.property.Collateral;
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -26,6 +27,9 @@ public class Loan {
 
     @Column(name = "risk_status")
     private String riskStatus;
+
+    @Column
+    private BigDecimal amount;
 
     @ManyToOne
     @JoinColumn(name = "client_id", referencedColumnName = "id")
@@ -95,5 +99,13 @@ public class Loan {
 
     public void setClient(BankClient client) {
         this.client = client;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
     }
 }
