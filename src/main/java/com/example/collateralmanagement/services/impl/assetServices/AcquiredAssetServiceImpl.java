@@ -1,4 +1,4 @@
-package com.example.collateralmanagement.services.impl.propertyServices;
+package com.example.collateralmanagement.services.impl.assetServices;
 
 import com.example.collateralmanagement.repositories.AcquiredAssetRepository;
 import com.example.collateralmanagement.services.AcquiredAssetService;

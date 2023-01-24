@@ -1,4 +1,4 @@
-package com.example.collateralmanagement.models.entities.property;
+package com.example.collateralmanagement.models.entities.asset;
 
 import com.example.collateralmanagement.models.entities.enums.CollateralCategory;
 import jakarta.persistence.*;
@@ -18,10 +18,16 @@ public class CollateralType {
     @Column(nullable = false)
     private double multiplier;
 
-    @Column
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     public CollateralType(){}
+
+    public CollateralType(CollateralCategory type, double multiplier, String description) {
+        this.type = type;
+        this.multiplier = multiplier;
+        this.description = description;
+    }
 
     public Long getId() {
         return id;

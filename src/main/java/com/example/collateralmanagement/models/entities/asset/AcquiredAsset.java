@@ -1,4 +1,4 @@
-package com.example.collateralmanagement.models.entities.property;
+package com.example.collateralmanagement.models.entities.asset;
 
 import jakarta.persistence.*;
 
@@ -13,8 +13,8 @@ public class AcquiredAsset {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "property_item_id", referencedColumnName = "id")
-    private PropertyItem propertyItem;
+    @JoinColumn(name = "asset_id", referencedColumnName = "id")
+    private Asset asset;
 
     @Column(nullable = false)
     private LocalDate acquisitionDate;
@@ -71,11 +71,11 @@ public class AcquiredAsset {
         isActive = active;
     }
 
-    public PropertyItem getPropertyItem() {
-        return propertyItem;
+    public Asset getAsset() {
+        return asset;
     }
 
-    public void setPropertyItem(PropertyItem propertyItem) {
-        this.propertyItem = propertyItem;
+    public void setAsset(Asset propertyItem) {
+        this.asset = propertyItem;
     }
 }

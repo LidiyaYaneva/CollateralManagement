@@ -1,6 +1,6 @@
 package com.example.collateralmanagement.models.entities.business;
 
-import com.example.collateralmanagement.models.entities.property.Collateral;
+import com.example.collateralmanagement.models.entities.asset.Collateral;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;

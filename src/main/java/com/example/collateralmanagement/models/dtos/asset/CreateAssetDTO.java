@@ -1,8 +1,6 @@
-package com.example.collateralmanagement.models.dtos.property;
+package com.example.collateralmanagement.models.dtos.asset;
 
-import com.example.collateralmanagement.models.entities.business.Department;
-
-public class CreatePropertyItemDTO {
+public class CreateAssetDTO {
 
     protected String description;
 
@@ -14,10 +12,10 @@ public class CreatePropertyItemDTO {
 
     protected String accountableDepartment;
 
-    public CreatePropertyItemDTO() {
+    public CreateAssetDTO() {
     }
 
-    public CreatePropertyItemDTO(String description, String keyword, String owner, String ownershipDocument, String accountableDepartment) {
+    public CreateAssetDTO(String description, String keyword, String owner, String ownershipDocument, String accountableDepartment) {
         this.description = description;
         this.keyword= keyword;
         this.owner = owner;

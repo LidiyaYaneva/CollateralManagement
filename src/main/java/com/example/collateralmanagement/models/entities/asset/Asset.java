@@ -1,4 +1,4 @@
-package com.example.collateralmanagement.models.entities.property;
+package com.example.collateralmanagement.models.entities.asset;
 
 import com.example.collateralmanagement.models.entities.business.Department;
 import com.example.collateralmanagement.models.entities.valuation.Evaluation;
@@ -8,8 +8,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "property_items")
-public class PropertyItem {
+@Table(name = "assets")
+public class Asset {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -27,23 +27,23 @@ public class PropertyItem {
     @Column(name = "ownership_document", nullable = true)
     protected String ownershipDocument;
 
-    @OneToMany (mappedBy = "propertyItem", targetEntity = Evaluation.class)
+    @OneToMany (mappedBy = "asset", targetEntity = Evaluation.class)
     protected Set<Evaluation> evaluations;
 
     @ManyToOne
     @JoinColumn(name = "current_accountable_department")
     protected Department currentAccountableDepartment;
 
-    public PropertyItem(){
+    public Asset(){
         this.evaluations= new HashSet<Evaluation>();
     }
 
-    public PropertyItem(Department currentAccountableDepartment) {
+    public Asset(Department currentAccountableDepartment) {
         this();
         this.currentAccountableDepartment= currentAccountableDepartment;
     }
 
-    public PropertyItem(String description, String keyword, Department currentAccountableDepartment){
+    public Asset(String description, String keyword, Department currentAccountableDepartment){
         this(currentAccountableDepartment);
         this.description = description;
         this.keyword = keyword;

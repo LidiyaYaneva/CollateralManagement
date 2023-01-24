@@ -1,6 +1,6 @@
 package com.example.collateralmanagement.models.entities.valuation;
 
-import com.example.collateralmanagement.models.entities.property.PropertyItem;
+import com.example.collateralmanagement.models.entities.asset.Asset;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -17,8 +17,8 @@ public class Evaluation {
     protected Long id;
 
     @ManyToOne
-    @JoinColumn(name = "property_item_id", referencedColumnName = "id")
-    protected PropertyItem propertyItem;
+    @JoinColumn(name = "asset_id", referencedColumnName = "id")
+    protected Asset asset;
 
     @Column(nullable = false)
     protected LocalDate date;
@@ -43,12 +43,12 @@ public class Evaluation {
         this.id = id;
     }
 
-    public PropertyItem getPropertyItem() {
-        return propertyItem;
+    public Asset getAsset() {
+        return asset;
     }
 
-    public void setPropertyItem(PropertyItem propertyItem) {
-        this.propertyItem = propertyItem;
+    public void setAsset(Asset asset) {
+        this.asset = asset;
     }
 
     public LocalDate getDate() {

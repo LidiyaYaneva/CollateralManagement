@@ -1,4 +1,4 @@
-package com.example.collateralmanagement.models.entities.property;
+package com.example.collateralmanagement.models.entities.asset;
 
 import com.example.collateralmanagement.models.entities.business.Loan;
 import jakarta.persistence.*;
@@ -15,8 +15,8 @@ public class Collateral {
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "property_item_id", referencedColumnName = "id")
-    private PropertyItem propertyItem;
+    @JoinColumn(name= "asset_id",referencedColumnName = "id")
+    private Asset asset;
 
     @ManyToOne
     @JoinColumn(name = "collateral_type_id",referencedColumnName = "id")
@@ -38,6 +38,13 @@ public class Collateral {
         this.loans = new HashSet<Loan>();
     }
 
+    public Collateral(Asset asset, CollateralType type) {
+        this();
+        this.asset = asset;
+        this.type = type;
+
+    }
+
     public CollateralType getType() {
         return type;
     }
@@ -55,11 +62,11 @@ public class Collateral {
         this.loans = loans;
     }
 
-    public PropertyItem getPropertyItem() {
-        return propertyItem;
+    public Asset getAsset() {
+        return asset;
     }
 
-    public void setPropertyItem(PropertyItem propertyItem) {
-        this.propertyItem = propertyItem;
+    public void setAsset(Asset asset) {
+        this.asset = asset;
     }
 }
