@@ -1,5 +1,6 @@
 package com.example.collateralmanagement.services.impl.assetServices;
 
+import com.example.collateralmanagement.models.dtos.asset.AddAcquiredAssetDTO;
 import com.example.collateralmanagement.repositories.AcquiredAssetRepository;
 import com.example.collateralmanagement.services.AcquiredAssetService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,5 +14,10 @@ public class AcquiredAssetServiceImpl implements AcquiredAssetService {
     @Autowired
     public AcquiredAssetServiceImpl(AcquiredAssetRepository acquiredAssetRepository) {
         this.acquiredAssetRepository = acquiredAssetRepository;
+    }
+
+    @Override
+    public void addAcquiredAsset(AddAcquiredAssetDTO addAcquiredAssetDTO) {
+
     }
 }

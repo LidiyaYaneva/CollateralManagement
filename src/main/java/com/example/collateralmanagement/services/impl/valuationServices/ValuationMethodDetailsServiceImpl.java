@@ -1,5 +1,6 @@
 package com.example.collateralmanagement.services.impl.valuationServices;
 
+import com.example.collateralmanagement.models.dtos.valuation.AddDetailsDTO;
 import com.example.collateralmanagement.repositories.ValuationMethodDetailsRepository;
 import com.example.collateralmanagement.services.ValuationMethodDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,5 +14,10 @@ public class ValuationMethodDetailsServiceImpl implements ValuationMethodDetails
     @Autowired
     public ValuationMethodDetailsServiceImpl(ValuationMethodDetailsRepository valuationMethodDetailsRepository) {
         this.valuationMethodDetailsRepository = valuationMethodDetailsRepository;
+    }
+
+    @Override
+    public void addDetails(AddDetailsDTO addDetailsDTO) {
+
     }
 }

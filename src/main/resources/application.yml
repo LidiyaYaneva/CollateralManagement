@@ -1,0 +1,39 @@
+logging:
+    level:
+        blog: WARN
+        org: WARN
+        org.hibernate.SQL: DEBUG
+spring:
+    datasource:
+        driverClassName: com.mysql.cj.jdbc.Driver
+        password: 1234
+        url: jdbc:mysql://localhost:3306/collateral_management?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true
+        username: root
+    servlet:
+        multipart:
+            max-file-size: 1MB
+            max-request-size: 5MB
+    mvc:
+        hidden-method:
+            filter:
+                enabled: true
+    sql:
+        init:
+            mode: never
+    #      should be always on first start
+    jpa:
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL8Dialect
+                format_sql: true
+                show_sql: true
+                defer-datasource-initialization: true
+    #Cloudinary Properties cloud
+    #cloudinary:
+    #api-key:
+    #api-secret:
+    #cloud-name:
+server:
+    port: 8080

@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @DiscriminatorValue(value = "MARKET_STANDARDS")
 public class MarketStandardsRevaluation extends Evaluation {
 
-    private static final String EVALUATION_TYPE = "MARKET_STANDARDS";
+    private static final String EVALUATION_TYPE = "MARKET_STANDARDS_ANNUAL_REVIEW";
 
     private double multiplier;
 

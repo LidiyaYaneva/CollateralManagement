@@ -30,19 +30,16 @@ public class AssetServiceImpl implements AssetService {
 
 
     @Override
-    public String createAsset(CreateAssetDTO createAssetDTO) {
+    public void createAsset(CreateAssetDTO createAssetDTO) {
         String departmentName = createAssetDTO.getAccountableDepartment();
         DepartmentEnum departmentEnum = DepartmentEnum.valueOf(departmentName.toUpperCase().trim());
 
         Optional<Department> optDepartment = this.departmentRepository
                 .findByName(departmentEnum);
-        if (optDepartment.isEmpty())
-            return "Invalid department";
-        else {
+        if (optDepartment.isPresent()){
             Asset propertyItem = this.modelMapper.map(createAssetDTO, Asset.class);
             optDepartment.ifPresent(propertyItem::setCurrentAccountableDepartment);
             this.propertyItemRepository.save(propertyItem);
-            return "Property item created successfully!";
 
         }
     }

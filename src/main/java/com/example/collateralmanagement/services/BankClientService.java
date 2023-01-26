@@ -5,6 +5,6 @@ import com.example.collateralmanagement.models.dtos.business.AddClientDTO;
 
 public interface BankClientService {
 
-    String addClient (AddClientDTO addClientDTO);
+    void addClient (AddClientDTO addClientDTO);
 
 }

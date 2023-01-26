@@ -23,7 +23,7 @@ public class BankClientServiceImpl implements BankClientService {
     }
 
     @Override
-    public String addClient(AddClientDTO addClientDTO) {
+    public void addClient(AddClientDTO addClientDTO) {
 
         String identificationNumber = addClientDTO.getIdentificationNumber();
         Optional<BankClient> optClient = this.bankClientRepository
@@ -32,9 +32,7 @@ public class BankClientServiceImpl implements BankClientService {
         if (optClient.isEmpty()){
             BankClient bankClient = this.modelMapper.map(addClientDTO, BankClient.class);
             this.bankClientRepository.save(bankClient);
-            return "Successfully added client";
         }
-        return "Client already exists!";
 
     }
 }

@@ -3,10 +3,7 @@ package com.example.collateralmanagement;
 import com.example.collateralmanagement.models.dtos.business.AddClientDTO;
 import com.example.collateralmanagement.models.dtos.business.AddLoanDTO;
 import com.example.collateralmanagement.models.dtos.asset.CreateAssetDTO;
-import com.example.collateralmanagement.services.BankClientService;
-import com.example.collateralmanagement.services.DepartmentService;
-import com.example.collateralmanagement.services.LoanService;
-import com.example.collateralmanagement.services.AssetService;
+import com.example.collateralmanagement.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -24,13 +21,16 @@ public class ConsoleRunner implements CommandLineRunner {
 
     private final AssetService propertyItemService;
 
+    private final CollateralTypeService collateralTypeService;
+
     private final Scanner scanner;
 
-    public ConsoleRunner(BankClientService bankClientService, LoanService loanService, DepartmentService departmentService, AssetService propertyItemService, Scanner scanner) {
+    public ConsoleRunner(BankClientService bankClientService, LoanService loanService, DepartmentService departmentService, AssetService propertyItemService, CollateralTypeService collateralTypeService, Scanner scanner) {
         this.bankClientService = bankClientService;
         this.loanService = loanService;
         this.departmentService = departmentService;
         this.propertyItemService = propertyItemService;
+        this.collateralTypeService = collateralTypeService;
         this.scanner = scanner;
     }
 
@@ -39,6 +39,9 @@ public class ConsoleRunner implements CommandLineRunner {
 
         if (departmentService.isEmpty()){
             departmentService.seedDepartments();
+        }
+        if (collateralTypeService.isEmpty()){
+            collateralTypeService.seedCollateralTypes();
         }
 
         AddClientDTO importClientDTO= new AddClientDTO("BUY-BG Ltd.",

@@ -28,15 +28,16 @@ public class LoanServiceImpl implements LoanService {
     }
 
     @Override
-    public String addLoan(AddLoanDTO addLoanDTO) {
+    public void addLoan(AddLoanDTO addLoanDTO) {
 
         String clientIdNumber = addLoanDTO.getClientIdNumber();
         Optional<BankClient> optClient = this.bankClientRepository
                 .findByIdentificationNumber(clientIdNumber);
 
-        if(optClient.isEmpty())
-            return "Incorrect client!";
-        else {
+//        if(optClient.isEmpty())
+//            return "Incorrect client!";
+//        else {
+        if (optClient.isPresent()){
             String loanNumber = addLoanDTO.getLoanNumber();
             Optional<Loan> optLoan = this.loanRepository.findByLoanNumber(loanNumber);
 
@@ -45,9 +46,9 @@ public class LoanServiceImpl implements LoanService {
                 Loan loan = this.modelMapper.map(addLoanDTO, Loan.class);
                 optClient.ifPresent(loan::setClient);
                 this.loanRepository.save(loan);
-                return "Successfully added loan";
+                //return "Successfully added loan";
             }
-            return "Loan already exists!";
+            //return "Loan already exists!";
         }
     }
 }

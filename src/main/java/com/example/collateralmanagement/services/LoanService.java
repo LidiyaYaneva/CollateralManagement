@@ -4,5 +4,5 @@ import com.example.collateralmanagement.models.dtos.business.AddLoanDTO;
 
 public interface LoanService {
 
-    String addLoan (AddLoanDTO addLoanDTO);
+    void addLoan (AddLoanDTO addLoanDTO);
 }

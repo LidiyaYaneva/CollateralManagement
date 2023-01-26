@@ -1,6 +1,7 @@
 package com.example.collateralmanagement.models.entities.valuation;
 
 import com.example.collateralmanagement.models.entities.asset.Asset;
+import com.example.collateralmanagement.models.entities.enums.EvaluationType;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -24,7 +25,8 @@ public class Evaluation {
     protected LocalDate date;
 
     @Column (nullable = false, insertable = false, updatable = false)
-    protected String type;
+    @Enumerated(EnumType.STRING)
+    protected EvaluationType type;
 
     @Column(nullable = false)
     protected Double result;
@@ -32,7 +34,7 @@ public class Evaluation {
     public Evaluation(){}
 
     public Evaluation(String type){
-        this.type = type;
+        this.type = EvaluationType.valueOf(type);
     }
 
     public Long getId() {
@@ -59,11 +61,11 @@ public class Evaluation {
         this.date = date;
     }
 
-    public String getType() {
+    public EvaluationType getType() {
         return type;
     }
 
-    public void setType(String evaluationType) {
+    public void setType(EvaluationType evaluationType) {
         this.type = evaluationType;
     }
 
