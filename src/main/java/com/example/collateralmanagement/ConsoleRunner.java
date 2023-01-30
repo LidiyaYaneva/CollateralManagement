@@ -3,8 +3,10 @@ package com.example.collateralmanagement;
 import com.example.collateralmanagement.models.dtos.business.AddClientDTO;
 import com.example.collateralmanagement.models.dtos.business.AddLoanDTO;
 import com.example.collateralmanagement.models.dtos.asset.CreateAssetDTO;
+import com.example.collateralmanagement.models.dtos.user.RegisterUserDTO;
 import com.example.collateralmanagement.services.*;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -23,15 +25,20 @@ public class ConsoleRunner implements CommandLineRunner {
 
     private final CollateralTypeService collateralTypeService;
 
-    private final Scanner scanner;
+    private final UserService userService;
 
-    public ConsoleRunner(BankClientService bankClientService, LoanService loanService, DepartmentService departmentService, AssetService propertyItemService, CollateralTypeService collateralTypeService, Scanner scanner) {
+    private final Scanner scanner;
+    private  final PasswordEncoder encoder;
+
+    public ConsoleRunner(BankClientService bankClientService, LoanService loanService, DepartmentService departmentService, AssetService propertyItemService, CollateralTypeService collateralTypeService, UserService userService, Scanner scanner, PasswordEncoder encoder) {
         this.bankClientService = bankClientService;
         this.loanService = loanService;
         this.departmentService = departmentService;
         this.propertyItemService = propertyItemService;
         this.collateralTypeService = collateralTypeService;
+        this.userService = userService;
         this.scanner = scanner;
+        this.encoder = encoder;
     }
 
     @Override
@@ -43,6 +50,10 @@ public class ConsoleRunner implements CommandLineRunner {
         if (collateralTypeService.isEmpty()){
             collateralTypeService.seedCollateralTypes();
         }
+
+        RegisterUserDTO registerUserDTO = new RegisterUserDTO("Ivan", "Dimitrov",
+                "ivan.dimitrov@bank.com","IvanDimitrov", "encodertest", "MANAGEMENT");
+        this.userService.registerUser(registerUserDTO);
 
         AddClientDTO importClientDTO= new AddClientDTO("BUY-BG Ltd.",
                 "SMALL_BUSINESS_ENTITY", "1111111111", "office@buy-bg.com");

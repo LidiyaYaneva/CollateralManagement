@@ -1,4 +1,4 @@
-package com.example.collateralmanagement.models.entities;
+package com.example.collateralmanagement.models.entities.user;
 
 import com.example.collateralmanagement.models.entities.business.Department;
 import jakarta.persistence.*;
@@ -16,10 +16,10 @@ public class UserEntity {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @Column( nullable = false)
+    @Column( nullable = false, unique = true)
     private String email;
 
-    @Column( nullable = false)
+    @Column( nullable = false, unique = true)
     private String username;
 
     @Column (nullable = false)

@@ -1,4 +1,4 @@
-package com.example.collateralmanagement.models.entities.enums;
+package com.example.collateralmanagement.models.enums;
 
 public enum CollateralCategory {
 

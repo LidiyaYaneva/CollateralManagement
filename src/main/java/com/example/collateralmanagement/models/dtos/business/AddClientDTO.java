@@ -1,7 +1,7 @@
 package com.example.collateralmanagement.models.dtos.business;
 
 
-import com.example.collateralmanagement.models.entities.enums.ClientType;
+import com.example.collateralmanagement.models.enums.ClientType;
 
 public class AddClientDTO {
 

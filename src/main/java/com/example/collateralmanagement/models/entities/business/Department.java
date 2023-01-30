@@ -1,6 +1,6 @@
 package com.example.collateralmanagement.models.entities.business;
 
-import com.example.collateralmanagement.models.entities.enums.DepartmentEnum;
+import com.example.collateralmanagement.models.enums.DepartmentEnum;
 import jakarta.persistence.*;
 
 @Entity

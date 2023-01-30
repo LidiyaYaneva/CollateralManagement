@@ -1,6 +1,6 @@
 package com.example.collateralmanagement.models.dtos.asset;
 
-import com.example.collateralmanagement.models.entities.enums.CollateralCategory;
+import com.example.collateralmanagement.models.enums.CollateralCategory;
 
 
 public class CollateralTypeDTO {

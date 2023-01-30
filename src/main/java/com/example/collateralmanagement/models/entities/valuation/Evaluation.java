@@ -1,7 +1,7 @@
 package com.example.collateralmanagement.models.entities.valuation;
 
 import com.example.collateralmanagement.models.entities.asset.Asset;
-import com.example.collateralmanagement.models.entities.enums.EvaluationType;
+import com.example.collateralmanagement.models.enums.EvaluationType;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;

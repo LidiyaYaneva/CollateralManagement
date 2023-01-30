@@ -1,6 +1,6 @@
 package com.example.collateralmanagement.models.entities.business;
 
-import com.example.collateralmanagement.models.entities.enums.ClientType;
+import com.example.collateralmanagement.models.enums.ClientType;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
