@@ -7,6 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
 import java.util.Scanner;
 
 @Component
@@ -62,12 +63,15 @@ public class ConsoleRunner implements CommandLineRunner {
 //        this.bankClientService.addClient(importClientDTO);
 //        this.loanService.addLoan(importLoanDTO);
 
-        CreateAssetDTO createAssetDTO = new CreateAssetDTO("some description new test 6", "keyword test new 6","Example 6",
-                "example ownership doc new 6", "PROPERTY_ADMINISTRATION");
-        this.assetService.createAsset(createAssetDTO);
+//        CreateAssetDTO createAssetDTO = new CreateAssetDTO("some description new test 6", "keyword test new 6","Example 6",
+//                "example ownership doc new 6", "PROPERTY_ADMINISTRATION");
+//        this.assetService.createAsset(createAssetDTO);
 
         //yyyy-MM-dd
-        AddAcquiredAssetDTO addAcquiredAssetDTO = new AddAcquiredAssetDTO( 1L, "2023-01-03", "2023-01-31",
+//        AddAcquiredAssetDTO addAcquiredAssetDTO = new AddAcquiredAssetDTO( 1L, "2023-01-03", Optional.empty(),
+//                "example Strategy", true);
+//        this.acquiredAssetService.addAcquiredAsset(addAcquiredAssetDTO);
+        AddAcquiredAssetDTO addAcquiredAssetDTO = new AddAcquiredAssetDTO( 5L, "2023-01-03", Optional.empty(),
                 "example Strategy", true);
         this.acquiredAssetService.addAcquiredAsset(addAcquiredAssetDTO);
     }

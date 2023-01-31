@@ -6,6 +6,8 @@ public interface AppraisalCompaniesService {
 
     void addAppraisalCompany(AddAppraisalCompanyDTO addAppraisalCompanyDTO);
 
+    boolean deleteAppraisalCompany(String companyBULSTAT);
+
     boolean isEmpty();
 
     void seedAppraisalCompanies();

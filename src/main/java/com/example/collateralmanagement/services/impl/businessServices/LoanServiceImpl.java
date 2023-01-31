@@ -51,4 +51,9 @@ public class LoanServiceImpl implements LoanService {
             //return "Loan already exists!";
         }
     }
+
+    @Override
+    public boolean deleteLoan(String loanNumber) {
+        return false;
+    }
 }

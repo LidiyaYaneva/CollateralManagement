@@ -35,4 +35,9 @@ public class BankClientServiceImpl implements BankClientService {
         }
 
     }
+
+    @Override
+    public boolean deleteClient(String identificationNumber) {
+        return false;
+    }
 }

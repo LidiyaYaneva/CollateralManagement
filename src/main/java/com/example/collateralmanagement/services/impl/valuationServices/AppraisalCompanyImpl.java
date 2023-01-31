@@ -22,6 +22,11 @@ public class AppraisalCompanyImpl implements AppraisalCompaniesService {
     }
 
     @Override
+    public boolean deleteAppraisalCompany(String companyBULSTAT) {
+        return false;
+    }
+
+    @Override
     public boolean isEmpty() {
         return false;
 

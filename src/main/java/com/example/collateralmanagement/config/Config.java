@@ -34,6 +34,7 @@ public class Config {
     @Bean
     public ModelMapper createModelMapper(){
         ModelMapper modelMapper=new ModelMapper();
+        modelMapper.getConfiguration().setSkipNullEnabled(true);
 
         modelMapper.addConverter(mappingContext ->
                         LocalDate.parse(mappingContext.getSource(),
@@ -43,5 +44,4 @@ public class Config {
 
         return modelMapper;
     }
-    // TODO addConverter to ModelMapper  - if the String is null, LocalDate value to be null
 }

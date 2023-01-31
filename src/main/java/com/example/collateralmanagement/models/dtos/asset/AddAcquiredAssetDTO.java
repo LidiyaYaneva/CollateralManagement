@@ -2,6 +2,7 @@ package com.example.collateralmanagement.models.dtos.asset;
 
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 public class AddAcquiredAssetDTO {
 
@@ -9,7 +10,7 @@ public class AddAcquiredAssetDTO {
 
     private String acquisitionDate;
 
-    private String saleDate;
+    private Optional<String> saleDate;
 
     private String managementStrategy;
 
@@ -18,7 +19,7 @@ public class AddAcquiredAssetDTO {
     public AddAcquiredAssetDTO() {
     }
 
-    public AddAcquiredAssetDTO(Long assetId, String acquisitionDate, String saleDate, String managementStrategy, boolean isActive) {
+    public AddAcquiredAssetDTO(Long assetId, String acquisitionDate, Optional<String> saleDate, String managementStrategy, boolean isActive) {
         this.assetId = assetId;
         this.acquisitionDate = acquisitionDate;
         this.saleDate = saleDate;
@@ -42,11 +43,11 @@ public class AddAcquiredAssetDTO {
         this.acquisitionDate = acquisitionDate;
     }
 
-    public String getSaleDate() {
+    public Optional<String> getSaleDate() {
         return saleDate;
     }
 
-    public void setSaleDate(String saleDate) {
+    public void setSaleDate(Optional<String> saleDate) {
         this.saleDate = saleDate;
     }
 

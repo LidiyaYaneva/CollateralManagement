@@ -47,10 +47,6 @@ public class AcquiredAssetServiceImpl implements AcquiredAssetService {
 
             AcquiredAsset acquiredAsset = this.modelMapper.map(addAcquiredAssetDTO, AcquiredAsset.class);
             acquiredAsset.setAsset(optAsset.get());
-            //TODO addConverter to ModelMapper  - if the String is null, LocalDate value to be null
-            if (addAcquiredAssetDTO.getSaleDate() == null){
-                acquiredAsset.setSaleDate(null);
-            }
             this.acquiredAssetRepository.save(acquiredAsset);
             Optional<Department> department=this.departmentRepository.findByName(DepartmentEnum.PROPERTY_ADMINISTRATION);
             department.ifPresent(value -> optAsset.get().setCurrentAccountableDepartment(value));

@@ -21,4 +21,9 @@ public class AppraisalServiceImpl  implements AppraisalService {
     public void addAppraisal(AddAppraisalDTO addAppraisalDTO) {
 
     }
+
+    @Override
+    public boolean deleteAppraisal(Long id) {
+        return false;
+    }
 }

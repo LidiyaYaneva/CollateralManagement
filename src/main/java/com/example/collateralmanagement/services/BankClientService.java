@@ -7,4 +7,6 @@ public interface BankClientService {
 
     void addClient (AddClientDTO addClientDTO);
 
+    boolean deleteClient (String identificationNumber);
+
 }
