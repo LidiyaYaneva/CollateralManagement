@@ -43,4 +43,5 @@ public class Config {
 
         return modelMapper;
     }
+    // TODO addConverter to ModelMapper  - if the String is null, LocalDate value to be null
 }

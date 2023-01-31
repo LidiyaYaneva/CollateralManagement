@@ -31,7 +31,7 @@ public class Asset {
     protected Set<Evaluation> evaluations;
 
     @ManyToOne
-    @JoinColumn(name = "current_accountable_department")
+    @JoinColumn(name = "current_accountable_department", referencedColumnName = "id", nullable = true)
     protected Department currentAccountableDepartment;
 
     public Asset(){

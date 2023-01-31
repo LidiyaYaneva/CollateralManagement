@@ -20,4 +20,9 @@ public class CollateralServiceImpl implements CollateralService {
     public void addCollateral(AddCollateralDTO addCollateralDTO) {
 
     }
+
+    @Override
+    public boolean deleteCollateral(Long id) {
+        return false;
+    }
 }

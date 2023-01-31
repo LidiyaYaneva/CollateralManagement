@@ -75,7 +75,7 @@ public class AcquiredAsset {
         return asset;
     }
 
-    public void setAsset(Asset propertyItem) {
-        this.asset = propertyItem;
+    public void setAsset(Asset asset) {
+        this.asset = asset;
     }
 }

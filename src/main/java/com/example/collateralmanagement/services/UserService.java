@@ -10,4 +10,6 @@ public interface UserService {
     boolean login (LoginUserDTO loginUserDTO);
 
     void logout();
+
+    boolean deleteUser(String username);
 }

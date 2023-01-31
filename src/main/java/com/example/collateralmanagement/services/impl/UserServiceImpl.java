@@ -87,6 +87,19 @@ public class UserServiceImpl implements UserService {
         this.currentUser.clear();
     }
 
+    @Override
+    public boolean deleteUser(String username) {
+        Optional<UserEntity> userEntityOpt = this.userRepository.findByUsername(username);
+        if (userEntityOpt.isEmpty()){
+            LOGGER.info("User [{}]not found", username);
+            return false;
+        }
+        else {
+            this.userRepository.delete(userEntityOpt.get());
+            return true;
+        }
+    }
+
     private void login (UserEntity userEntity){
         currentUser.setLoggedIn(true);
         currentUser.setFullName(userEntity.getFirstName()+ " " + userEntity.getLastName());

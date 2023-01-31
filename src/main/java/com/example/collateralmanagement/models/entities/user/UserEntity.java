@@ -26,7 +26,7 @@ public class UserEntity {
     private String password;
 
     @ManyToOne
-    @JoinColumn(name = "department_id", referencedColumnName = "id")
+    @JoinColumn(name = "department_id", referencedColumnName = "id",nullable = true)
     private Department department;
 
     public UserEntity () {}

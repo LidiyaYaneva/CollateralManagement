@@ -6,4 +6,5 @@ public interface CollateralService {
 
     void addCollateral(AddCollateralDTO addCollateralDTO);
 
+    boolean deleteCollateral(Long id);
 }
