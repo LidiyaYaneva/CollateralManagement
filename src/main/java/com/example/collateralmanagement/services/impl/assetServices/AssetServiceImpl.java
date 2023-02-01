@@ -23,7 +23,7 @@ import java.util.Optional;
 @Service
 public class AssetServiceImpl implements AssetService {
 
-    private Logger LOGGER = LoggerFactory.getLogger(AssetServiceImpl.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(AssetServiceImpl.class);
 
     private final AssetRepository assetRepository;
 
@@ -111,30 +111,4 @@ public class AssetServiceImpl implements AssetService {
 
         return optAsset.get();
     }
-
-//    @Override
-//    @Transactional
-//    public boolean deleteAsset(Long id) {
-//
-//        Optional<Asset> optAsset = this.assetRepository.findById(id);
-//
-//        if(optAsset.isEmpty()) {
-//            LOGGER.info("Asset with id [{}] not found",id);
-//            return false;
-//        }
-//        else {
-//            List<AcquiredAsset> optAcquiredAssets = this.acquiredAssetRepository.findAllByAssetId(id);
-//
-//
-//            List<Collateral> optCollaterals = this.collateralRepository.findAllByAssetId(id);
-//
-//
-//            List<Evaluation> optAssetEvaluations = this.evaluationRepository.findAllByAssetId(id);
-//
-//
-//            this.assetRepository.delete(optAsset.get());
-//            return true;
-//        }
-//
-//    }
 }

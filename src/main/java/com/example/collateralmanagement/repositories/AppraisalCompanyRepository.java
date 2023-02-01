@@ -4,7 +4,9 @@ import com.example.collateralmanagement.models.entities.valuation.AppraisalCompa
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface AppraisalCompanyRepository extends JpaRepository<AppraisalCompany, Long> {
-
+    Optional<AppraisalCompany> findByCompanyBULSTAT(String companyBULSTAT);
 }

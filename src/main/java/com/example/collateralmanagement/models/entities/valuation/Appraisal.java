@@ -18,7 +18,7 @@ public class Appraisal extends Evaluation {
     @Column(name = "valuation_Reviewer")
     private String valuationReviewer;
 
-    @Column (name = "reviewer_opinion")
+    @Column (name = "reviewer_opinion", columnDefinition = "TEXT")
     private String reviewerOpinion;
 
     @OneToOne

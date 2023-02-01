@@ -29,7 +29,10 @@ public class Evaluation {
     protected EvaluationType type;
 
     @Column(nullable = false)
-    protected Double result;
+    protected Double marketValue;
+
+    @Column(nullable = false)
+    protected Double collateralValue;
 
     public Evaluation(){}
 
@@ -69,11 +72,19 @@ public class Evaluation {
         this.type = evaluationType;
     }
 
-    public Double getResult() {
-        return result;
+    public Double getMarketValue() {
+        return marketValue;
     }
 
-    public void setResult(Double result) {
-        this.result = result;
+    public void setMarketValue(Double result) {
+        this.marketValue = result;
+    }
+
+    public Double getCollateralValue() {
+        return collateralValue;
+    }
+
+    public void setCollateralValue(Double collateralValue) {
+        this.collateralValue = collateralValue;
     }
 }

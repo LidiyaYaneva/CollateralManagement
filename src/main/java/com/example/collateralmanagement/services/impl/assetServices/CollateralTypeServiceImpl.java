@@ -23,6 +23,7 @@ public class CollateralTypeServiceImpl implements CollateralTypeService {
     private final Gson gson;
 
     private final ModelMapper modelMapper;
+
     @Autowired
     public CollateralTypeServiceImpl(CollateralTypeRepository collateralTypeRepository, Gson gson, ModelMapper modelMapper) {
         this.collateralTypeRepository = collateralTypeRepository;
@@ -43,13 +44,13 @@ public class CollateralTypeServiceImpl implements CollateralTypeService {
 
     @Override
     public void seedCollateralTypes() throws IOException {
-        if (isEmpty()){
-            String json= readCollateralTypesFormFile();
-            CollateralTypeDTO[] collateralTypeDTOS = this.gson.fromJson(json, CollateralTypeDTO[].class );
+        if (isEmpty()) {
+            String json = readCollateralTypesFormFile();
+            CollateralTypeDTO[] collateralTypeDTOS = this.gson.fromJson(json, CollateralTypeDTO[].class);
 
-            List<CollateralType> collateralTypeEntities=new ArrayList<>();
+            List<CollateralType> collateralTypeEntities = new ArrayList<>();
 
-            Arrays.stream(collateralTypeDTOS). forEach( dto -> {
+            Arrays.stream(collateralTypeDTOS).forEach(dto -> {
                 CollateralType collateralType = this.modelMapper.map(dto, CollateralType.class);
                 collateralTypeEntities.add(collateralType);
             });
