@@ -1,33 +1,48 @@
 package com.example.collateralmanagement.models.dtos.user;
 
 import com.example.collateralmanagement.models.entities.business.Department;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 
 public class RegisterUserDTO {
 
 
+    @NotEmpty
+    @Size(min = 2, max =20)
     private String firstName;
 
+    @NotEmpty
+    @Size(min = 2, max =20)
     private String lastName;
-
+    @NotEmpty
+    @Email
     private String email;
-
+    @NotEmpty
+    @Size(min = 10)
     private String username;
-
+    @NotEmpty
+    @Size(min = 10)
     private String password;
+
+    @NotEmpty
+    @Size(min = 10)
+    private String confirmPassword;
 
     private String department;
 
     public RegisterUserDTO() {
     }
 
-    public RegisterUserDTO(String firstName, String lastName, String email, String username, String password, String department) {
+    public RegisterUserDTO(String firstName, String lastName, String email, String username, String password, String confirmPassword, String department) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.username = username;
         this.password = password;
         this.department = department;
+        this.confirmPassword = confirmPassword;
     }
 
     public String getFirstName() {
@@ -68,6 +83,14 @@ public class RegisterUserDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 
     public String getDepartment() {

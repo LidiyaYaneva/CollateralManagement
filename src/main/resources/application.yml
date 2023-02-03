@@ -27,7 +27,7 @@ spring:
         properties:
             hibernate:
                 dialect: org.hibernate.dialect.MySQL8Dialect
-                format_sql: true
+                format_sql: false
                 show_sql: true
                 defer-datasource-initialization: true
     #Cloudinary Properties cloud
@@ -36,4 +36,4 @@ spring:
     #api-secret:
     #cloud-name:
 server:
-    port: 8080
+    port: 8000

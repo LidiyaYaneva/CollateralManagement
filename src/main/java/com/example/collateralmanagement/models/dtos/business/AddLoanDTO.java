@@ -1,12 +1,19 @@
 package com.example.collateralmanagement.models.dtos.business;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Positive;
+
+
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public class AddLoanDTO {
-
+    @NotEmpty
     private String loanNumber;
-
-    private String issueDate;
+    @NotEmpty
+    @PastOrPresent
+    private LocalDate issueDate;
 
 //    @ManyToMany
 //    @JoinTable(name = "loans_collaterals",
@@ -14,22 +21,23 @@ public class AddLoanDTO {
 //            inverseJoinColumns = @JoinColumn(name = "loan_id", referencedColumnName = "id"))
 //   private Set<Collateral> collaterals;
 
-
-    private boolean isActive;
+    @NotEmpty
+    private Boolean active;
 
     private String riskStatus;
-
+    @NotEmpty
+    @Positive
     private BigDecimal amount;
-
+    @NotEmpty
     private String clientIdNumber;
 
     public AddLoanDTO() {
     }
 
-    public AddLoanDTO(String loanNumber, String issueDate, boolean isActive, String riskStatus, BigDecimal amount, String clientIdNumber) {
+    public AddLoanDTO(String loanNumber, LocalDate issueDate, boolean active, String riskStatus, BigDecimal amount, String clientIdNumber) {
         this.loanNumber = loanNumber;
         this.issueDate = issueDate;
-        this.isActive = isActive;
+        this.active = active;
         this.riskStatus = riskStatus;
         this.clientIdNumber = clientIdNumber;
         this.amount= amount;
@@ -44,20 +52,20 @@ public class AddLoanDTO {
         this.loanNumber = loanNumber;
     }
 
-    public String getIssueDate() {
+    public LocalDate getIssueDate() {
         return issueDate;
     }
 
-    public void setIssueDate(String issueDate) {
+    public void setIssueDate(LocalDate issueDate) {
         this.issueDate = issueDate;
     }
 
-    public boolean isActive() {
-        return isActive;
+    public Boolean getActive() {
+        return active;
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     public String getRiskStatus() {

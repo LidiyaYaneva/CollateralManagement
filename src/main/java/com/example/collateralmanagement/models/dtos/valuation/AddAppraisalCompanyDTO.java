@@ -1,9 +1,11 @@
 package com.example.collateralmanagement.models.dtos.valuation;
 
+import jakarta.validation.constraints.NotEmpty;
+
 public class AddAppraisalCompanyDTO {
-
+    @NotEmpty
     private String name;
-
+    @NotEmpty
     private String companyBULSTAT;
 
     public AddAppraisalCompanyDTO() {

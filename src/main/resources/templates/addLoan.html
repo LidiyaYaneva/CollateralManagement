@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Collateral Management</title>
+</head>
+<body>
+<div class="add loan form">
+  <form action="/business/loans/save" th:object="${loan}"  method="POST">
+
+    <input type="text" placeholder="Loan Number" th:field="${loan.loanNumber}">
+
+    <input type="text" placeholder="Client number" th:field="${loan.clientIdNumber}">
+
+      <input type="number" placeholder="Loan Amount" th:field="${loan.amount}">
+
+      <input type="date" placeholder="Issue Date" th:field="${loan.issueDate}">
+
+    <input type="text" placeholder="Risk Status" th:field="${loan.riskStatus}">
+
+      <span>Active: </span>
+      <input type="checkbox" placeholder="Is Active" th:checked="${loan.active}">
+
+
+    <button type="submit">Add client</button>
+</form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Collateral Management</title>
+</head>
+<body>
+    <div class="add client form">
+      <form action="/business/clients/save" th:object="${bankClient}"  method="POST">
+
+        <input type="text" placeholder="Identification Number"
+               th:field="${bankClient.identificationNumber}"
+               th:errorclass="is-invalid">
+          <p class= "invalid-feedback"> Identification Number is required and must be between 2 and 20 symbols. </p>
+
+        <input type="text" placeholder="Full Name"
+               th:field="${bankClient.name}"
+               th:errorclass="is-invalid">
+          <p class= "invalid-feedback"> Identification Number is required and must be between 2 and 20 symbols. </p>
+
+        <select id="clientType" name="clientType" th:field="${bankClient.clientType}">
+          <option th:value="INDIVIDUAL"> Individual</option>
+          <option th:value="SMALL_BUSINESS_ENTITY"> Small business entity</option>
+          <option th:value="MIDDLE_SIZE_ENTERPRISE"> Middle-size enterprise</option>
+          <option th:value="LARGE_ENTERPRISE"> Large enterprise</option>
+        </select>
+
+        <input type="text" placeholder="Contact Information" th:field="${bankClient.contacts}">
+
+
+        <button type="submit">Add client</button>
+      </form>
+    </div>
+
+
+
+</body>
+</html>

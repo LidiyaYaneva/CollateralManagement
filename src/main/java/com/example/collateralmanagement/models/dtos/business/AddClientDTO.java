@@ -2,13 +2,16 @@ package com.example.collateralmanagement.models.dtos.business;
 
 
 import com.example.collateralmanagement.models.enums.ClientType;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 public class AddClientDTO {
-
+    @NotEmpty
+    @Size(min =2, max = 20)
     private String name;
-
     private ClientType clientType;
-
+    @NotEmpty
+    @Size(min = 2, max = 20)
     private String identificationNumber;
 
     private String contacts;

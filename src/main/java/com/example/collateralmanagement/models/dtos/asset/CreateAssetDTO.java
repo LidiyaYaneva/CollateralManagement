@@ -1,7 +1,9 @@
 package com.example.collateralmanagement.models.dtos.asset;
 
-public class CreateAssetDTO {
+import jakarta.validation.constraints.NotEmpty;
 
+public class CreateAssetDTO {
+    @NotEmpty
     protected String description;
 
     protected String keyword;
