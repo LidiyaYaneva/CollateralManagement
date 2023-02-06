@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <th:block th:include="~{/fragments/head}"/>
     <title>Collateral Management</title>
 </head>
 <body>
+
+<th:block th:insert="~{/fragments/header}"/>
+
     <div class="add client form">
-      <form action="/business/clients/save" th:object="${bankClient}"  method="POST">
+      <form th:action="@{/business/clients/save}" th:object="${bankClient}"  th:method="POST">
 
         <input type="text" placeholder="Identification Number"
                th:field="${bankClient.identificationNumber}"
@@ -33,6 +36,6 @@
     </div>
 
 
-
+    <th:block th:insert="~{/fragments/footer}"/>
 </body>
 </html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <th:block th:include="~{/fragments/head}"/>
+    <title>Register</title>
+</head>
+<body>
+
+      <th:block th:insert="~{/fragments/header}"/>
+
+      <div class="register">
+          <form th:action="@{adminPanel/register/save}" th:object="${user}"  th:method="POST">
+
+              <input type="text" placeholder="First Name"
+                     th:field="${user.firstName}"
+                     th:errorclass="is-invalid">
+              <p class= "invalid-feedback"> First Name is required and must be between 2 and 20 symbols. </p>
+
+              <input type="text" placeholder="Last Name"
+                     th:field="${user.lastName}"
+                     th:errorclass="is-invalid">
+              <p class= "invalid-feedback"> Last Name is required and must be between 2 and 20 symbols. </p>
+
+              <input type="text" placeholder="Email"
+                     th:field="${user.email}"
+                     th:errorclass="is-invalid">
+              <p class= "invalid-feedback"> Email is required. </p>
+
+              <input type="text" placeholder="Username"
+                     th:field="${user.username}"
+                     th:errorclass="is-invalid">
+              <p class= "invalid-feedback"> Username is required and must be between 5 and 20 symbols. </p>
+
+              <input type="text" placeholder="Password"
+                     th:field="${user.password}"
+                     th:errorclass="is-invalid">
+              <p class= "invalid-feedback"> Password is required. </p>
+
+              <input type="text" placeholder="Confirm Password"
+                     th:field="${user.password}"
+                     th:errorclass="is-invalid">
+              <p class= "invalid-feedback"> Password mismatch. </p>
+
+              <select id="department" name="department" th:field="${user.department}">
+                  <option th:value="MANAGEMENT">Management</option>
+                  <option th:value="BUSINESS">Business</option>
+                  <option th:value="CREDIT_RISK">Credit risk</option>
+                  <option th:value="PROBLEMATIC_RECEIVABLES">Problematic Receivables</option>
+                  <option th:value="PROPERTY_ADMINISTRATION">Property Administration</option>
+                  <option th:value="IT">IT</option>
+              </select>
+
+              <button type="submit">Register</button>
+          </form>
+      </div>
+
+
+
+      <th:block th:insert="~{/fragments/footer}"/>
+</body>
+</html>

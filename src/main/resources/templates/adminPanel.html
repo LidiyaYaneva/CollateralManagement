@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <th:block th:include="~{/fragments/head}"/>
+    <title>Admin Panel</title>
+</head>
+<body>
+
+<th:block th:insert="~{/fragments/header}"/>
+
+<main>
+    <h1> Admin panel</h1>
+    <nav>
+        <ul>
+            <li> <a th:href="@{/adminPanel/register}">Register User</a></li>
+            <li> <a th:href="@{/adminPanel}">2?</a></li>
+            <li> <a th:href="@{/adminPanel}">3?</a></li>
+            <li> <a th:href="@{/adminPanel}">4?</a></li>
+            <li> <a th:href="@{/adminPanel}">5?</a></li>
+        </ul>
+    </nav>
+
+</main>
+
+
+<th:block th:insert="~{/fragments/footer}"/>
+</body>
+</html>

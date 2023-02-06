@@ -35,4 +35,10 @@ public class HomeController {
 
         return "acquiredAssets";
     }
+
+    @GetMapping("/adminPanel")
+    public String displayAdminPanel () {
+
+        return "adminPanel";
+    }
 }

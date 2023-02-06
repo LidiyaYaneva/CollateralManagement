@@ -20,14 +20,14 @@ public class RegisterUserDTO {
     @Email
     private String email;
     @NotEmpty
-    @Size(min = 10)
+    @Size(min = 5, max =20)
     private String username;
     @NotEmpty
-    @Size(min = 10)
+    @Size(min = 5)
     private String password;
 
     @NotEmpty
-    @Size(min = 10)
+    @Size(min = 5)
     private String confirmPassword;
 
     private String department;

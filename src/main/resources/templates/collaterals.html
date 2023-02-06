@@ -1,32 +1,28 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>CollateralManagement</title>
+    <th:block th:include="~{/fragments/head}"/>
+    <title>Collaterals</title>
 </head>
 <body>
-    <header>
-     <div>
-         <p>Put here Full name of the user and move it to the right corner</p>
-         <button>Logout</button>
-     </div>
+
+<th:block th:insert="~{/fragments/header}"/>
 
     </header>
     <main>
         <nav>
             <ul>
-                <li> <a href="#">Add new Asset</a></li>
-                <li> <a href="#">Find Asset</a></li>
-                <li> <a href="#">Add Collateral from existing Asset</a></li>
-                <li> <a href="#">Find Collateral</a></li>
-                <li> <a href="#">Collateral categorization</a></li>
+                <li> <a th:href="@{/addNewAsset}">Add new Asset</a></li>
+                <li> <a th:href="@{/findAsset}">Find Asset</a></li>
+                <li> <a th:href="@{/addCollateralFromAsset}">Add Collateral from existing Asset</a></li>
+                <li> <a th:href="@{/findCollateral}">Find Collateral</a></li>
+                <li> <a th:href="@{/collateralCategorization}">Collateral categorization</a></li>
             </ul>
         </nav>
 
     </main>
-    <footer>
 
-    </footer>
+    <th:block th:insert="~{/fragments/footer}"/>
 
 </body>
 </html>
