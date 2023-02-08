@@ -41,17 +41,26 @@ public class UserServiceImpl implements UserService {
     @Override
     public void registerUser(RegisterUserDTO registerUserDTO) {
 
-        Optional<Department> optDepartment = this.departmentRepository
-                .findByName(DepartmentEnum.valueOf(registerUserDTO.getDepartment()));
+        String email= registerUserDTO.getEmail();
 
-        if (optDepartment.isEmpty()) {
-            LOGGER.info ("Department [{}] not found", registerUserDTO.getDepartment());
+        Optional<UserEntity> optUser =this.userRepository.findByEmail(email);
+
+        if (optUser.isPresent()){
+            LOGGER.info("User with email [{}] already exists", email);
         }
         else {
-            UserEntity userEntity = this.modelMapper.map(registerUserDTO, UserEntity.class);
-            userEntity.setDepartment(optDepartment.get());
-            userEntity.setPassword(passwordEncoder.encode(registerUserDTO.getPassword()));
-            this.userRepository.save(userEntity);
+
+            Optional<Department> optDepartment = this.departmentRepository
+                    .findByName(DepartmentEnum.valueOf(registerUserDTO.getDepartment()));
+
+            if (optDepartment.isEmpty()) {
+                LOGGER.info("Department [{}] not found", registerUserDTO.getDepartment());
+            } else {
+                UserEntity userEntity = this.modelMapper.map(registerUserDTO, UserEntity.class);
+                userEntity.setDepartment(optDepartment.get());
+                userEntity.setPassword(passwordEncoder.encode(registerUserDTO.getPassword()));
+                this.userRepository.save(userEntity);
+            }
         }
 
     }

@@ -40,7 +40,7 @@ public class LoanServiceImpl implements LoanService {
     @Override
     public void addLoan(AddLoanDTO addLoanDTO) {
 
-        String clientIdNumber = addLoanDTO.getClientIdNumber();
+        String clientIdNumber = addLoanDTO.getClientBulstatOrEGN();
         Optional<BankClient> optClient = this.bankClientRepository
                 .findByIdentificationNumber(clientIdNumber);
 

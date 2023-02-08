@@ -9,39 +9,52 @@
       <th:block th:insert="~{/fragments/header}"/>
 
       <div class="register">
-          <form th:action="@{adminPanel/register/save}" th:object="${user}"  th:method="POST">
-
-              <input type="text" placeholder="First Name"
+          <form th:action="@{/adminPanel/save}" th:object="${user}"  th:method="POST">
+              <label for="firstName">First name</label>
+              <input id = "firstName" type="text" placeholder="First Name"
                      th:field="${user.firstName}"
-                     th:errorclass="is-invalid">
-              <p class= "invalid-feedback"> First Name is required and must be between 2 and 20 symbols. </p>
+                     th:errorclass="is-invalid"
+                     required minlength="2" max="20"
+              >
+              <!--<div class= "invalid-feedback"> First Name is required and must be between 2 and 20 symbols. </div> -->
 
-              <input type="text" placeholder="Last Name"
+              <label for="lastName">Last name</label>
+              <input id = "lastName" type="text" placeholder="Last Name"
                      th:field="${user.lastName}"
-                     th:errorclass="is-invalid">
-              <p class= "invalid-feedback"> Last Name is required and must be between 2 and 20 symbols. </p>
+                     th:errorclass="is-invalid"
+                     required minlength="2" max="20">
+              <!--<div class= "invalid-feedback"> Last Name is required and must be between 2 and 20 symbols. </div>-->
 
-              <input type="text" placeholder="Email"
+              <label for="email">Email</label>
+              <input id= "email" type="text" placeholder="Email"
                      th:field="${user.email}"
-                     th:errorclass="is-invalid">
-              <p class= "invalid-feedback"> Email is required. </p>
-
-              <input type="text" placeholder="Username"
+                     th:errorclass="is-invalid"
+                     required>
+              <div class= "invalid-feedback">
+                  <div th:each="err: ${#fields.errors('email')}" th:text = "${err}"></div>
+              </div>
+              <label for="username">Username</label>
+              <input id="username" type="text" placeholder="Username"
                      th:field="${user.username}"
-                     th:errorclass="is-invalid">
-              <p class= "invalid-feedback"> Username is required and must be between 5 and 20 symbols. </p>
+                     th:errorclass="is-invalid"
+                     required minlength="5" max="20" >
+              <!--<div class= "invalid-feedback"> Username is required and must be between 5 and 20 symbols. </div>-->
 
-              <input type="text" placeholder="Password"
+              <label for="password">Password</label>
+              <input id="password" type="password" placeholder="Password"
                      th:field="${user.password}"
-                     th:errorclass="is-invalid">
-              <p class= "invalid-feedback"> Password is required. </p>
+                     th:errorclass="is-invalid" required>
+              <!--<p class= "invalid-feedback"> Password is required. </p>-->
 
-              <input type="text" placeholder="Confirm Password"
-                     th:field="${user.password}"
-                     th:errorclass="is-invalid">
-              <p class= "invalid-feedback"> Password mismatch. </p>
+              <label for="confirm">Confirm Password</label>
+              <input id="confirm" type="password" placeholder="Confirm Password"
+                     th:field="${user.confirmPassword}"
+                     th:errorclass="is-invalid" required >
+              <!--<div class= "invalid-feedback"> Passwords should match. </div>-->
 
-              <select id="department" name="department" th:field="${user.department}">
+              <label for="department">Department</label>
+              <select id="department" name="department"
+                      th:field="${user.department}">
                   <option th:value="MANAGEMENT">Management</option>
                   <option th:value="BUSINESS">Business</option>
                   <option th:value="CREDIT_RISK">Credit risk</option>

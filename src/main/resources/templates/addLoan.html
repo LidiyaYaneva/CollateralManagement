@@ -1,31 +1,48 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Collateral Management</title>
+    <th:block th:insert="~{/fragments/head}"/>
+    <title>Add loan</title>
 </head>
 <body>
 
 <th:block th:insert="~{/fragments/header}"/>
       <div class="add loan form">
-        <form th:action="@{/business/loans/save}" th:object="${loan}"  th:method="POST">
+          <form th:action="@{/business/loans/save}" th:object="${addLoanDTO}"  th:method="POST">
 
-          <input type="text" placeholder="Loan Number" th:field="${loan.loanNumber}">
+            <label for="loanNumber">Loan Number</label>
+            <input id="loanNumber" type="text" placeholder="Loan Number"
+                   th:field="${addLoanDTO.loanNumber}" required>
+              <!--th:errorclass="is-invalid"-->
 
-          <input type="text" placeholder="Client number" th:field="${loan.clientIdNumber}">
-
-            <input type="number" placeholder="Loan Amount" th:field="${loan.amount}">
-
-            <input type="date" placeholder="Issue Date" th:field="${loan.issueDate}">
-
-          <input type="text" placeholder="Risk Status" th:field="${loan.riskStatus}">
-
-            <span>Active: </span>
-            <input type="checkbox" placeholder="Is Active" th:checked="${loan.active}">
+            <label for="clientNumber">Client number</label>
+            <input id="clientNumber" type="text" placeholder="Enter Client BULSTAT or EGN"
+                   th:field="${addLoanDTO.clientBulstatOrEGN}" required>
 
 
-          <button type="submit">Add client</button>
-      </form>
+            <label for="loanAmount">Loan Amount</label>
+            <input id="loanAmount" type="number" placeholder="Loan Amount"
+                   th:field="${addLoanDTO.amount}" required>
+
+
+            <label for="issueDate">Issue Date</label>
+            <input id="issueDate" type="date" placeholder="Issue Date"
+                   th:field="${addLoanDTO.issueDate}" required>
+
+
+            <label for="riskStatus">Risk Status</label>
+            <input id="riskStatus" type="text" placeholder="Risk Status"
+                   th:field="${addLoanDTO.riskStatus}" >
+
+            <label for="isActive">Active: </label>
+            <input id="isActive" type="checkbox" placeholder="Is Active"
+                   th:checked="${addLoanDTO.active}"  >
+              <!--th:errorclass="is-invalid"-->
+
+
+
+          <button type="submit">Add loan</button>
+          </form>
       </div>
 
 <th:block th:insert="~{/fragments/footer}"/>

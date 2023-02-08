@@ -9,29 +9,39 @@
 <th:block th:insert="~{/fragments/header}"/>
 
     <div class="add client form">
-      <form th:action="@{/business/clients/save}" th:object="${bankClient}"  th:method="POST">
+      <form th:action="@{/business/clients/save}" th:object="${addClientDTO}"  th:method="POST">
 
-        <input type="text" placeholder="Identification Number"
-               th:field="${bankClient.identificationNumber}"
-               th:errorclass="is-invalid">
-          <p class= "invalid-feedback"> Identification Number is required and must be between 2 and 20 symbols. </p>
+          <label for="identificationNumber">Identification Number</label>
+          <input id="identificationNumber" type="text" placeholder="Enter EGN, BULSTAT or other identification"
+               th:field="${addClientDTO.identificationNumber}"
+               th:errorclass="is-invalid"
+               th:required="required">
+          <!--<p class= "invalid-feedback"> Identification Number is required and must be between 2 and 20 symbols. </p>-->
+          <label for="fullName">Full Name</label>
+          <input id="fullName" type="text" placeholder="Enter full name"
+               th:field="${addClientDTO.name}"
+               th:errorclass="is-invalid"
+               th:required="required">
+          <!--<p class= "invalid-feedback"> Identification Number is required and must be between 2 and 20 symbols. </p>-->
 
-        <input type="text" placeholder="Full Name"
-               th:field="${bankClient.name}"
-               th:errorclass="is-invalid">
-          <p class= "invalid-feedback"> Identification Number is required and must be between 2 and 20 symbols. </p>
+          <label for="clientType">Client Type</label>
+          <select id="clientType" name="clientType"
+                  th:field="${addClientDTO.clientType}">
+              <option th:each="aType : ${T(com.example.collateralmanagement.models.enums.ClientType).values()}"
+                      th:text="${aType}"
+                      th:value="${aType}"
+                      th:selected="${aType} == *{clientType}" >
+              </option>
+          </select>
 
-        <select id="clientType" name="clientType" th:field="${bankClient.clientType}">
-          <option th:value="INDIVIDUAL"> Individual</option>
-          <option th:value="SMALL_BUSINESS_ENTITY"> Small business entity</option>
-          <option th:value="MIDDLE_SIZE_ENTERPRISE"> Middle-size enterprise</option>
-          <option th:value="LARGE_ENTERPRISE"> Large enterprise</option>
-        </select>
 
-        <input type="text" placeholder="Contact Information" th:field="${bankClient.contacts}">
+          <label for="contacts">Contact Information</label>
+          <input id="contacts" type="text" placeholder="Enter Contacts"
+               th:field="${addClientDTO.contacts}">
 
 
         <button type="submit">Add client</button>
+
       </form>
     </div>
 

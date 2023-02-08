@@ -1,6 +1,7 @@
 package com.example.collateralmanagement.models.dtos.asset;
 
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.PastOrPresent;
 
@@ -8,15 +9,15 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 public class AddAcquiredAssetDTO {
-    @NotEmpty
+    @NotBlank
     private Long assetId;
-    @NotEmpty
+    @NotBlank
     private String acquisitionDate;
 
     private Optional<String> saleDate;
 
     private String managementStrategy;
-    @NotEmpty
+    @NotBlank
     private boolean isActive;
 
     public AddAcquiredAssetDTO() {

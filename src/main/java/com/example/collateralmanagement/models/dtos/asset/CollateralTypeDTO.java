@@ -1,13 +1,14 @@
 package com.example.collateralmanagement.models.dtos.asset;
 
 import com.example.collateralmanagement.models.enums.CollateralCategory;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.*;
 
 
 public class CollateralTypeDTO {
-    @NotEmpty
+    @NotBlank
     private CollateralCategory type;
-    @NotEmpty
+    @NotNull
+    @Positive
     private double multiplier;
 
     private String description;

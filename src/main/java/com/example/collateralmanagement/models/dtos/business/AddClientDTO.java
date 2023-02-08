@@ -2,22 +2,34 @@ package com.example.collateralmanagement.models.dtos.business;
 
 
 import com.example.collateralmanagement.models.enums.ClientType;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public class AddClientDTO {
-    @NotEmpty
-    @Size(min =2, max = 20)
-    private String name;
-    private ClientType clientType;
-    @NotEmpty
+
+    @NotBlank
     @Size(min = 2, max = 20)
     private String identificationNumber;
+    @NotBlank
+    @Size(min =2, max = 60)
+    private String name;
+
+    @NotNull
+    private ClientType clientType;
+
 
     private String contacts;
 
 
     public AddClientDTO() {
+    }
+
+    public AddClientDTO(String name, ClientType clientType, String identificationNumber, String contacts) {
+        this.name = name;
+        this.clientType = clientType;
+        this.identificationNumber = identificationNumber;
+        this.contacts = contacts;
     }
 
     public AddClientDTO(String name, String clientTypeText, String identificationNumber, String contacts){

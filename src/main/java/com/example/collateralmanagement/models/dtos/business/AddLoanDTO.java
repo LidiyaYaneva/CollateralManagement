@@ -1,17 +1,24 @@
 package com.example.collateralmanagement.models.dtos.business;
 
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.PastOrPresent;
-import jakarta.validation.constraints.Positive;
+import com.example.collateralmanagement.models.validation.ExistingClient;
+import jakarta.validation.constraints.*;
 
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class AddLoanDTO {
-    @NotEmpty
+    @NotBlank
     private String loanNumber;
-    @NotEmpty
+
+    @NotBlank
+    @ExistingClient
+    private String clientBulstatOrEGN;
+
+    @NotNull
+    @Positive
+    private BigDecimal amount;
+    @NotNull
     @PastOrPresent
     private LocalDate issueDate;
 
@@ -21,15 +28,10 @@ public class AddLoanDTO {
 //            inverseJoinColumns = @JoinColumn(name = "loan_id", referencedColumnName = "id"))
 //   private Set<Collateral> collaterals;
 
-    @NotEmpty
     private Boolean active;
 
     private String riskStatus;
-    @NotEmpty
-    @Positive
-    private BigDecimal amount;
-    @NotEmpty
-    private String clientIdNumber;
+
 
     public AddLoanDTO() {
     }
@@ -39,7 +41,7 @@ public class AddLoanDTO {
         this.issueDate = issueDate;
         this.active = active;
         this.riskStatus = riskStatus;
-        this.clientIdNumber = clientIdNumber;
+        this.clientBulstatOrEGN = clientIdNumber;
         this.amount= amount;
         //this.collaterals = new HashSet<>();
     }
@@ -76,12 +78,12 @@ public class AddLoanDTO {
         this.riskStatus = riskStatus;
     }
 
-    public String getClientIdNumber() {
-        return clientIdNumber;
+    public String getClientBulstatOrEGN() {
+        return clientBulstatOrEGN;
     }
 
-    public void setClientIdNumber(String clientIdNumber) {
-        this.clientIdNumber = clientIdNumber;
+    public void setClientBulstatOrEGN(String clientBulstatOrEGN) {
+        this.clientBulstatOrEGN = clientBulstatOrEGN;
     }
 
     public BigDecimal getAmount() {

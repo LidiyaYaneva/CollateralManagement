@@ -1,12 +1,12 @@
 package com.example.collateralmanagement.models.dtos.user;
 
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotBlank;
 
 public class LoginUserDTO {
 
-    @NotEmpty
+    @NotBlank
     private String username;
-    @NotEmpty
+    @NotBlank
     private String password;
 
     public LoginUserDTO() {

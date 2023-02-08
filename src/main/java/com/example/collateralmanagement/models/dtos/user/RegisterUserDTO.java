@@ -1,32 +1,35 @@
 package com.example.collateralmanagement.models.dtos.user;
 
 import com.example.collateralmanagement.models.entities.business.Department;
+import com.example.collateralmanagement.models.validation.FieldMatch;
+import com.example.collateralmanagement.models.validation.UniqueEmail;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-
+@FieldMatch(first = "password", second = "confirmPassword" , message = "Passwords do not match.")
 public class RegisterUserDTO {
 
 
-    @NotEmpty
+    @NotBlank
     @Size(min = 2, max =20)
     private String firstName;
 
-    @NotEmpty
+    @NotBlank
     @Size(min = 2, max =20)
     private String lastName;
-    @NotEmpty
-    @Email
+    @NotBlank(message = "User email should be provided.")
+    @Email(message = "User email should be valid.")
+    @UniqueEmail(message = "User email should be unique.")
     private String email;
-    @NotEmpty
+    @NotBlank
     @Size(min = 5, max =20)
     private String username;
-    @NotEmpty
+    @NotBlank
     @Size(min = 5)
     private String password;
 
-    @NotEmpty
+    @NotBlank
     @Size(min = 5)
     private String confirmPassword;
 
