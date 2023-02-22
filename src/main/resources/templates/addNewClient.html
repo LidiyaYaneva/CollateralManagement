@@ -8,44 +8,71 @@
 
 <th:block th:insert="~{/fragments/header}"/>
 
-    <div class="add client form">
-      <form th:action="@{/business/clients/save}" th:object="${addClientDTO}"  th:method="POST">
-
-          <label for="identificationNumber">Identification Number</label>
-          <input id="identificationNumber" type="text" placeholder="Enter EGN, BULSTAT or other identification"
-               th:field="${addClientDTO.identificationNumber}"
-               th:errorclass="is-invalid"
-               th:required="required">
-          <!--<p class= "invalid-feedback"> Identification Number is required and must be between 2 and 20 symbols. </p>-->
-          <label for="fullName">Full Name</label>
-          <input id="fullName" type="text" placeholder="Enter full name"
-               th:field="${addClientDTO.name}"
-               th:errorclass="is-invalid"
-               th:required="required">
-          <!--<p class= "invalid-feedback"> Identification Number is required and must be between 2 and 20 symbols. </p>-->
-
-          <label for="clientType">Client Type</label>
-          <select id="clientType" name="clientType"
-                  th:field="${addClientDTO.clientType}">
-              <option value="">Select client type</option>
-              <option th:each="aType : ${T(com.example.collateralmanagement.models.enums.ClientType).values()}"
-                      th:value="${aType}"
-                      th:text="${aType.displayValue}"
-                      th:selected="${aType} == *{clientType}" >
-              </option>
-          </select>
+<div class="container-fluid">
+<div class="row">
 
 
-          <label for="contacts">Contact Information</label>
-          <input id="contacts" type="text" placeholder="Enter Contacts"
-               th:field="${addClientDTO.contacts}">
-
-
-        <button type="submit">Add client</button>
-
-      </form>
+    <div class="col-4">
+        <th:block th:insert="~{/fragments/business-nav}"/>
     </div>
 
+    <div class="addClientForm col-lg-6">
+        <form th:action="@{/business/clients/save}" th:object="${addClientDTO}"  th:method="POST">
+
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
+                    <label for="identificationNumber">Identification Number</label>
+                    <input type="text" class="form-control" id="identificationNumber" placeholder="Enter EGN, BULSTAT or other" required
+                           th:field="${addClientDTO.identificationNumber}"
+                           th:errorclass="is-invalid"
+                           th:required="required">
+                    <p class= "invalid-feedback"> Identification Number error message. </p>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
+                    <label for="fullName">Full name</label>
+                    <input type="text" class="form-control" id="fullName" placeholder="Enter client's full name" required
+                           th:field="${addClientDTO.name}"
+                           th:errorclass="is-invalid"
+                           th:required="required">
+                    <p class= "invalid-feedback"> Client name error message. </p>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
+                    <label for="clientType">Client Type</label>
+                    <select id ="clientType" name="clientType" class="form-control"
+                            th:field="${addClientDTO.clientType}">
+                        <option value="">Select client type</option>
+                        <option th:each="aType : ${T(com.example.collateralmanagement.models.enums.ClientType).values()}"
+                                th:value="${aType}"
+                                th:text="${aType.displayValue}"
+                                th:selected="${aType} == *{clientType}" >
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
+                    <label for="contacts">Contact Information</label>
+                    <textarea type="text" class="form-control" id="contacts" name="contacts" placeholder="Enter client's telephone number, address, email or other."
+                              th:field="*{contacts}"
+                              th:errorclass="is-invalid">
+                  </textarea>
+
+                </div>
+            </div>
+
+            <button  class="btn btn-primary" type="submit">Add client</button>
+
+        </form>
+    </div>
+</div>
+</div>
 
     <th:block th:insert="~{/fragments/footer}"/>
 </body>

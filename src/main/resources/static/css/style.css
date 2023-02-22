@@ -53,12 +53,7 @@ footer {
 .container{
 
 }
-.jumbotron {
-    position: center;
-    margin-left: 25%;
-    margin-right: 25%;
-    margin-top: 50px;
-}
+
 
 .text-stroke{
     text-shadow:
@@ -66,4 +61,11 @@ footer {
             0 0.07em white,
             -0.07em 0 white,
             0 -0.07em white;
+}
+
+.jumbotron {
+    position: center;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 50px;
 }
