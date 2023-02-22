@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <th:block th:include="~{/fragments/head}"/>
+    <th:block th:insert="~{/fragments/head}"/>
     <title>Admin Panel</title>
 </head>
 <body>
@@ -9,16 +9,24 @@
 <th:block th:insert="~{/fragments/header}"/>
 
 <main>
-    <h1> Admin panel</h1>
-    <nav>
-        <ul>
-            <li> <a th:href="@{/adminPanel/register}">Register User</a></li>
-            <li> <a th:href="@{/adminPanel/updateUser}">2?</a></li>
-            <li> <a th:href="@{/adminPanel/deleteUser}">3?</a></li>
-            <li> <a th:href="@{/adminPanel/Departments}">4?</a></li>
-            <li> <a th:href="@{/adminPanel/CollateralTypes}">5?</a></li>
-        </ul>
-    </nav>
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/adminPanel/register}">Register User</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/adminPanel/updateUser}">2</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/adminPanel/deleteUser}">3</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " th:href="@{/adminPanel/Departments}">4</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " th:href="@{/adminPanel/CollateralTypes}">5</a>
+        </li>
+        <li class="nav-item">
+    </ul>
 
 </main>
 

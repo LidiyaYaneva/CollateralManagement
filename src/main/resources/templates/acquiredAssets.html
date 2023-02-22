@@ -1,23 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <th:block th:include="~{/fragments/head}"/>
+  <th:block th:insert="~{/fragments/head}"/>
     <title>Acquired assets</title>
 </head>
 <body>
 
 <th:block th:insert="~{/fragments/header}"/>
 
-  <main>
-    <nav>
-      <ul>
-        <li> <a th:href="@{/addAcquiredAsset}">Add acquired Asset</a></li>
-        <li> <a th:href="@{/findAsset}">Find asset</a></li>
-        <li> <a th:href="@{/statistics}">Statistics</a></li>
-      </ul>
-    </nav>
+<main>
+  <ul class="nav flex-column">
+    <li class="nav-item">
+      <a class="nav-link" th:href="@{/acquiredAssets/addAcquiredAsset}">Add evaluation</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" th:href="@{/acquiredAssets/findAsset}">Find evaluation</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" th:href="@{/acquiredAssets/statistics}">Statistics</a>
+    </li>
+  </ul>
+</main>
 
-  </main>
+<!--  <main>-->
+<!--    <nav>-->
+<!--      <ul>-->
+<!--        <li> <a th:href="@{/addAcquiredAsset}">Add acquired Asset</a></li>-->
+<!--        <li> <a th:href="@{/findAsset}">Find asset</a></li>-->
+<!--        <li> <a th:href="@{/statistics}">Statistics</a></li>-->
+<!--      </ul>-->
+<!--    </nav>-->
+
+<!--  </main>-->
 
   <th:block th:insert="~{/fragments/footer}"/>
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:include="~{/fragments/head}"/>
+    <th:block th:insert="~{/fragments/head}"/>
     <title>Collateral Management</title>
 </head>
 <body>
@@ -27,9 +27,10 @@
           <label for="clientType">Client Type</label>
           <select id="clientType" name="clientType"
                   th:field="${addClientDTO.clientType}">
+              <option value="">Select client type</option>
               <option th:each="aType : ${T(com.example.collateralmanagement.models.enums.ClientType).values()}"
-                      th:text="${aType}"
                       th:value="${aType}"
+                      th:text="${aType.displayValue}"
                       th:selected="${aType} == *{clientType}" >
               </option>
           </select>

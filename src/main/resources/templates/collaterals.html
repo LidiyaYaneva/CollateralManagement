@@ -1,26 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:include="~{/fragments/head}"/>
+    <th:block th:insert="~{/fragments/head}"/>
     <title>Collaterals</title>
 </head>
 <body>
 
 <th:block th:insert="~{/fragments/header}"/>
 
-    </header>
-    <main>
-        <nav>
-            <ul>
-                <li> <a th:href="@{/addNewAsset}">Add new Asset</a></li>
-                <li> <a th:href="@{/findAsset}">Find Asset</a></li>
-                <li> <a th:href="@{/addCollateralFromAsset}">Add Collateral from existing Asset</a></li>
-                <li> <a th:href="@{/findCollateral}">Find Collateral</a></li>
-                <li> <a th:href="@{/collateralCategorization}">Collateral categorization</a></li>
-            </ul>
-        </nav>
+<main>
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/addNewAsset}">Add new Asset</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/findAsset}">Find Asset</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/addCollateralFromAsset}">Add Collateral from existing Asset</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " th:href="@{/findCollateral}">Find Collateral</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " th:href="@{/collateralCategorization}">Collateral categorization</a>
+        </li>
+        <li class="nav-item">
+    </ul>
 
-    </main>
+</main>
+
+
 
     <th:block th:insert="~{/fragments/footer}"/>
 

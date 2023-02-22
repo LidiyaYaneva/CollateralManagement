@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{/fragments/head}"/>
+    <title>CollateralManagement</title>
+</head>
+<body>
+
+<header>
+
+</header>
+
+<main>
+    <div class="jumbotron" style="width: 50%">
+        <a href="/home"><img class="img-thumb d-inline-block" alt="logo picture" src="/img/logo.png" width="90px"></a>
+        <h1 class="display-4 d-inline-block">Collateral Management</h1>
+        <p class="lead text-center">Organise your collaterals and track their lifecycle in your company.
+            <br>Manage their evaluations easily, so you can focus on the important business decisions!</p>
+        <hr class="my-4">
+        <p class="text-center">To use this application you need to be logged in.
+            <br>If you do not have a registration, please contact your company's admin.</p>
+        <p class="lead text-center">
+            <a class="btn btn-primary btn-lg" href="/login" role="button">Login</a>
+        </p>
+    </div>
+
+</main>
+
+<th:block th:insert="~{/fragments/footer}"/>
+
+
+</body>
+</html>

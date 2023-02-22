@@ -1,10 +1,42 @@
 <th:block>
         <header>
-            <a href="/"><img alt="logo picture" src="/templates/img/logo.png"></a>
-            <div>
-                <p>Full Name</p>
-                <button>Logout</button>
-            </div>
+            <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+                <a class="navbar-brand" href="/home">
+                    <img src="/img/logo.png" width="70" height="70" class="d-inline-block align-top" alt="home-image">
+                    Collateral Management
+                </a>
+
+                <ul class="nav justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/business}">Business Section</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/collaterals}">Collaterals</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/evaluations}">Evaluations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " th:href="@{/acquiredAssets}">Acquired assets</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " th:href="@{/adminPanel}">Admin Panel</a>
+                    </li>
+                </ul>
+
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/userInfo"><span class="navbar-text text-dark">Full name</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button></a>
+                    </li>
+<!--                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+                </ul>
+
+
+
+            </nav>
 
         </header>
 
