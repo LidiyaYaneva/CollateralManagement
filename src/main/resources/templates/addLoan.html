@@ -8,43 +8,84 @@
 
 <th:block th:insert="~{/fragments/header}"/>
 
-      <div class="add loan form">
-          <form th:action="@{/business/loans/save}" th:object="${addLoanDTO}"  th:method="POST">
+<div class="container-fluid">
+    <div class="row">
 
-            <label for="loanNumber">Loan Number</label>
-            <input id="loanNumber" type="text" placeholder="Loan Number"
-                   th:field="${addLoanDTO.loanNumber}" required>
-              <!--th:errorclass="is-invalid"-->
+        <div class="col-4">
+            <th:block th:insert="~{/fragments/business-nav}"/>
+        </div>
 
-            <label for="clientNumber">Client number</label>
-            <input id="clientNumber" type="text" placeholder="Enter Client BULSTAT or EGN"
-                   th:field="${addLoanDTO.clientBulstatOrEGN}" required>
+        <div class="addLoanForm col-lg-6">
+            <form th:action="@{/business/loans/save}" th:object="${addLoanDTO}"  th:method="POST">
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="loanNumber">Loan Number</label>
+                        <input type="text" class="form-control" id="loanNumber" placeholder="Enter loan number" required
+                               th:field="${addLoanDTO.loanNumber}"
+                               th:errorclass="is-invalid"
+                               th:required="required">
+                        <small th:if="${#fields.hasErrors('loanNumber')}" th:errors="*{loanNumber}" class="text-danger">Loan Number error message.</small>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="issueDate">Issue date</label>
+                        <input type="date" class="form-control" id="issueDate" placeholder="Enter issue date" required
+                               th:field="${addLoanDTO.issueDate}"
+                               th:errorclass="is-invalid"
+                               th:required="required">
+                        <small th:if="${#fields.hasErrors('issueDate')}" th:errors="*{issueDate}" class="text-danger">Issue date error message.</small>
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="clientBulstatOrEGN">Client number</label>
+                        <input type="text" class="form-control" id="clientBulstatOrEGN" placeholder="Enter client Bulstat, EGN or other" required
+                               th:field="${addLoanDTO.clientBulstatOrEGN}"
+                               th:errorclass="is-invalid"
+                               th:required="required">
+                        <small th:if="${#fields.hasErrors('clientBulstatOrEGN')}" th:errors="*{clientBulstatOrEGN}" class="text-danger">Client Number error message.</small>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="amount">Loan amount</label>
+                        <input type="number" class="form-control" id="amount" placeholder="Enter loan amount" required
+                               th:field="${addLoanDTO.amount}"
+                               th:errorclass="is-invalid"
+                               th:required="required">
+                        <small th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}" class="text-danger">Loan amount error message.</small>
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="riskStatus">Risk status</label>
+                        <input type="text" class="form-control" id="riskStatus" placeholder="Enter risk status"
+                               th:field="${addLoanDTO.riskStatus}"
+                               th:errorclass="is-invalid">
+                        <small th:if="${#fields.hasErrors('riskStatus')}" th:errors="*{riskStatus}" class="text-danger">Risk Status error message.</small>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-md-2 mb-3">
+                        <label for="isActive">Active: </label>
+                        <input type="checkbox" class="form-control" id="isActive"
+                               th:field="${addLoanDTO.active}"
+                               th:errorclass="is-invalid">
+                        <small th:if="${#fields.hasErrors('active')}" th:errors="*{active}" class="text-danger">Is active error message.</small>
+                    </div>
+                </div>
 
 
-            <label for="loanAmount">Loan Amount</label>
-            <input id="loanAmount" type="number" placeholder="Loan Amount"
-                   th:field="${addLoanDTO.amount}" required>
+                <button  class="btn btn-primary" type="submit">Add loan</button>
+
+            </form>
 
 
-            <label for="issueDate">Issue Date</label>
-            <input id="issueDate" type="date" placeholder="Issue Date"
-                   th:field="${addLoanDTO.issueDate}" required>
-
-
-            <label for="riskStatus">Risk Status</label>
-            <input id="riskStatus" type="text" placeholder="Risk Status"
-                   th:field="${addLoanDTO.riskStatus}" >
-
-            <label for="isActive">Active: </label>
-            <input id="isActive" type="checkbox" placeholder="Is Active"
-                   th:checked="${addLoanDTO.active}"  >
-              <!--th:errorclass="is-invalid"-->
-
-
-
-          <button type="submit">Add loan</button>
-          </form>
-      </div>
+        </div>
+    </div>
+</div>
 
 <th:block th:insert="~{/fragments/footer}"/>
 

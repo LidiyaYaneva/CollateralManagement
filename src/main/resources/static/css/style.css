@@ -57,3 +57,6 @@ footer {
     margin-right: 25%;
     margin-top: 50px;
 }
+.container-fluid {
+    padding-top: 30px;
+}

@@ -8,4 +8,5 @@ public interface AssetService {
     boolean deleteAssetAndSetRelationsToNULL(Long id);
 
     boolean deleteAssetAndAllRelationEntities(Long id);
+
 }

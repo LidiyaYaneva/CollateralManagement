@@ -26,18 +26,18 @@
                            th:field="${addClientDTO.identificationNumber}"
                            th:errorclass="is-invalid"
                            th:required="required">
-                    <p class= "invalid-feedback"> Identification Number error message. </p>
+                    <small th:if="${#fields.hasErrors('identificationNumber')}" th:errors="*{identificationNumber}" class="text-danger">Identification Number error message.</small>
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="col-md-6 mb-3">
-                    <label for="fullName">Full name</label>
-                    <input type="text" class="form-control" id="fullName" placeholder="Enter client's full name" required
+                    <label for="name">Full name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter client's full name" required
                            th:field="${addClientDTO.name}"
                            th:errorclass="is-invalid"
                            th:required="required">
-                    <p class= "invalid-feedback"> Client name error message. </p>
+                    <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger">Full name error message.</small>
                 </div>
             </div>
 
@@ -53,6 +53,7 @@
                                 th:selected="${aType} == *{clientType}" >
                         </option>
                     </select>
+                    <small th:if="${#fields.hasErrors('clientType')}" th:errors="*{clientType}" class="text-danger">Client type error message.</small>
                 </div>
             </div>
 
@@ -61,8 +62,8 @@
                     <label for="contacts">Contact Information</label>
                     <textarea type="text" class="form-control" id="contacts" name="contacts" placeholder="Enter client's telephone number, address, email or other."
                               th:field="*{contacts}"
-                              th:errorclass="is-invalid">
-                  </textarea>
+                              th:errorclass="is-invalid"></textarea>
+                    <small th:if="${#fields.hasErrors('contacts')}" th:errors="*{contacts}" class="text-danger">Contacts error message.</small>
 
                 </div>
             </div>

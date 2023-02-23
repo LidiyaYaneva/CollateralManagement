@@ -100,6 +100,7 @@ public class AssetServiceImpl implements AssetService {
         return false;
     }
 
+
     private Asset exists(Long id) {
 
         Optional<Asset> optAsset = this.assetRepository.findById(id);
