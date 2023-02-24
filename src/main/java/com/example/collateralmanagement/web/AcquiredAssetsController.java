@@ -1,6 +1,7 @@
 package com.example.collateralmanagement.web;
 
 import com.example.collateralmanagement.models.dtos.asset.AddAcquiredAssetDTO;
+import com.example.collateralmanagement.models.dtos.asset.DisplayAcquiredAssetDTO;
 import com.example.collateralmanagement.models.dtos.asset.DisplayAssetDTO;
 import com.example.collateralmanagement.services.AcquiredAssetService;
 import com.example.collateralmanagement.services.AssetService;
@@ -34,20 +35,12 @@ public class AcquiredAssetsController {
         model.addAttribute("addAcquiredAssetDTO",addAcquiredAssetDTO);
         return addAcquiredAssetDTO;
     }
-
-    @GetMapping("chooseAsset/{id}")
-    public String chooseAsset(@PathVariable Long id){
-        //this.assetService.chooseAsset(id);
-
-        return "redirect:/acquiredAssets/add";
-
-    }
-
     @GetMapping("/add")
-    public String displayAddAcquiredAsset(Model model){
+    public String displayAddAcquiredAsset(Model model, String owner){
 
-//        List<DisplayAssetDTO> assetsOfClient =this.assetService.findAllAssetsOfClient(clientBULSTATorEGN );
-//        model.addAttribute("assetsOfClient", assetsOfClient);
+            List<DisplayAssetDTO> displayAssetDTOS = this.assetService.findAssetsByOwnerName(owner);
+            model.addAttribute("displayAssetDTOS", displayAssetDTOS);
+            model.addAttribute("owner",owner);
 
         return "addAcquiredAsset";
     }

@@ -1,6 +1,7 @@
 package com.example.collateralmanagement.services.impl.assetServices;
 
 import com.example.collateralmanagement.models.dtos.asset.CreateAssetDTO;
+import com.example.collateralmanagement.models.dtos.asset.DisplayAssetDTO;
 import com.example.collateralmanagement.models.entities.asset.AcquiredAsset;
 import com.example.collateralmanagement.models.entities.asset.Collateral;
 import com.example.collateralmanagement.models.entities.business.Department;
@@ -17,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -70,6 +72,22 @@ public class AssetServiceImpl implements AssetService {
         }
 
         this.assetRepository.save(asset);
+    }
+
+    @Override
+    public List<DisplayAssetDTO> getAssetsOfClient(String bulstatOrEGN) {
+
+        List<Asset> assets= this.assetRepository.findAllByClient(bulstatOrEGN);
+
+        return Arrays.stream(this.modelMapper.map(assets, DisplayAssetDTO[].class)).toList();
+    }
+
+    @Override
+    public List<DisplayAssetDTO> findAssetsByOwnerName(String owner) {
+
+        List<Asset> assets= this.assetRepository.findAllByOwnerIgnoreCase(owner);
+
+        return Arrays.stream(this.modelMapper.map(assets, DisplayAssetDTO[].class)).toList();
     }
 
     @Override

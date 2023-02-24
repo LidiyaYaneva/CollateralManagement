@@ -25,8 +25,8 @@ public class AcquiredAsset {
     @Column(name = "management_strategy", columnDefinition = "TEXT")
     private String managementStrategy;
 
-    @Column(nullable = false)
-    private boolean isActive;
+    @Column(nullable = false, name = "is_active")
+    private boolean active;
 
     public Long getId() {
         return id;
@@ -64,11 +64,11 @@ public class AcquiredAsset {
     }
 
     public boolean isActive() {
-        return isActive;
+        return active;
     }
 
     public void setActive(boolean active) {
-        isActive = active;
+        active = active;
     }
 
     public Asset getAsset() {

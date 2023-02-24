@@ -8,28 +8,29 @@ import java.util.Optional;
 
 public class AddAcquiredAssetDTO {
     @NotNull
+    @Positive
     private Long assetId;
     @NotNull
     @PastOrPresent
-    private String acquisitionDate;
+    private LocalDate acquisitionDate;
 
-    private Optional<String> saleDate;
+    private Optional<LocalDate> saleDate;
 
     @NotBlank
     @Size(min= 2)
     private String managementStrategy;
 
-    private boolean isActive;
+    private boolean active;
 
     public AddAcquiredAssetDTO() {
     }
 
-    public AddAcquiredAssetDTO(Long assetId, String acquisitionDate, Optional<String> saleDate, String managementStrategy, boolean isActive) {
+    public AddAcquiredAssetDTO(Long assetId, LocalDate acquisitionDate, Optional<LocalDate> saleDate, String managementStrategy, boolean isActive) {
         this.assetId = assetId;
         this.acquisitionDate = acquisitionDate;
         this.saleDate = saleDate;
         this.managementStrategy = managementStrategy;
-        this.isActive = isActive;
+        this.active = isActive;
     }
 
     public Long getAssetId() {
@@ -40,19 +41,19 @@ public class AddAcquiredAssetDTO {
         this.assetId = assetId;
     }
 
-    public String getAcquisitionDate() {
+    public LocalDate getAcquisitionDate() {
         return acquisitionDate;
     }
 
-    public void setAcquisitionDate(String acquisitionDate) {
+    public void setAcquisitionDate(LocalDate acquisitionDate) {
         this.acquisitionDate = acquisitionDate;
     }
 
-    public Optional<String> getSaleDate() {
+    public Optional<LocalDate> getSaleDate() {
         return saleDate;
     }
 
-    public void setSaleDate(Optional<String> saleDate) {
+    public void setSaleDate(Optional<LocalDate> saleDate) {
         this.saleDate = saleDate;
     }
 
@@ -65,10 +66,10 @@ public class AddAcquiredAssetDTO {
     }
 
     public boolean isActive() {
-        return isActive;
+        return active;
     }
 
     public void setActive(boolean active) {
-        isActive = active;
+        this.active = active;
     }
 }

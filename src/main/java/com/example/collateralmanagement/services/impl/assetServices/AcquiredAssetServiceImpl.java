@@ -1,6 +1,7 @@
 package com.example.collateralmanagement.services.impl.assetServices;
 
 import com.example.collateralmanagement.models.dtos.asset.AddAcquiredAssetDTO;
+import com.example.collateralmanagement.models.dtos.asset.DisplayAcquiredAssetDTO;
 import com.example.collateralmanagement.models.entities.asset.AcquiredAsset;
 import com.example.collateralmanagement.models.entities.asset.Asset;
 import com.example.collateralmanagement.models.entities.business.Department;
@@ -15,6 +16,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -66,4 +69,11 @@ public class AcquiredAssetServiceImpl implements AcquiredAssetService {
             return true;
         }
     }
+
+//    @Override
+//    public List<DisplayAcquiredAssetDTO> findAllActive() {
+//        //List<DisplayAcquiredAssetDTO> acquiredAssets = this.acquiredAssetRepository.findAllActive;
+//        return acquiredAssets;
+//
+//    }
 }

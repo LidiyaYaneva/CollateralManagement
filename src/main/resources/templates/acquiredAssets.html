@@ -9,7 +9,48 @@
 <th:block th:insert="~{/fragments/header}"/>
 
 <main>
-  <th:block th:insert="~{/fragments/acquired-nav}"/>
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-4">
+        <th:block th:insert="~{/fragments/acquired-nav}"/>
+      </div>
+      <div class="col-6">
+        <table class="table table-bordered table-sm mt-2">
+          <thead>
+          <tr>
+            <th>Id</th>
+            <th>AssetId</th>
+            <th>Description</th>
+            <th>Keyword</th>
+            <th>Market Value</th>
+            <th>Acquisition Date</th>
+            <th>Sale date</th>
+            <th>Management Strategy</th>
+
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="a : ${displayAcquiredAssetDTO}" >
+            <td th:text="${a.id}"></td>
+            <td th:text="${a.assetId}"></td>
+            <td th:text="${a.description}"></td>
+            <td th:text="${a.keyword}"></td>
+            <td th:text="${a.marketValue}"></td>
+            <td th:text="${a.acquisitionDate}"></td>
+            <td th:text="${a.saleDate}"></td>
+            <td th:text="${a.managementStrategy}"></td>
+          </tr>
+          </tbody>
+
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+
+
 </main>
 
 <!--  <main>-->

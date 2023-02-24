@@ -1,10 +1,21 @@
 package com.example.collateralmanagement.web;
 
+import com.example.collateralmanagement.models.dtos.asset.DisplayAcquiredAssetDTO;
+import com.example.collateralmanagement.services.AcquiredAssetService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
 
 @Controller
 public class HomeController {
+
+    private final AcquiredAssetService acquiredAssetService;
+
+    public HomeController(AcquiredAssetService acquiredAssetService) {
+        this.acquiredAssetService = acquiredAssetService;
+    }
 
     @GetMapping("/")
     public String displayIndex () {
@@ -37,7 +48,11 @@ public class HomeController {
     }
 
     @GetMapping("/acquiredAssets")
-    public String displayAcquiredAssets () {
+    public String displayAcquiredAssets (Model model) {
+
+        DisplayAcquiredAssetDTO displayAcquiredAssetDTO = new DisplayAcquiredAssetDTO();
+        //List<DisplayAcquiredAssetDTO> displayAcquiredAssetDTO = this.acquiredAssetService.findAllActive();
+        model.addAttribute("displayAcquiredAssetDTO", displayAcquiredAssetDTO);
 
         return "acquiredAssets";
     }
