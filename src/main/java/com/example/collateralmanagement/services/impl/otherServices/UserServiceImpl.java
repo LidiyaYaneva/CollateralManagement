@@ -1,4 +1,4 @@
-package com.example.collateralmanagement.services.impl;
+package com.example.collateralmanagement.services.impl.otherServices;
 
 import com.example.collateralmanagement.models.dtos.user.LoginUserDTO;
 import com.example.collateralmanagement.models.dtos.user.RegisterUserDTO;

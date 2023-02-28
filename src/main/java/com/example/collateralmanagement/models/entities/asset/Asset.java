@@ -38,6 +38,8 @@ public class Asset {
         this.evaluations= new HashSet<Evaluation>();
     }
 
+
+
     public Asset(Department currentAccountableDepartment) {
         this();
         this.currentAccountableDepartment= currentAccountableDepartment;
@@ -47,6 +49,13 @@ public class Asset {
         this(currentAccountableDepartment);
         this.description = description;
         this.keyword = keyword;
+    }
+
+    public Asset(String description, String keyword, String owner, String ownershipDocument, Department currentAccountableDepartment) {
+        this(description,keyword,currentAccountableDepartment);
+        this.owner = owner;
+        this.ownershipDocument = ownershipDocument;
+
     }
 
     public Long getId() {

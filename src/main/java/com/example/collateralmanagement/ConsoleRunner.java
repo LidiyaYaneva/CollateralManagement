@@ -1,67 +1,52 @@
 package com.example.collateralmanagement;
 
-import com.example.collateralmanagement.models.dtos.asset.AddAcquiredAssetDTO;
-import com.example.collateralmanagement.models.dtos.asset.CreateAssetDTO;
-import com.example.collateralmanagement.models.dtos.business.AddClientDTO;
-import com.example.collateralmanagement.models.dtos.business.AddLoanDTO;
-import com.example.collateralmanagement.models.dtos.user.RegisterUserDTO;
-import com.example.collateralmanagement.models.dtos.valuation.AddAppraisalCompanyDTO;
 import com.example.collateralmanagement.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
-import java.util.Optional;
-import java.util.Scanner;
-
 @Component
 public class ConsoleRunner implements CommandLineRunner {
 
-    private final BankClientService bankClientService;
-
-    private final LoanService loanService;
+    private final SeedService seedService;
 
     private final DepartmentService departmentService;
 
-    private final AssetService assetService;
-
     private final CollateralTypeService collateralTypeService;
-
-    private final AcquiredAssetService acquiredAssetService;
 
     private final AppraisalCompaniesService appraisalCompaniesService;
 
     private final UserService userService;
 
-    private final Scanner scanner;
     private  final PasswordEncoder encoder;
 
-    public ConsoleRunner(BankClientService bankClientService, LoanService loanService, DepartmentService departmentService, AssetService propertyItemService, CollateralTypeService collateralTypeService, AcquiredAssetService acquiredAssetService, AppraisalCompaniesService appraisalCompaniesService, UserService userService, Scanner scanner, PasswordEncoder encoder) {
-        this.bankClientService = bankClientService;
-        this.loanService = loanService;
+    public ConsoleRunner( SeedService seedService, DepartmentService departmentService, CollateralTypeService collateralTypeService, AppraisalCompaniesService appraisalCompaniesService, UserService userService, PasswordEncoder encoder) {
+        this.seedService = seedService;
         this.departmentService = departmentService;
-        this.assetService = propertyItemService;
         this.collateralTypeService = collateralTypeService;
-        this.acquiredAssetService = acquiredAssetService;
         this.appraisalCompaniesService = appraisalCompaniesService;
         this.userService = userService;
-        this.scanner = scanner;
         this.encoder = encoder;
     }
 
     @Override
     public void run(String... args) throws Exception {
 
-//        if (departmentService.isEmpty()){
-//            departmentService.seedDepartments();
-//        }
-//        if (collateralTypeService.isEmpty()){
-//            collateralTypeService.seedCollateralTypes();
-//        }
-//        if (appraisalCompaniesService.isEmpty()){
-//            appraisalCompaniesService.seedAppraisalCompanies();
-//        }
+        this.seedService.seedAllInitialData();
+
+        if (departmentService.isEmpty()){
+            departmentService.seedDepartments();
+        }
+        if (collateralTypeService.isEmpty()){
+            collateralTypeService.seedCollateralTypes();
+        }
+        if (appraisalCompaniesService.isEmpty()){
+            appraisalCompaniesService.seedAppraisalCompanies();
+        }
+
+        this.seedService.seedAllExamples();
+
+
 //
 //        RegisterUserDTO registerUserDTO = new RegisterUserDTO("Ivan", "Dimitrov",
 //                "ivan.dimitrov@bank.com","IvanDimitrov", "encodertest", "MANAGEMENT");

@@ -58,7 +58,7 @@ public class AssetServiceImpl implements AssetService {
         Asset asset = this.modelMapper.map(createAssetDTO, Asset.class);
 
         String departmentName = createAssetDTO.getAccountableDepartment();
-        if (departmentName==null || departmentName.equals("") || departmentName.equals(" ")) {
+        if (departmentName==null || departmentName.equals("") || departmentName.equals("\\s+")) {
             asset.setCurrentAccountableDepartment(null);
         }
         else {

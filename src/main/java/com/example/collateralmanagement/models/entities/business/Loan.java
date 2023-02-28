@@ -45,6 +45,17 @@ public class Loan {
         this.collaterals = new HashSet<>();
     }
 
+    public Loan(String loanNumber, LocalDate issueDate, boolean isActive, String riskStatus, BigDecimal amount) {
+        this();
+        this.loanNumber = loanNumber;
+        this.issueDate = issueDate;
+        this.isActive = isActive;
+        this.riskStatus = riskStatus;
+        this.amount = amount;
+    }
+
+
+
     public Long getId() {
         return id;
     }
@@ -108,4 +119,10 @@ public class Loan {
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
+
+    public Loan setClientAndReturnLoan (BankClient bankClient){
+        this.client = bankClient;
+        return this;
+    }
+
 }

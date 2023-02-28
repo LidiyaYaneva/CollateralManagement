@@ -9,26 +9,9 @@
 <th:block th:insert="~{/fragments/header}"/>
 
 <main>
-    <nav class="navigationInMainSection">
-    <ul class="nav flex-column">
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{/addNewAsset}">Add new Asset</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{/findAsset}">Find Asset</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{/addCollateralFromAsset}">Add Collateral from existing Asset</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link " th:href="@{/findCollateral}">Find Collateral</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link " th:href="@{/collateralCategorization}">Collateral categorization</a>
-        </li>
-        <li class="nav-item">
-    </ul>
-    </nav>
+
+    <th:block th:insert="~{/fragments/collateral-nav}"/>
+
 
 </main>
 
