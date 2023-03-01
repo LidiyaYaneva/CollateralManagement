@@ -1,4 +1,4 @@
-package com.example.collateralmanagement.models.entities.user;
+package com.example.collateralmanagement.models.entities.authentication;
 
 import com.example.collateralmanagement.models.entities.business.Department;
 import jakarta.persistence.*;

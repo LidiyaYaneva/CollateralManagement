@@ -2,7 +2,7 @@ package com.example.collateralmanagement.services.impl.businessServices;
 
 import com.example.collateralmanagement.models.entities.asset.Asset;
 import com.example.collateralmanagement.models.entities.business.Department;
-import com.example.collateralmanagement.models.entities.user.UserEntity;
+import com.example.collateralmanagement.models.entities.authentication.UserEntity;
 import com.example.collateralmanagement.models.enums.DepartmentEnum;
 import com.example.collateralmanagement.repositories.AssetRepository;
 import com.example.collateralmanagement.repositories.DepartmentRepository;

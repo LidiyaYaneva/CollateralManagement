@@ -16,66 +16,60 @@
         </div>
 
         <div class="addLoanForm col-lg-6">
-            <form th:action="@{/collaterals/addNewAsset/save}" th:object="${createAssetDTO}"  th:method="POST">
-<!--                <div class="form-row">-->
-<!--                    <div class="col-md-6 mb-3">-->
-<!--                        <label for="loanNumber">Loan Number</label>-->
-<!--                        <input type="text" class="form-control" id="loanNumber" placeholder="Enter loan number" required-->
-<!--                               th:field="${addLoanDTO.loanNumber}"-->
-<!--                               th:errorclass="is-invalid"-->
-<!--                               th:required="required">-->
-<!--                        <small th:if="${#fields.hasErrors('loanNumber')}" th:errors="*{loanNumber}" class="text-danger">Loan Number error message.</small>-->
-<!--                    </div>-->
-<!--                    <div class="col-md-3 mb-3">-->
-<!--                        <label for="issueDate">Issue date</label>-->
-<!--                        <input type="date" class="form-control" id="issueDate" placeholder="Enter issue date" required-->
-<!--                               th:field="${addLoanDTO.issueDate}"-->
-<!--                               th:errorclass="is-invalid"-->
-<!--                               th:required="required">-->
-<!--                        <small th:if="${#fields.hasErrors('issueDate')}" th:errors="*{issueDate}" class="text-danger">Issue date error message.</small>-->
-<!--                    </div>-->
+            <form th:action="@{/collaterals/assets/addNewAsset/save}" th:object="${createAssetDTO}"  th:method="POST">
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="description">Description</label>
+                        <textarea type="text" class="form-control" id="description" placeholder="Enter detailed description of the item" required
+                                  th:field="*{description}"
+                                  th:errorclass="is-invalid"
+                                  th:required="required"></textarea>
+                        <small th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger">Description error message.</small>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="keyword">Description Keyword</label>
+                        <input type="text" class="form-control" id="keyword" placeholder="Enter the shortest way to identify the item" required
+                               th:field="*{keyword}"
+                               th:errorclass="is-invalid"
+                               th:required="required">
+                        <small th:if="${#fields.hasErrors('keyword')}" th:errors="*{keyword}" class="text-danger">Keyword error message.</small>
+                    </div>
 
-<!--                </div>-->
+                </div>
 
-<!--                <div class="form-row">-->
-<!--                    <div class="col-md-6 mb-3">-->
-<!--                        <label for="clientBulstatOrEGN">Client number</label>-->
-<!--                        <input type="text" class="form-control" id="clientBulstatOrEGN" placeholder="Enter client Bulstat, EGN or other" required-->
-<!--                               th:field="${addLoanDTO.clientBulstatOrEGN}"-->
-<!--                               th:errorclass="is-invalid"-->
-<!--                               th:required="required">-->
-<!--                        <small th:if="${#fields.hasErrors('clientBulstatOrEGN')}" th:errors="*{clientBulstatOrEGN}" class="text-danger">Client Number error message.</small>-->
-<!--                    </div>-->
-<!--                    <div class="col-md-3 mb-3">-->
-<!--                        <label for="amount">Loan amount</label>-->
-<!--                        <input type="number" class="form-control" id="amount" placeholder="Enter loan amount" required-->
-<!--                               th:field="${addLoanDTO.amount}"-->
-<!--                               th:errorclass="is-invalid"-->
-<!--                               th:required="required">-->
-<!--                        <small th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}" class="text-danger">Loan amount error message.</small>-->
-<!--                    </div>-->
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="owner">Current Owner</label>
+                        <input type="text" class="form-control" id="owner" placeholder="Enter one or multiple owners" required
+                               th:field="*{owner}"
+                               th:errorclass="is-invalid"
+                               th:required="required">
+                        <small th:if="${#fields.hasErrors('owner')}" th:errors="*{owner}" class="text-danger">Owner error message.</small>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="ownershipDocument">Ownership document</label>
+                        <input type="text" class="form-control" id="ownershipDocument" placeholder="Enter ownership document details"
+                               th:field="*{ownershipDocument}"
+                               th:errorclass="is-invalid">
+                        <small th:if="${#fields.hasErrors('ownershipDocument')}" th:errors="*{ownershipDocument}" class="text-danger">Loan amount error message.</small>
+                    </div>
+                </div>
 
-<!--                </div>-->
-
-<!--                <div class="form-row">-->
-<!--                    <div class="col-md-6 mb-3">-->
-<!--                        <label for="riskStatus">Risk status</label>-->
-<!--                        <input type="text" class="form-control" id="riskStatus" placeholder="Enter risk status"-->
-<!--                               th:field="${addLoanDTO.riskStatus}"-->
-<!--                               th:errorclass="is-invalid">-->
-<!--                        <small th:if="${#fields.hasErrors('riskStatus')}" th:errors="*{riskStatus}" class="text-danger">Risk Status error message.</small>-->
-<!--                    </div>-->
-<!--                </div>-->
-
-<!--                <div class="form-row">-->
-<!--                    <div class="col-md-2 mb-3">-->
-<!--                        <label for="isActive">Active: </label>-->
-<!--                        <input type="checkbox" class="form-control" id="isActive"-->
-<!--                               th:field="${addLoanDTO.active}"-->
-<!--                               th:errorclass="is-invalid">-->
-<!--                        <small th:if="${#fields.hasErrors('active')}" th:errors="*{active}" class="text-danger">Is active error message.</small>-->
-<!--                    </div>-->
-<!--                </div>-->
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="accountableDepartment">Accountable Department</label>
+                        <select id ="accountableDepartment" name="accountableDepartment" class="form-control"
+                                th:field="*{accountableDepartment}">
+                            <option value="">Select responsible department for this asset</option>
+                            <option th:each="d : ${T(com.example.collateralmanagement.models.enums.DepartmentEnum).values()}"
+                                    th:value="${d}"
+                                    th:text="${d.name()}"
+                                    th:selected="${d} == *{accountableDepartment}" >
+                            </option>
+                        </select>
+                        <small th:if="${#fields.hasErrors('accountableDepartment')}" th:errors="*{accountableDepartment}" class="text-danger">Department error message.</small>
+                    </div>
+                </div>
 
 
                 <button  class="btn btn-primary" type="submit">Add Asset</button>

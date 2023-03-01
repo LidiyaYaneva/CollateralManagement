@@ -2,6 +2,7 @@ package com.example.collateralmanagement.services.impl.assetServices;
 
 import com.example.collateralmanagement.models.dtos.asset.CreateAssetDTO;
 import com.example.collateralmanagement.models.dtos.asset.DisplayAssetDTO;
+import com.example.collateralmanagement.models.dtos.asset.SearchDTO;
 import com.example.collateralmanagement.models.entities.asset.AcquiredAsset;
 import com.example.collateralmanagement.models.entities.asset.Collateral;
 import com.example.collateralmanagement.models.entities.business.Department;
@@ -57,27 +58,22 @@ public class AssetServiceImpl implements AssetService {
 
         Asset asset = this.modelMapper.map(createAssetDTO, Asset.class);
 
-        String departmentName = createAssetDTO.getAccountableDepartment();
-        if (departmentName==null || departmentName.equals("") || departmentName.equals("\\s+")) {
-            asset.setCurrentAccountableDepartment(null);
-        }
-        else {
-            DepartmentEnum departmentEnum = DepartmentEnum.valueOf(departmentName);
-            Optional<Department> optDepartment = this.departmentRepository
-                    .findByName(departmentEnum);
-            if (optDepartment.isEmpty()) {
-                asset.setCurrentAccountableDepartment(null);
-            }
-            optDepartment.ifPresent(asset::setCurrentAccountableDepartment);
-        }
+        DepartmentEnum departmentEnum = createAssetDTO.getAccountableDepartment();
+        Optional<Department> optDepartment = this.departmentRepository
+                .findByName(departmentEnum);
 
+        if (departmentEnum == null || optDepartment.isEmpty()) {
+            asset.setCurrentAccountableDepartment(null);
+        } else {
+            asset.setCurrentAccountableDepartment(optDepartment.get());
+        }
         this.assetRepository.save(asset);
     }
 
     @Override
     public List<DisplayAssetDTO> getAssetsOfClient(String bulstatOrEGN) {
 
-        List<Asset> assets= this.assetRepository.findAllByClient(bulstatOrEGN);
+        List<Asset> assets = this.assetRepository.findAllByClient(bulstatOrEGN);
 
         return Arrays.stream(this.modelMapper.map(assets, DisplayAssetDTO[].class)).toList();
     }
@@ -85,7 +81,7 @@ public class AssetServiceImpl implements AssetService {
     @Override
     public List<DisplayAssetDTO> findAssetsByOwnerName(String owner) {
 
-        List<Asset> assets= this.assetRepository.findAllByOwnerIgnoreCase(owner);
+        List<Asset> assets = this.assetRepository.findAllByOwnerIgnoreCase(owner);
 
         return Arrays.stream(this.modelMapper.map(assets, DisplayAssetDTO[].class)).toList();
     }
@@ -97,8 +93,7 @@ public class AssetServiceImpl implements AssetService {
         Asset asset = exists(id);
         if (asset == null) {
             return false;
-        }
-        else {
+        } else {
             List<AcquiredAsset> optAcquiredAssets = this.acquiredAssetRepository.findAllByAssetId(id);
 
 
@@ -118,12 +113,17 @@ public class AssetServiceImpl implements AssetService {
         return false;
     }
 
+    @Override
+    public List<DisplayAssetDTO> findAssetsBySearchInput(SearchDTO searchDTO) {
+        return null;
+    }
+
 
     private Asset exists(Long id) {
 
         Optional<Asset> optAsset = this.assetRepository.findById(id);
 
-        if(optAsset.isEmpty()) {
+        if (optAsset.isEmpty()) {
             LOGGER.info("Asset with id [{}] not found", id);
             return null;
         }

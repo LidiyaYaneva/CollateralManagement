@@ -1,10 +1,10 @@
-package com.example.collateralmanagement.services.impl.otherServices;
+package com.example.collateralmanagement.services.impl.authenticationServices;
 
 import com.example.collateralmanagement.models.dtos.user.LoginUserDTO;
 import com.example.collateralmanagement.models.dtos.user.RegisterUserDTO;
 import com.example.collateralmanagement.models.entities.business.Department;
 import com.example.collateralmanagement.models.enums.DepartmentEnum;
-import com.example.collateralmanagement.models.entities.user.UserEntity;
+import com.example.collateralmanagement.models.entities.authentication.UserEntity;
 import com.example.collateralmanagement.repositories.DepartmentRepository;
 import com.example.collateralmanagement.repositories.UserRepository;
 import com.example.collateralmanagement.services.UserService;

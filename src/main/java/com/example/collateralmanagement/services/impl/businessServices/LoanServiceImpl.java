@@ -1,6 +1,8 @@
 package com.example.collateralmanagement.services.impl.businessServices;
 
 import com.example.collateralmanagement.models.dtos.business.AddLoanDTO;
+import com.example.collateralmanagement.models.dtos.business.DisplayLoanDTO;
+import com.example.collateralmanagement.models.dtos.business.SearchLoanDTO;
 import com.example.collateralmanagement.models.entities.asset.Collateral;
 import com.example.collateralmanagement.models.entities.business.BankClient;
 import com.example.collateralmanagement.models.entities.business.Loan;
@@ -14,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -77,5 +80,10 @@ public class LoanServiceImpl implements LoanService {
             this.loanRepository.delete(optLoan.get());
             return true;
         }
+    }
+
+    @Override
+    public List<DisplayLoanDTO> findLoans(SearchLoanDTO searchLoanDTO) {
+        return null;
     }
 }

@@ -1,4 +1,4 @@
-package com.example.collateralmanagement.web;
+package com.example.collateralmanagement.web.asset;
 
 import com.example.collateralmanagement.models.dtos.asset.AddAcquiredAssetDTO;
 import com.example.collateralmanagement.models.dtos.asset.DisplayAcquiredAssetDTO;

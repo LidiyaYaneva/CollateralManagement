@@ -1,6 +1,6 @@
-package com.example.collateralmanagement.web;
+package com.example.collateralmanagement.web.business;
 
-import com.example.collateralmanagement.models.dtos.business.AddLoanDTO;
+import com.example.collateralmanagement.models.dtos.business.*;
 import com.example.collateralmanagement.services.LoanService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/business/loans")
@@ -45,5 +47,16 @@ public class LoanController {
         }
         this.loanService.addLoan(addLoanDTO);
         return "redirect:/business";
+    }
+
+    @GetMapping("/findLoan")
+    public String displaySearchLoan(Model model, SearchLoanDTO searchLoanDTO){
+
+        List<DisplayLoanDTO> displayLoanDTOS = this.loanService.findLoans(searchLoanDTO);
+        model.addAttribute("displayLoanDTOS", displayLoanDTOS);
+        model.addAttribute("searchLoanDTO", searchLoanDTO);
+
+        return "findLoans";
+
     }
 }

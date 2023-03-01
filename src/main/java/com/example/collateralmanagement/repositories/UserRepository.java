@@ -1,6 +1,6 @@
 package com.example.collateralmanagement.repositories;
 
-import com.example.collateralmanagement.models.entities.user.UserEntity;
+import com.example.collateralmanagement.models.entities.authentication.UserEntity;
 import com.example.collateralmanagement.models.enums.DepartmentEnum;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
