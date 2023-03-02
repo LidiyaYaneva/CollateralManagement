@@ -17,9 +17,9 @@
         <div class="col-lg-5">
             <div class="container mb-xl-auto">
                 <h6 >Choose an asset by their owner</h6>
-                <form th:action="@{/acquiredAssets/add}" th:method="GET" >
+                <form th:action="@{/acquiredAssets/add}" th:method="GET">
                     <input type="text" name="owner" th:value="${owner}"  placeholder="Find by Owner Name" size="50" >
-                    <button type="submit" class="btn btn-info" >Search</button>
+                    <button type="submit" class="btn btn-info" value="GetForm">Search</button>
                 </form>
                 <table class="table table-bordered table-sm mt-2">
                     <thead>
@@ -44,11 +44,12 @@
 
 
         <div class="addAcquiredForm col-lg-5">
-            <form th:href="@{/acquiredAssets/save}" th:object="${addAcquiredAssetDTO}"  th:method="POST">
+            <form th:action="@{/acquiredAssets/save}" th:object="${addAcquiredAssetDTO}"  th:method="POST">
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
                     <label for="assetId">AssetId</label>
-                        <select class="form-control" id="assetId">
+                        <select class="form-control" id="assetId"
+                        th:field="*{assetId}">
                             <option value="0">select asset</option>
                             <option th:each="a : ${displayAssetDTOS}" th:value="${a.id}" th:text="${a.id}"></option>
                         </select>
@@ -95,8 +96,7 @@
                         <small th:if="${#fields.hasErrors('active')}" th:errors="*{active}" class="text-danger">Active error message.</small>
                     </div>
                 </div>
-
-                <button  class="btn btn-primary" type="submit">Save</button>
+                <button  class="btn btn-primary" type="submit" value="SaveForm">Save</button>
 
             </form>
 
