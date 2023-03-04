@@ -10,7 +10,63 @@
 
   <main>
 
-    <th:block th:insert="~{/fragments/business-nav}"/>
+    <div class="container-fluid">
+      <div class="row">
+
+        <div class="col-2">
+          <th:block th:insert="~{/fragments/business-nav}"/>
+        </div>
+
+        <div class="col-5">
+          <table class="table table-bordered table-sm mt-2">
+            <thead>
+            <tr>
+              <th>Identification Number</th>
+              <th>Name</th>
+              <th>Type</th>
+
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="c : ${displayClientDTOS}" >
+              <td th:text="${c.identificationNumber}"></td>
+              <td th:text="${c.name}"></td>
+              <td th:text="${c.clientType.displayValue}"></td>
+
+            </tr>
+            </tbody>
+
+          </table>
+
+        </div>
+        <div class="col-5">
+          <table class="table table-bordered table-sm mt-2">
+            <thead>
+            <tr>
+              <th>Loan Number</th>
+              <th>Client</th>
+              <th>Amount</th>
+              <th>Risk Status</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="l : ${displayLoanDTOS}" >
+              <td th:text="${l.loanNumber}"></td>
+              <td th:text="${l.bankClientName}"></td>
+              <td th:text="${l.amount.toString()}"></td>
+              <td th:text="${l.riskStatus}"></td>
+
+            </tr>
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+    </div>
 
   </main>
 

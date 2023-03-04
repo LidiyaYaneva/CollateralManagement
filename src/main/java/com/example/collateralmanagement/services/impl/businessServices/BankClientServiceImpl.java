@@ -5,6 +5,7 @@ import com.example.collateralmanagement.models.dtos.business.DisplayClientDTO;
 import com.example.collateralmanagement.models.dtos.business.SearchClientDTO;
 import com.example.collateralmanagement.models.entities.business.BankClient;
 import com.example.collateralmanagement.models.entities.business.Loan;
+import com.example.collateralmanagement.models.enums.ClientType;
 import com.example.collateralmanagement.repositories.BankClientRepository;
 import com.example.collateralmanagement.repositories.LoanRepository;
 import com.example.collateralmanagement.services.BankClientService;
@@ -15,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -74,6 +76,21 @@ public class BankClientServiceImpl implements BankClientService {
     @Override
     public List<DisplayClientDTO> findClient(SearchClientDTO searchClientDTO) {
         return null;
+    }
+
+    @Override
+    public List<DisplayClientDTO> findAllByClientType(ClientType clientType) {
+
+        List<BankClient> clients = this.bankClientRepository.findAllByClientType(clientType);
+        DisplayClientDTO[] dtos = this.modelMapper.map(clients, DisplayClientDTO[].class);
+        return Arrays.stream(dtos).toList();
+    }
+
+    @Override
+    public List<DisplayClientDTO> findAll() {
+        List<BankClient> clients = this.bankClientRepository.findAll();
+        DisplayClientDTO[] dtos = this.modelMapper.map(clients, DisplayClientDTO[].class);
+        return Arrays.stream(dtos).toList();
     }
 }
 

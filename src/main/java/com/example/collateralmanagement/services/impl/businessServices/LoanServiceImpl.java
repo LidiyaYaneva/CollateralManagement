@@ -14,8 +14,12 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -86,4 +90,19 @@ public class LoanServiceImpl implements LoanService {
     public List<DisplayLoanDTO> findLoans(SearchLoanDTO searchLoanDTO) {
         return null;
     }
+
+    @Override
+    public List<DisplayLoanDTO> findAllActive() {
+
+        PageRequest pageRequest = PageRequest.of(0,10, Sort.by(Sort.Direction.DESC,"issueDate"));
+
+        List<Loan> loans = this.loanRepository.findAllByActiveIsTrue(pageRequest).stream().toList();
+
+        DisplayLoanDTO[] dtos = this.modelMapper.map(loans, DisplayLoanDTO[].class);
+
+        return Arrays.stream(dtos).toList();
+
+
+    }
+
 }

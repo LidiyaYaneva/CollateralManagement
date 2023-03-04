@@ -13,4 +13,6 @@ public interface LoanService {
     boolean deleteLoan (String loanNumber);
 
     List<DisplayLoanDTO> findLoans(SearchLoanDTO searchLoanDTO);
+
+    List<DisplayLoanDTO> findAllActive();
 }

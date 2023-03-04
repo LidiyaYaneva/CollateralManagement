@@ -29,11 +29,7 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping("/business")
-    public String displayBusinessPage () {
 
-        return "business";
-    }
 
     @GetMapping("/collaterals")
     public String displayCollateralsPage () {

@@ -23,12 +23,13 @@ public class Loan {
     private LocalDate issueDate;
 
     @Column(name = "is_active",nullable = false)
-    private boolean isActive;
+    private boolean active;
 
     @Column(name = "risk_status")
     private String riskStatus;
 
     @Column
+
     private BigDecimal amount;
 
     @ManyToOne
@@ -49,7 +50,7 @@ public class Loan {
         this();
         this.loanNumber = loanNumber;
         this.issueDate = issueDate;
-        this.isActive = isActive;
+        this.active = isActive;
         this.riskStatus = riskStatus;
         this.amount = amount;
     }
@@ -89,11 +90,11 @@ public class Loan {
     }
 
     public boolean isActive() {
-        return isActive;
+        return active;
     }
 
     public void setActive(boolean active) {
-        isActive = active;
+        this.active = active;
     }
 
     public String getRiskStatus() {
