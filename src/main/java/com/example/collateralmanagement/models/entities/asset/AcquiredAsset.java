@@ -12,7 +12,7 @@ public class AcquiredAsset {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn(name = "asset_id", referencedColumnName = "id")
     private Asset asset;
 
@@ -68,7 +68,7 @@ public class AcquiredAsset {
     }
 
     public void setActive(boolean active) {
-        active = active;
+        this.active = active;
     }
 
     public Asset getAsset() {

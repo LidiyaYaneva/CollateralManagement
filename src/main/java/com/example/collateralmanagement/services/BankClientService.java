@@ -18,5 +18,5 @@ public interface BankClientService {
 
     List<DisplayClientDTO> findAllByClientType(ClientType clientType);
 
-    List<DisplayClientDTO> findAll();
+    List<DisplayClientDTO> findAllOrderedByName();
 }

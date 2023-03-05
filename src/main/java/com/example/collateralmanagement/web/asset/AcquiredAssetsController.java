@@ -29,6 +29,15 @@ public class AcquiredAssetsController {
         this.assetService = assetService;
     }
 
+    @GetMapping
+    public String displayAcquiredAssets (Model model) {
+
+        List<DisplayAcquiredAssetDTO> displayAcquiredAssetDTO = this.acquiredAssetService.findAllNotSoldActive();
+        model.addAttribute("displayAcquiredAssetDTO", displayAcquiredAssetDTO);
+
+        return "acquiredAssets";
+    }
+
     @ModelAttribute("addAcquiredAssetDTO")
     public AddAcquiredAssetDTO init (Model model) {
         AddAcquiredAssetDTO addAcquiredAssetDTO = new AddAcquiredAssetDTO();

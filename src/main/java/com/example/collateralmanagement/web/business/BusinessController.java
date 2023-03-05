@@ -30,10 +30,12 @@ public class BusinessController {
     @GetMapping
     public String displayBusinessPage (Model model) {
 
-        List<DisplayClientDTO> displayClientDTOS = this.bankClientService.findAll();
+        List<DisplayClientDTO> displayClientDTOS = this.bankClientService.findAllOrderedByName();
         model.addAttribute("displayClientDTOS",displayClientDTOS);
-        List<DisplayLoanDTO> displayLoanDTOS = this.loanService.findAllActive();
+        List<DisplayLoanDTO> displayLoanDTOS = this.loanService.findAllActiveOrderedByIssueDateDesc();
         model.addAttribute("displayLoanDTOS", displayLoanDTOS);
+
+        //TODO Implement Pages
 
         return "business";
     }

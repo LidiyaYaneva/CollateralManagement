@@ -4,6 +4,7 @@ import com.example.collateralmanagement.models.entities.asset.Asset;
 import com.example.collateralmanagement.models.entities.business.BankClient;
 import com.example.collateralmanagement.models.entities.business.Department;
 import com.example.collateralmanagement.models.entities.business.Loan;
+import com.example.collateralmanagement.models.entities.valuation.Evaluation;
 import com.example.collateralmanagement.models.enums.ClientType;
 import com.example.collateralmanagement.models.enums.DepartmentEnum;
 import com.example.collateralmanagement.repositories.*;

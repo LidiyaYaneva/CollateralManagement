@@ -92,7 +92,7 @@ public class LoanServiceImpl implements LoanService {
     }
 
     @Override
-    public List<DisplayLoanDTO> findAllActive() {
+    public List<DisplayLoanDTO> findAllActiveOrderedByIssueDateDesc() {
 
         PageRequest pageRequest = PageRequest.of(0,10, Sort.by(Sort.Direction.DESC,"issueDate"));
 

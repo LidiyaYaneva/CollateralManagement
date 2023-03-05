@@ -14,6 +14,8 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -87,6 +89,16 @@ public class BankClientServiceImpl implements BankClientService {
     }
 
     @Override
+    public List<DisplayClientDTO> findAllOrderedByName() {
+        PageRequest pageRequest = PageRequest.of(0,10, Sort.by(Sort.Direction.ASC,"name"));
+
+        List<BankClient> clients = this.bankClientRepository.findAllByOrderByName(pageRequest).stream().toList();
+
+        DisplayClientDTO[] dtos = this.modelMapper.map(clients, DisplayClientDTO[].class);
+
+        return Arrays.stream(dtos).toList();
+    }
+
     public List<DisplayClientDTO> findAll() {
         List<BankClient> clients = this.bankClientRepository.findAll();
         DisplayClientDTO[] dtos = this.modelMapper.map(clients, DisplayClientDTO[].class);

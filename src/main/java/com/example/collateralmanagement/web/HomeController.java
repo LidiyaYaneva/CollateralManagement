@@ -43,15 +43,7 @@ public class HomeController {
         return "evaluations";
     }
 
-    @GetMapping("/acquiredAssets")
-    public String displayAcquiredAssets (Model model) {
 
-        DisplayAcquiredAssetDTO displayAcquiredAssetDTO = new DisplayAcquiredAssetDTO();
-        //List<DisplayAcquiredAssetDTO> displayAcquiredAssetDTO = this.acquiredAssetService.findAllActive();
-        model.addAttribute("displayAcquiredAssetDTO", displayAcquiredAssetDTO);
-
-        return "acquiredAssets";
-    }
 
     @GetMapping("/adminPanel")
     public String displayAdminPanel () {

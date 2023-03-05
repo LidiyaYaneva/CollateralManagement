@@ -11,5 +11,7 @@ public interface AcquiredAssetService {
 
     boolean deleteAcquiredAsset (Long id);
 
+    List<DisplayAcquiredAssetDTO> findAllNotSoldActive();
+
     //List<DisplayAcquiredAssetDTO> findAllActive();
 }

@@ -14,5 +14,5 @@ public interface LoanService {
 
     List<DisplayLoanDTO> findLoans(SearchLoanDTO searchLoanDTO);
 
-    List<DisplayLoanDTO> findAllActive();
+    List<DisplayLoanDTO> findAllActiveOrderedByIssueDateDesc();
 }

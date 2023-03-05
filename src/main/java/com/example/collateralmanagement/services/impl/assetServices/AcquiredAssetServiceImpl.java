@@ -9,11 +9,15 @@ import com.example.collateralmanagement.models.enums.DepartmentEnum;
 import com.example.collateralmanagement.repositories.AcquiredAssetRepository;
 import com.example.collateralmanagement.repositories.AssetRepository;
 import com.example.collateralmanagement.repositories.DepartmentRepository;
+import com.example.collateralmanagement.repositories.EvaluationRepository;
 import com.example.collateralmanagement.services.AcquiredAssetService;
+import com.example.collateralmanagement.services.EvaluationService;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -27,14 +31,17 @@ public class AcquiredAssetServiceImpl implements AcquiredAssetService {
     private final AcquiredAssetRepository acquiredAssetRepository;
     private final AssetRepository assetRepository;
 
+    private final EvaluationService evaluationService;
+
     private final DepartmentRepository departmentRepository;
     private final ModelMapper modelMapper;
 
     @Autowired
     public AcquiredAssetServiceImpl(AcquiredAssetRepository acquiredAssetRepository, AssetRepository assetRepository,
-                                    DepartmentRepository departmentRepository, ModelMapper modelMapper) {
+                                     EvaluationService evaluationService, DepartmentRepository departmentRepository, ModelMapper modelMapper) {
         this.acquiredAssetRepository = acquiredAssetRepository;
         this.assetRepository = assetRepository;
+        this.evaluationService = evaluationService;
         this.departmentRepository = departmentRepository;
         this.modelMapper = modelMapper;
     }
@@ -68,6 +75,42 @@ public class AcquiredAssetServiceImpl implements AcquiredAssetService {
             this.acquiredAssetRepository.delete(optionalAcquiredAsset.get());
             return true;
         }
+    }
+
+    @Override
+    public List<DisplayAcquiredAssetDTO> findAllNotSoldActive() {
+        PageRequest pageRequest = PageRequest.of(0,10, Sort.by(Sort.Direction.DESC,"acquisitionDate"));
+
+        List<AcquiredAsset> acquiredAssets = this.acquiredAssetRepository.findAllBySaleDateIsNull(pageRequest)
+                .stream().toList();
+
+        return customMapToDTO(acquiredAssets);
+
+
+    }
+
+    private List<DisplayAcquiredAssetDTO> customMapToDTO(List<AcquiredAsset> acquiredAssets) {
+
+        List<DisplayAcquiredAssetDTO> dtos = new ArrayList<>();
+
+        for (AcquiredAsset a: acquiredAssets) {
+
+            Long assetId = a.getAsset().getId();
+            DisplayAcquiredAssetDTO dto = new DisplayAcquiredAssetDTO();
+            dto.setId(a.getId());
+            dto.setAssetId(assetId);
+            dto.setDescription(a.getAsset().getDescription());
+            dto.setKeyword(a.getAsset().getKeyword());
+            dto.setAcquisitionDate(a.getAcquisitionDate());
+            dto.setManagementStrategy(a.getManagementStrategy());
+
+            Double marketValue = this.evaluationService.getMostRecentMarketValue(assetId);
+            dto.setMarketValue(marketValue);
+
+            dtos.add(dto);
+        }
+
+        return dtos;
     }
 
 //    @Override

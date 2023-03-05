@@ -2,6 +2,8 @@ package com.example.collateralmanagement.repositories;
 
 import com.example.collateralmanagement.models.entities.business.BankClient;
 import com.example.collateralmanagement.models.enums.ClientType;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +16,8 @@ public interface BankClientRepository extends JpaRepository<BankClient, Long> {
     Optional<BankClient> findByIdentificationNumber(String identificationNumber);
 
     List<BankClient> findAllByClientType (ClientType clientType);
+
+    Page<BankClient> findAllByOrderByName(PageRequest pageRequest);
 }
 
 
