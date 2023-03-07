@@ -2,6 +2,7 @@ package com.example.collateralmanagement.services.impl.assetServices;
 
 import com.example.collateralmanagement.models.dtos.asset.CreateCollateralDTO;
 import com.example.collateralmanagement.models.dtos.asset.DisplayCollateralDTO;
+import com.example.collateralmanagement.models.dtos.asset.SearchDTO;
 import com.example.collateralmanagement.models.entities.asset.Collateral;
 import com.example.collateralmanagement.repositories.CollateralRepository;
 import com.example.collateralmanagement.services.CollateralService;
@@ -40,6 +41,11 @@ public class CollateralServiceImpl implements CollateralService {
 
     @Override
     public List<DisplayCollateralDTO> findCollateralsOfRecentLoans() {
+        return null;
+    }
+
+    @Override
+    public List<DisplayCollateralDTO> displayCollateralsBySearchInput(SearchDTO searchDTO) {
         return null;
     }
 }

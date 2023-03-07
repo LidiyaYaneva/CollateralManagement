@@ -18,13 +18,6 @@ public class HomeController {
 
         return "home";
     }
-
-    @GetMapping("/evaluations")
-    public String displayEvaluationsPage () {
-
-        return "evaluations";
-    }
-
     @GetMapping("/adminPanel")
     public String displayAdminPanel () {
 
