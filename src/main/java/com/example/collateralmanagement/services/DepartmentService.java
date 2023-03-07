@@ -1,12 +1,19 @@
 package com.example.collateralmanagement.services;
 
+import com.example.collateralmanagement.models.entities.business.Department;
+import com.example.collateralmanagement.models.enums.DepartmentEnum;
+
+import java.util.Optional;
+
 public interface DepartmentService {
 
     void seedDepartments ();
 
     boolean isEmpty ();
 
-    void updateDepartmentsIfEnumsAreAdded();
+    //void updateDepartmentsIfEnumsAreAdded();
 
     boolean deleteDepartment(String name);
+
+    Optional<Department> findByName(DepartmentEnum creditRisk);
 }

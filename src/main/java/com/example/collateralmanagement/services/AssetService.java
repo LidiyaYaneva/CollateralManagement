@@ -13,9 +13,9 @@ public interface AssetService {
 
     List<DisplayAssetDTO> findAssetsByOwnerName (String owner);
 
-    boolean deleteAssetAndSetRelationsToNULL(Long id);
-
-    boolean deleteAssetAndAllRelationEntities(Long id);
+//    boolean deleteAssetAndSetRelationsToNULL(Long id);
+//
+//    boolean deleteAssetAndAllRelationEntities(Long id);
 
     List<DisplayAssetDTO> findAssetsBySearchInput(SearchDTO searchDTO);
 }

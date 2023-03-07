@@ -32,8 +32,6 @@ public class AssetServiceImpl implements AssetService {
 
     private final CollateralRepository collateralRepository;
 
-    private final CollateralService collateralService;
-
     private final EvaluationRepository evaluationRepository;
 
     private final AcquiredAssetRepository acquiredAssetRepository;
@@ -42,10 +40,9 @@ public class AssetServiceImpl implements AssetService {
     private final ModelMapper modelMapper;
 
     @Autowired
-    public AssetServiceImpl(AssetRepository propertyItemRepository, CollateralRepository collateralRepository, CollateralService collateralService, EvaluationRepository evaluationRepository, AcquiredAssetRepository acquiredAssetRepository, DepartmentRepository departmentRepository, ModelMapper modelMapper) {
+    public AssetServiceImpl(AssetRepository propertyItemRepository, CollateralRepository collateralRepository, EvaluationRepository evaluationRepository, AcquiredAssetRepository acquiredAssetRepository, DepartmentRepository departmentRepository, ModelMapper modelMapper) {
         this.assetRepository = propertyItemRepository;
         this.collateralRepository = collateralRepository;
-        this.collateralService = collateralService;
         this.evaluationRepository = evaluationRepository;
         this.acquiredAssetRepository = acquiredAssetRepository;
         this.departmentRepository = departmentRepository;
@@ -86,32 +83,32 @@ public class AssetServiceImpl implements AssetService {
         return Arrays.stream(this.modelMapper.map(assets, DisplayAssetDTO[].class)).toList();
     }
 
-    @Override
-    @Transactional
-    public boolean deleteAssetAndSetRelationsToNULL(Long id) {
+//    @Override
+//    @Transactional
+//    public boolean deleteAssetAndSetRelationsToNULL(Long id) {
+//
+//        Asset asset = exists(id);
+//        if (asset == null) {
+//            return false;
+//        } else {
+//            List<AcquiredAsset> optAcquiredAssets = this.acquiredAssetRepository.findAllByAssetId(id);
+//
+//
+//            List<Collateral> optCollaterals = this.collateralRepository.findAllByAssetId(id);
+//
+//
+//            List<Evaluation> optAssetEvaluations = this.evaluationRepository.findAllByAssetId(id);
+//
+//
+//        }
+//        return true;
+//    }
 
-        Asset asset = exists(id);
-        if (asset == null) {
-            return false;
-        } else {
-            List<AcquiredAsset> optAcquiredAssets = this.acquiredAssetRepository.findAllByAssetId(id);
-
-
-            List<Collateral> optCollaterals = this.collateralRepository.findAllByAssetId(id);
-
-
-            List<Evaluation> optAssetEvaluations = this.evaluationRepository.findAllByAssetId(id);
-
-
-        }
-        return true;
-    }
-
-    @Override
-    @Transactional
-    public boolean deleteAssetAndAllRelationEntities(Long id) {
-        return false;
-    }
+//    @Override
+//    @Transactional
+//    public boolean deleteAssetAndAllRelationEntities(Long id) {
+//        return false;
+//    }
 
     @Override
     public List<DisplayAssetDTO> findAssetsBySearchInput(SearchDTO searchDTO) {

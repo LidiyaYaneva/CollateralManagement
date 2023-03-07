@@ -21,7 +21,6 @@ public class CollateralTypeServiceImpl implements CollateralTypeService {
 
     private final CollateralTypeRepository collateralTypeRepository;
     private final Gson gson;
-
     private final ModelMapper modelMapper;
 
     @Autowired
@@ -60,18 +59,18 @@ public class CollateralTypeServiceImpl implements CollateralTypeService {
 
     }
 
+//    @Override
+//    public void updateCollateralTypesMultipliers() {
+//
+//    }
+//
+//    @Override
+//    public void updateCollateralTypesDescription() {
+//
+//    }
+
     @Override
-    public void updateCollateralTypesMultipliers() {
-
-    }
-
-    @Override
-    public void updateCollateralTypesDescription() {
-
-    }
-
-    @Override
-    public CollateralTypeDTO getCollateralTypesInfo() {
+    public List<CollateralTypeDTO> getCollateralTypesInfo() {
         return null;
     }
 }

@@ -16,7 +16,7 @@
         </div>
 
         <div class="addLoanForm col-lg-6">
-            <form th:action="@{/collaterals/assets/addNewAsset/save}" th:object="${createAssetDTO}"  th:method="POST">
+            <form th:action="@{/creditRiskAssets/assets/addNewAsset/save}" th:object="${createAssetDTO}"  th:method="POST">
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
                         <label for="description">Description</label>
@@ -28,7 +28,7 @@
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="keyword">Description Keyword</label>
-                        <input type="text" class="form-control" id="keyword" placeholder="Enter the shortest way to identify the item" required
+                        <input type="text" class="form-control" id="keyword" placeholder="Shortest way to identify the item" required
                                th:field="*{keyword}"
                                th:errorclass="is-invalid"
                                th:required="required">

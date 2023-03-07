@@ -39,6 +39,14 @@ public class AcquiredAsset {
     public AcquiredAsset(){
     }
 
+    public AcquiredAsset(Asset asset, LocalDate acquisitionDate, LocalDate saleDate, String managementStrategy, boolean active) {
+        this.asset = asset;
+        this.acquisitionDate = acquisitionDate;
+        this.saleDate = saleDate;
+        this.managementStrategy = managementStrategy;
+        this.active = active;
+    }
+
     public LocalDate getAcquisitionDate() {
         return acquisitionDate;
     }

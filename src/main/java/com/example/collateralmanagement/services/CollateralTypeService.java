@@ -1,9 +1,9 @@
 package com.example.collateralmanagement.services;
 
 import com.example.collateralmanagement.models.dtos.asset.CollateralTypeDTO;
-import com.example.collateralmanagement.models.entities.asset.CollateralType;
 
 import java.io.IOException;
+import java.util.List;
 
 public interface CollateralTypeService {
 
@@ -13,9 +13,10 @@ public interface CollateralTypeService {
 
     void seedCollateralTypes() throws IOException;
 
-    void updateCollateralTypesMultipliers();
+   // void updateCollateralTypesMultipliers();
 
-    void updateCollateralTypesDescription();
+    //void updateCollateralTypesDescription();
 
-    CollateralTypeDTO getCollateralTypesInfo();
+    List<CollateralTypeDTO> getCollateralTypesInfo();
+
 }

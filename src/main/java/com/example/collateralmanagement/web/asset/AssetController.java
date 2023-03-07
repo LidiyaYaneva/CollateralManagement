@@ -3,8 +3,6 @@ package com.example.collateralmanagement.web.asset;
 import com.example.collateralmanagement.models.dtos.asset.CreateAssetDTO;
 import com.example.collateralmanagement.models.dtos.asset.DisplayAssetDTO;
 import com.example.collateralmanagement.models.dtos.asset.SearchDTO;
-import com.example.collateralmanagement.models.dtos.business.AddClientDTO;
-import com.example.collateralmanagement.models.enums.DepartmentEnum;
 import com.example.collateralmanagement.services.AssetService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -19,7 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 
 @Controller
-@RequestMapping("/collaterals/assets")
+@RequestMapping("/creditRiskAssets/assets")
 public class AssetController {
 
     private final AssetService assetService;
@@ -28,7 +26,7 @@ public class AssetController {
         this.assetService = assetService;
     }
 
-    @ModelAttribute("addClientDTO")
+    @ModelAttribute("createAssetDTO")
     public CreateAssetDTO initForm(Model model){
         CreateAssetDTO createAssetDTO = new CreateAssetDTO();
         model.addAttribute("createAssetDTO",createAssetDTO);
@@ -36,22 +34,22 @@ public class AssetController {
     }
 
     @GetMapping("/addNewAsset")
-    public String displayAddClientForm (){
+    public String displayAddAssetForm (){
 
         return "addAsset";
     }
 
     @PostMapping( "/save")
-    public String saveClient (@Valid CreateAssetDTO createAssetDTO, BindingResult bindingResult,
+    public String saveAsset (@Valid CreateAssetDTO createAssetDTO, BindingResult bindingResult,
                               RedirectAttributes redirectAttributes){
 
         if (bindingResult.hasErrors()){
             redirectAttributes.addFlashAttribute("createAssetDTO", createAssetDTO);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.createAssetDTO", bindingResult);
-            return "redirect:/collaterals/assets/addNewAsset";
+            return "redirect:/creditRiskAssets/assets/addNewAsset";
         }
         this.assetService.createAsset(createAssetDTO);
-        return "redirect:/collaterals/addCollateralFromAsset";
+        return "redirect:/creditRiskAssets/collaterals/addCollateralFromAsset";
 
     }
 

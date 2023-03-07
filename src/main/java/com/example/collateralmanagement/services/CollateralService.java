@@ -1,10 +1,15 @@
 package com.example.collateralmanagement.services;
 
-import com.example.collateralmanagement.models.entities.asset.AddCollateralDTO;
+import com.example.collateralmanagement.models.dtos.asset.CreateCollateralDTO;
+import com.example.collateralmanagement.models.dtos.asset.DisplayCollateralDTO;
+
+import java.util.List;
 
 public interface CollateralService {
 
-    void addCollateral(AddCollateralDTO addCollateralDTO);
+    void addCollateral(CreateCollateralDTO createCollateralDTO);
 
     boolean deleteCollateral(Long id);
+
+    List<DisplayCollateralDTO> findCollateralsOfRecentLoans();
 }

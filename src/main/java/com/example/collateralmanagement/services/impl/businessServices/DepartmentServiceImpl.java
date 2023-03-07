@@ -28,7 +28,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     private final AssetRepository assetRepository;
 
-    private Logger LOGGER = LoggerFactory.getLogger(DepartmentServiceImpl.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(DepartmentServiceImpl.class);
 
     @Autowired
     public DepartmentServiceImpl(DepartmentRepository departmentRepository, UserRepository userRepository, AssetRepository assetRepository) {
@@ -57,22 +57,22 @@ public class DepartmentServiceImpl implements DepartmentService {
         return departments.isEmpty();
     }
 
-    @Override
-    public void updateDepartmentsIfEnumsAreAdded() {
-
-        List<DepartmentEnum> departmentEnums = Arrays.stream(DepartmentEnum.values()).toList();
-
-        List<String> currentDepartmentsInDBAsStrings = this.departmentRepository.findAll()
-                .stream().map(Department::getName).map(Enum::toString).toList();
-
-        for (DepartmentEnum depEnum: departmentEnums) {
-            if (!currentDepartmentsInDBAsStrings.contains(depEnum.toString())){
-                Department department = new Department(depEnum);
-                this.departmentRepository.save(department);
-            }
-        }
-
-    }
+//    @Override
+//    public void updateDepartmentsIfEnumsAreAdded() {
+//
+//        List<DepartmentEnum> departmentEnums = Arrays.stream(DepartmentEnum.values()).toList();
+//
+//        List<String> currentDepartmentsInDBAsStrings = this.departmentRepository.findAll()
+//                .stream().map(Department::getName).map(Enum::toString).toList();
+//
+//        for (DepartmentEnum depEnum: departmentEnums) {
+//            if (!currentDepartmentsInDBAsStrings.contains(depEnum.toString())){
+//                Department department = new Department(depEnum);
+//                this.departmentRepository.save(department);
+//            }
+//        }
+//
+//    }
 
     @Override
     @Transactional
@@ -97,5 +97,10 @@ public class DepartmentServiceImpl implements DepartmentService {
             this.departmentRepository.delete(departmentOpt.get());
             return true;
         }
+    }
+
+    @Override
+    public Optional<Department> findByName(DepartmentEnum departmentEnum) {
+        return this.departmentRepository.findByName(departmentEnum);
     }
 }

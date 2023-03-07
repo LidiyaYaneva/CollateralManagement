@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{/fragments/head}"/>
+    <title>Add loan</title>
+</head>
+<body>
+
+<th:block th:insert="~{/fragments/header}"/>
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-4">
+            <th:block th:insert="~{/fragments/collateral-nav}"/>
+        </div>
+
+        <div class="addCollateralForm col-lg-6">
+            <form th:action="@{/creditRiskAssets/collaterals/addCollateralFromAsset/save}" th:object="${createCollateralDTO}"  th:method="POST">
+                <div class="form-row">
+
+                </div>
+
+
+                <button  class="btn btn-primary" type="submit">Save</button>
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+<th:block th:insert="~{/fragments/footer}"/>
+
+</body>
+</html>
