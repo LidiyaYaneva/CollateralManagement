@@ -3,10 +3,10 @@ package com.example.collateralmanagement.models.dtos.asset;
 import com.example.collateralmanagement.models.enums.CollateralCategory;
 import com.example.collateralmanagement.models.validation.ExistingAsset;
 import com.example.collateralmanagement.models.validation.ExistingLoan;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
+import jakarta.persistence.Column;
+import jakarta.validation.constraints.*;
+
+import java.time.LocalDate;
 
 public class CreateCollateralDTO {
 
@@ -16,12 +16,17 @@ public class CreateCollateralDTO {
     private Long assetId;
 
     @NotNull
-    private CollateralCategory type;
+    @PastOrPresent
+    private LocalDate dateOfLinkToLoan;
 
     @NotBlank
     @Size(min = 2, max = 30)
     @ExistingLoan
     private String loanNumber;
+
+    @NotNull
+    @Positive
+    private Double initialCollateralValue;
 
     public CreateCollateralDTO() {
     }
@@ -42,11 +47,19 @@ public class CreateCollateralDTO {
         this.loanNumber = loanNumber;
     }
 
-    public CollateralCategory getType() {
-        return type;
+    public LocalDate getDateOfLinkToLoan() {
+        return dateOfLinkToLoan;
     }
 
-    public void setType(CollateralCategory type) {
-        this.type = type;
+    public void setDateOfLinkToLoan(LocalDate dateOfLinkToLoan) {
+        this.dateOfLinkToLoan = dateOfLinkToLoan;
+    }
+
+    public Double getInitialCollateralValue() {
+        return initialCollateralValue;
+    }
+
+    public void setInitialCollateralValue(Double initialCollateralValue) {
+        this.initialCollateralValue = initialCollateralValue;
     }
 }

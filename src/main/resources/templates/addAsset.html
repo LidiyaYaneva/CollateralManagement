@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <th:block th:insert="~{/fragments/head}"/>
     <title>Add loan</title>
@@ -7,6 +7,7 @@
 <body>
 
 <th:block th:insert="~{/fragments/header}"/>
+<main>
 
 <div class="container-fluid">
     <div class="row">
@@ -16,7 +17,23 @@
         </div>
 
         <div class="addLoanForm col-lg-6">
-            <form th:action="@{/creditRiskAssets/assets/addNewAsset/save}" th:object="${createAssetDTO}"  th:method="POST">
+            <form th:action="@{/creditRiskAssets/assets/save}" th:object="${createAssetDTO}"  th:method="POST">
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="collateralType">Collateral Type</label>
+                        <select id ="collateralType" name="collateralType" class="form-control"
+                                th:field="*{type}">
+                            <option value="">Select collateral type</option>
+                            <option th:each="aType : ${T(com.example.collateralmanagement.models.enums.CollateralCategory).values()}"
+                                    th:value="${aType}"
+                                    th:text="${aType.name()}"
+                                    th:selected="${aType} == *{type}" >
+                            </option>
+                        </select>
+                        <small th:if="${#fields.hasErrors('type')}" th:errors="*{type}" class="text-danger">Collateral type error message.</small>
+                    </div>
+
+                </div>
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
                         <label for="description">Description</label>
@@ -80,6 +97,7 @@
         </div>
     </div>
 </div>
+</main>
 
 <th:block th:insert="~{/fragments/footer}"/>
 

@@ -15,6 +15,10 @@ public class Asset {
     @Column(name = "id", nullable = false)
     protected Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "collateral_type", referencedColumnName = "id")
+    protected CollateralType collateralType;
+
     @Column(nullable = false, columnDefinition = "TEXT")
     protected String description;
 
@@ -45,14 +49,15 @@ public class Asset {
         this.currentAccountableDepartment= currentAccountableDepartment;
     }
 
-    public Asset(String description, String keyword, Department currentAccountableDepartment){
+    public Asset(CollateralType collateralType,String description, String keyword, Department currentAccountableDepartment){
         this(currentAccountableDepartment);
+        this.collateralType = collateralType;
         this.description = description;
         this.keyword = keyword;
     }
 
-    public Asset(String description, String keyword, String owner, String ownershipDocument, Department currentAccountableDepartment) {
-        this(description,keyword,currentAccountableDepartment);
+    public Asset(CollateralType collateralType,String description, String keyword, String owner, String ownershipDocument, Department currentAccountableDepartment) {
+        this(collateralType,description,keyword,currentAccountableDepartment);
         this.owner = owner;
         this.ownershipDocument = ownershipDocument;
 
@@ -112,5 +117,13 @@ public class Asset {
 
     public void setOwnershipDocument(String ownershipDocument) {
         this.ownershipDocument = ownershipDocument;
+    }
+
+    public CollateralType getCollateralType() {
+        return collateralType;
+    }
+
+    public void setCollateralType(CollateralType collateralType) {
+        this.collateralType = collateralType;
     }
 }

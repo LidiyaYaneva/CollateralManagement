@@ -2,6 +2,7 @@ package com.example.collateralmanagement.services.impl.assetServices;
 
 import com.example.collateralmanagement.models.dtos.asset.CollateralTypeDTO;
 import com.example.collateralmanagement.models.entities.asset.CollateralType;
+import com.example.collateralmanagement.models.enums.CollateralCategory;
 import com.example.collateralmanagement.repositories.CollateralTypeRepository;
 import com.example.collateralmanagement.services.CollateralTypeService;
 import com.google.gson.Gson;
@@ -15,6 +16,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CollateralTypeServiceImpl implements CollateralTypeService {
@@ -72,5 +74,10 @@ public class CollateralTypeServiceImpl implements CollateralTypeService {
     @Override
     public List<CollateralTypeDTO> getCollateralTypesInfo() {
         return null;
+    }
+
+    @Override
+    public Optional<CollateralType> getCollateralType(CollateralCategory collateralCategory) {
+        return this.collateralTypeRepository.findByType(collateralCategory);
     }
 }

@@ -3,16 +3,12 @@ package com.example.collateralmanagement.services.impl.assetServices;
 import com.example.collateralmanagement.models.dtos.asset.CreateAssetDTO;
 import com.example.collateralmanagement.models.dtos.asset.DisplayAssetDTO;
 import com.example.collateralmanagement.models.dtos.asset.SearchDTO;
-import com.example.collateralmanagement.models.entities.asset.AcquiredAsset;
-import com.example.collateralmanagement.models.entities.asset.Collateral;
+import com.example.collateralmanagement.models.entities.asset.CollateralType;
 import com.example.collateralmanagement.models.entities.business.Department;
-import com.example.collateralmanagement.models.entities.valuation.Evaluation;
 import com.example.collateralmanagement.models.enums.DepartmentEnum;
 import com.example.collateralmanagement.models.entities.asset.Asset;
 import com.example.collateralmanagement.repositories.*;
 import com.example.collateralmanagement.services.AssetService;
-import com.example.collateralmanagement.services.CollateralService;
-import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,6 +26,8 @@ public class AssetServiceImpl implements AssetService {
 
     private final AssetRepository assetRepository;
 
+    private final CollateralTypeRepository collateralTypeRepository;
+
     private final CollateralRepository collateralRepository;
 
     private final EvaluationRepository evaluationRepository;
@@ -40,8 +38,9 @@ public class AssetServiceImpl implements AssetService {
     private final ModelMapper modelMapper;
 
     @Autowired
-    public AssetServiceImpl(AssetRepository propertyItemRepository, CollateralRepository collateralRepository, EvaluationRepository evaluationRepository, AcquiredAssetRepository acquiredAssetRepository, DepartmentRepository departmentRepository, ModelMapper modelMapper) {
+    public AssetServiceImpl(AssetRepository propertyItemRepository, CollateralTypeRepository collateralTypeRepository, CollateralRepository collateralRepository, EvaluationRepository evaluationRepository, AcquiredAssetRepository acquiredAssetRepository, DepartmentRepository departmentRepository, ModelMapper modelMapper) {
         this.assetRepository = propertyItemRepository;
+        this.collateralTypeRepository = collateralTypeRepository;
         this.collateralRepository = collateralRepository;
         this.evaluationRepository = evaluationRepository;
         this.acquiredAssetRepository = acquiredAssetRepository;
@@ -64,6 +63,8 @@ public class AssetServiceImpl implements AssetService {
         } else {
             asset.setCurrentAccountableDepartment(optDepartment.get());
         }
+        Optional<CollateralType> collateralType = this.collateralTypeRepository.findByType(createAssetDTO.getType());
+        collateralType.ifPresent(asset::setCollateralType);
         this.assetRepository.save(asset);
     }
 

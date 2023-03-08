@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <th:block th:insert="~{/fragments/head}"/>
     <title>Add loan</title>
@@ -7,6 +7,7 @@
 <body>
 
 <th:block th:insert="~{/fragments/header}"/>
+<main>
 
 <div class="container-fluid">
     <div class="row">
@@ -16,7 +17,7 @@
         </div>
 
         <div class="addCollateralForm col-lg-6">
-            <form th:action="@{/creditRiskAssets/collaterals/addCollateralFromAsset/save}" th:object="${createCollateralDTO}"  th:method="POST">
+            <form th:action="@{/creditRiskAssets/collaterals/save}" th:object="${createCollateralDTO}"  th:method="POST">
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
                         <label for="assetId">Asset Id</label>
@@ -25,6 +26,16 @@
                                th:errorclass="is-invalid"
                                th:required="required">
                         <small th:if="${#fields.hasErrors('assetId')}" th:errors="*{assetId}" class="text-danger">Asset Id error message.</small>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="dateOfLinkToLoan">Start date of connection to active loans</label>
+                        <input type="date" class="form-control" id="dateOfLinkToLoan" placeholder="Enter date" required
+                           th:field="*{dateOfLinkToLoan}"
+                           th:errorclass="is-invalid"
+                           th:required="required">
+                        <small th:if="${#fields.hasErrors('dateOfLinkToLoan')}" th:errors="*{dateOfLinkToLoan}" class="text-danger">Date error message.</small>
                     </div>
                 </div>
                 <div class="form-row">
@@ -39,21 +50,14 @@
                 </div>
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
-                        <label for="collateralType">Collateral Type</label>
-                        <select id ="collateralType" name="collateralType" class="form-control"
-                                th:field="*{type}">
-                            <option value="">Select collateral type</option>
-                            <option th:each="aType : ${T(com.example.collateralmanagement.models.enums.CollateralCategory).values()}"
-                                    th:value="${aType}"
-                                    th:text="${aType.name()}"
-                                    th:selected="${aType} == *{type}" >
-                            </option>
-                        </select>
-                        <small th:if="${#fields.hasErrors('type')}" th:errors="*{type}" class="text-danger">Collateral type error message.</small>
+                        <label for="initialCollateralValue">Initial collateral value</label>
+                        <input type="number" class="form-control" id="initialCollateralValue" placeholder="Enter collateral value" required
+                               th:field="*{initialCollateralValue}"
+                               th:errorclass="is-invalid"
+                               th:required="required">
+                        <small th:if="${#fields.hasErrors('initialCollateralValue')}" th:errors="*{initialCollateralValue}" class="text-danger">Collateral value error message.</small>
                     </div>
-
                 </div>
-
 
                 <button  class="btn btn-primary" type="submit">Save</button>
 
@@ -63,6 +67,8 @@
         </div>
     </div>
 </div>
+
+</main>
 
 <th:block th:insert="~{/fragments/footer}"/>
 

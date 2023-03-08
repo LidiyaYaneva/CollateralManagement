@@ -3,6 +3,7 @@ package com.example.collateralmanagement.models.entities.asset;
 import com.example.collateralmanagement.models.entities.business.Loan;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,10 +19,11 @@ public class Collateral {
     @JoinColumn(name= "asset_id",referencedColumnName = "id")
     private Asset asset;
 
-    @ManyToOne
-    @JoinColumn(name = "collateral_type_id",referencedColumnName = "id")
-    private CollateralType type;
+    @Column(name = "date_of_link_to_loans", nullable = false)
+    private LocalDate dateOfLinkToLoan;
 
+    @Column (name = "initial_collateral_value", nullable = false)
+    private Double initialCollateralValue;
 
     @ManyToMany(mappedBy = "collaterals", targetEntity = Loan.class)
     private Set<Loan> loans;
@@ -38,21 +40,11 @@ public class Collateral {
         this.loans = new HashSet<Loan>();
     }
 
-    public Collateral(Asset asset, CollateralType type) {
+    public Collateral(Asset asset, LocalDate date) {
         this();
         this.asset = asset;
-        this.type = type;
-
+        this.dateOfLinkToLoan = date;
     }
-
-    public CollateralType getType() {
-        return type;
-    }
-
-    public void setType(CollateralType type) {
-        this.type = type;
-    }
-
 
     public Set<Loan> getLoans() {
         return loans;
@@ -68,5 +60,21 @@ public class Collateral {
 
     public void setAsset(Asset asset) {
         this.asset = asset;
+    }
+
+    public LocalDate getDateOfLinkToLoan() {
+        return dateOfLinkToLoan;
+    }
+
+    public void setDateOfLinkToLoan(LocalDate dateOfLinkToLoan) {
+        this.dateOfLinkToLoan = dateOfLinkToLoan;
+    }
+
+    public Double getInitialCollateralValue() {
+        return initialCollateralValue;
+    }
+
+    public void setInitialCollateralValue(Double initialCollateralValue) {
+        this.initialCollateralValue = initialCollateralValue;
     }
 }

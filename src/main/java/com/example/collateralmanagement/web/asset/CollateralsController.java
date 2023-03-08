@@ -48,19 +48,19 @@ public class CollateralsController {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("createCollateralDTO", createCollateralDTO);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.createCollateralDTO", bindingResult);
-            return "redirect:/creditRiskAssets/collaterals/addCollateralFromAsset/";
+            return "redirect:/creditRiskAssets/collaterals/addCollateralFromAsset";
         }
         this.collateralService.addCollateral(createCollateralDTO);
-        return "redirect:/creditRiskAssets/collaterals";
+        return "redirect:/creditRiskAssets";
 
     }
 
     @GetMapping("/findCollateral")
-    public String displaySearchAsset(Model model, SearchDTO searchDTO){
+    public String displaySearchCollateral(Model model, SearchDTO searchDTO){
 
-        List<DisplayCollateralDTO> displayCollateralDTOS = this.collateralService.displayCollateralsBySearchInput(searchDTO);
-        model.addAttribute("displayCollateralDTOS", displayCollateralDTOS);
-        model.addAttribute("searchDTO", searchDTO);
+//        List<DisplayCollateralDTO> displayCollateralDTOS = this.collateralService.displayCollateralsBySearchInput(searchDTO);
+//        model.addAttribute("displayCollateralDTOS", displayCollateralDTOS);
+//        model.addAttribute("searchDTO", searchDTO);
 
         return "findCollaterals";
 

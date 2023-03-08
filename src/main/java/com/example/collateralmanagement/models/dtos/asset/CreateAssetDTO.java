@@ -1,16 +1,20 @@
 package com.example.collateralmanagement.models.dtos.asset;
 
+import com.example.collateralmanagement.models.enums.CollateralCategory;
 import com.example.collateralmanagement.models.enums.DepartmentEnum;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public class CreateAssetDTO {
 
+    @NotNull
+    protected CollateralCategory type;
+
     @NotBlank
     @Size(min=5)
     protected String description;
-
     @NotBlank
     protected String keyword;
 
@@ -21,14 +25,6 @@ public class CreateAssetDTO {
     protected DepartmentEnum accountableDepartment;
 
     public CreateAssetDTO() {
-    }
-
-    public CreateAssetDTO(String description, String keyword, String owner, String ownershipDocument, DepartmentEnum accountableDepartment) {
-        this.description = description;
-        this.keyword= keyword;
-        this.owner = owner;
-        this.ownershipDocument = ownershipDocument;
-        this.accountableDepartment = accountableDepartment;
     }
 
     public String getDescription() {
@@ -69,5 +65,13 @@ public class CreateAssetDTO {
 
     public void setKeyword(String keyword) {
         this.keyword = keyword;
+    }
+
+    public CollateralCategory getType() {
+        return type;
+    }
+
+    public void setType(CollateralCategory type) {
+        this.type = type;
     }
 }

@@ -2,10 +2,12 @@ package com.example.collateralmanagement.services.impl.otherServices;
 
 import com.example.collateralmanagement.models.entities.asset.AcquiredAsset;
 import com.example.collateralmanagement.models.entities.asset.Asset;
+import com.example.collateralmanagement.models.entities.asset.CollateralType;
 import com.example.collateralmanagement.models.entities.business.BankClient;
 import com.example.collateralmanagement.models.entities.business.Department;
 import com.example.collateralmanagement.models.entities.business.Loan;
 import com.example.collateralmanagement.models.enums.ClientType;
+import com.example.collateralmanagement.models.enums.CollateralCategory;
 import com.example.collateralmanagement.models.enums.DepartmentEnum;
 import com.example.collateralmanagement.repositories.*;
 import com.example.collateralmanagement.services.AppraisalCompaniesService;
@@ -100,22 +102,34 @@ public class SeedServiceImpl implements SeedService {
         Optional<Department> creditRisk = this.departmentService.findByName(DepartmentEnum.CREDIT_RISK);
         Optional<Department> propertyAdministration = this.departmentService.findByName(DepartmentEnum.PROPERTY_ADMINISTRATION);
 
+        Optional<CollateralType> apartment = this.collateralTypeService.getCollateralType(CollateralCategory.APARTMENT);
+        Optional<CollateralType> house = this.collateralTypeService.getCollateralType(CollateralCategory.HOUSE);
+        Optional<CollateralType> car = this.collateralTypeService.getCollateralType(CollateralCategory.TRANSPORTATION_VEHICLES);
+        Optional<CollateralType> warehouse = this.collateralTypeService.getCollateralType(CollateralCategory.PRODUCTION_AND_STORAGE_PREMISE_IN_RESIDENTIAL_AREAS);
+        Optional<CollateralType> officeBuilding = this.collateralTypeService.getCollateralType(CollateralCategory.ADMINISTRATIVE_BUILDING);
+        Optional<CollateralType> hotel = this.collateralTypeService.getCollateralType(CollateralCategory.HOTEL);
+        Optional<CollateralType> restaurant = this.collateralTypeService.getCollateralType(CollateralCategory.RESTAURANT);
+        Optional<CollateralType> gasStation = this.collateralTypeService.getCollateralType(CollateralCategory.GAS_STATION);
+        Optional<CollateralType> mall = this.collateralTypeService.getCollateralType(CollateralCategory.COMMERCIAL_BUILDING);
+        Optional<CollateralType> constructionEquipment = this.collateralTypeService.getCollateralType(CollateralCategory.PRODUCTION_MACHINERY_AND_EQUIPMENT);
+        Optional<CollateralType> office = this.collateralTypeService.getCollateralType(CollateralCategory.OFFICE);
+
         List<Asset> assets = List.of(
-                new Asset("Apartment number 68134.1003.79.285.121 Sofia, Mladost 2, blok 285, et 3, ap 121", "68134.1003.79.285.121", "Lidiya Yaneva, Radoslav Yanev", "Notarialen akt example", creditRisk.orElse(null)),
-                new Asset("Apartment number 68134.895.63.12.7 Sofia, Drujba 2, blok 221, et 1, ap 107", "68134.895.63.12.7", "Lidiya Yaneva, Radoslav Yanev", "Notarialen akt example", creditRisk.orElse(null)),
-                new Asset("House  389002.895.63.1 Kostenec, ulica Raiko Daskalov 3", "389002.895.63.1", "Valentina Ivanova Todorova", "Notarialen akt example", creditRisk.orElse(null)),
-                new Asset("Ford Galaxy number CO1234XX", "CO1234XX", "Nikolay Borisov Vasilev", "Example", creditRisk.orElse(null)),
-                new Asset("Industrial property number 55155.111.22.1 Pazardzik ulica Industrialna 1", "55155.111.22.10.6", "Emir - 99 LTD", "Notarialen akt example", propertyAdministration.orElse(null)),
-                new Asset("Opel Zafira  number PA9194KK ", "PA9194KK", "Emir - 99 LTD", "Example", creditRisk.orElse(null)),
-                new Asset("Office Building number 68134.333.22.1 Sofia Mladost 2", "68134.333.22.1", "Software University LTD", "Notarialen akt example", creditRisk.orElse(null)),
-                new Asset("Office Building number 68134.444.33.2 Sofia Iztok", "68134.444.33.2", "Software University LTD", "Notarialen akt example", creditRisk.orElse(null)),
-                new Asset("Hotel Example", "XXXXX.XXX.XX.1", "Large Corporation LTD", "Notarialen akt example", creditRisk.orElse(null)),
-                new Asset("Restaurant Example", "XXXXX.XXX.XX.2", "Large Corporation LTD", "Notarialen akt example", creditRisk.orElse(null)),
-                new Asset("Gas Station Example", "YYYYY.XXX.XX.3", "Large Corporation LTD", "Notarialen akt example", creditRisk.orElse(null)),
-                new Asset("Mall Example", "XXXXX.XXX.XX.4", "Large Corporation LTD", "Notarialen akt example", creditRisk.orElse(null)),
-                new Asset("Office Building Example", "XXXXX.XXX.XX.5", "Large Corporation LTD", "Notarialen akt example", creditRisk.orElse(null)),
-                new Asset("Construction equipment Example", "Construction equipment", "Large Corporation LTD", "Notarialen akt example", creditRisk.orElse(null)),
-                new Asset("Administrative office", "YYYYY.YYY.YY.Y.1", "Example bank", "Notarialen akt example", propertyAdministration.orElse(null))
+                new Asset(apartment.orElse(null),"Apartment number 68134.1003.79.285.121 Sofia, Mladost 2, blok 285, et 3, ap 121", "68134.1003.79.285.121", "Lidiya Yaneva, Radoslav Yanev", "Notarialen akt example", creditRisk.orElse(null)),
+                new Asset(apartment.orElse(null),"Apartment number 68134.895.63.12.7 Sofia, Drujba 2, blok 221, et 1, ap 107", "68134.895.63.12.7", "Lidiya Yaneva, Radoslav Yanev", "Notarialen akt example", creditRisk.orElse(null)),
+                new Asset(house.orElse(null),"House  389002.895.63.1 Kostenec, ulica Raiko Daskalov 3", "389002.895.63.1", "Valentina Ivanova Todorova", "Notarialen akt example", creditRisk.orElse(null)),
+                new Asset(car.orElse(null),"Ford Galaxy number CO1234XX", "CO1234XX", "Nikolay Borisov Vasilev", "Example", creditRisk.orElse(null)),
+                new Asset(warehouse.orElse(null),"Industrial property number 55155.111.22.1 Pazardzik ulica Industrialna 1", "55155.111.22.10.6", "Emir - 99 LTD", "Notarialen akt example", propertyAdministration.orElse(null)),
+                new Asset(car.orElse(null),"Opel Zafira  number PA9194KK ", "PA9194KK", "Emir - 99 LTD", "Example", creditRisk.orElse(null)),
+                new Asset(officeBuilding.orElse(null),"Office Building number 68134.333.22.1 Sofia Mladost 2", "68134.333.22.1", "Software University LTD", "Notarialen akt example", creditRisk.orElse(null)),
+                new Asset(officeBuilding.orElse(null),"Office Building number 68134.444.33.2 Sofia Iztok", "68134.444.33.2", "Software University LTD", "Notarialen akt example", creditRisk.orElse(null)),
+                new Asset(hotel.orElse(null),"Hotel Example", "XXXXX.XXX.XX.1", "Large Corporation LTD", "Notarialen akt example", creditRisk.orElse(null)),
+                new Asset(restaurant.orElse(null),"Restaurant Example", "XXXXX.XXX.XX.2", "Large Corporation LTD", "Notarialen akt example", creditRisk.orElse(null)),
+                new Asset(gasStation.orElse(null),"Gas Station Example", "YYYYY.XXX.XX.3", "Large Corporation LTD", "Notarialen akt example", creditRisk.orElse(null)),
+                new Asset(mall.orElse(null),"Mall Example", "XXXXX.XXX.XX.4", "Large Corporation LTD", "Notarialen akt example", creditRisk.orElse(null)),
+                new Asset(officeBuilding.orElse(null),"Office Building Example", "XXXXX.XXX.XX.5", "Large Corporation LTD", "Notarialen akt example", creditRisk.orElse(null)),
+                new Asset(constructionEquipment.orElse(null),"Construction equipment Example", "Construction equipment", "Large Corporation LTD", "Notarialen akt example", creditRisk.orElse(null)),
+                new Asset(office.orElse(null),"Administrative office", "YYYYY.YYY.YY.Y.1", "Example bank", "Notarialen akt example", propertyAdministration.orElse(null))
         );
         this.assetRepository.saveAll(assets);
 

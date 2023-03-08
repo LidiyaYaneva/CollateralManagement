@@ -38,8 +38,8 @@ public class Loan {
 
     @ManyToMany
     @JoinTable(name = "loans_collaterals",
-            joinColumns = @JoinColumn(name = "collateral_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "loan_id", referencedColumnName = "id"))
+            joinColumns = @JoinColumn(name = "loan_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "collateral_id", referencedColumnName = "id"))
     private Set<Collateral> collaterals;
 
     public Loan () {
