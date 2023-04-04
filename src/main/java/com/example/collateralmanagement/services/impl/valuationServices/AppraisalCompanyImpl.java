@@ -1,12 +1,11 @@
 package com.example.collateralmanagement.services.impl.valuationServices;
 
-import com.example.collateralmanagement.models.dtos.asset.CollateralTypeDTO;
 import com.example.collateralmanagement.models.dtos.valuation.AddAppraisalCompanyDTO;
-import com.example.collateralmanagement.models.entities.asset.CollateralType;
 import com.example.collateralmanagement.models.entities.valuation.AppraisalCompany;
 import com.example.collateralmanagement.repositories.AppraisalCompanyRepository;
 import com.example.collateralmanagement.services.AppraisalCompaniesService;
 import com.google.gson.Gson;
+import jakarta.annotation.PostConstruct;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -99,5 +98,11 @@ public class AppraisalCompanyImpl implements AppraisalCompaniesService {
         }
 
 
+    }
+
+    @Override
+    @PostConstruct
+    public void init() throws IOException {
+        if (isEmpty()) seedAppraisalCompanies();
     }
 }

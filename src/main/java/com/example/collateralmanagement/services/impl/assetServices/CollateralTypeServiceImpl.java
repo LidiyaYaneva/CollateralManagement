@@ -6,6 +6,7 @@ import com.example.collateralmanagement.models.enums.CollateralCategory;
 import com.example.collateralmanagement.repositories.CollateralTypeRepository;
 import com.example.collateralmanagement.services.CollateralTypeService;
 import com.google.gson.Gson;
+import jakarta.annotation.PostConstruct;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,6 +60,12 @@ public class CollateralTypeServiceImpl implements CollateralTypeService {
 
         }
 
+    }
+
+    @Override
+    @PostConstruct
+    public void init() throws IOException {
+        if (isEmpty()) seedCollateralTypes();
     }
 
 //    @Override

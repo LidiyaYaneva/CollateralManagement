@@ -3,6 +3,9 @@ package com.example.collateralmanagement.models.entities.authentication;
 import com.example.collateralmanagement.models.entities.business.Department;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 public class UserEntity {
@@ -29,7 +32,12 @@ public class UserEntity {
     @JoinColumn(name = "department_id", referencedColumnName = "id",nullable = true)
     private Department department;
 
-    public UserEntity () {}
+    @ManyToMany (targetEntity = UserEntity.class)
+    private List<UserRoleEntity> roles;
+
+    public UserEntity () {
+        this.roles = new ArrayList<>();
+    }
 
     public Long getId() {
         return id;
@@ -85,5 +93,13 @@ public class UserEntity {
 
     public void setDepartment(Department department) {
         this.department = department;
+    }
+
+    public List<UserRoleEntity> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<UserRoleEntity> roles) {
+        this.roles = roles;
     }
 }

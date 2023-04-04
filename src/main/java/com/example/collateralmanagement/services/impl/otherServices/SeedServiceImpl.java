@@ -10,10 +10,7 @@ import com.example.collateralmanagement.models.enums.ClientType;
 import com.example.collateralmanagement.models.enums.CollateralCategory;
 import com.example.collateralmanagement.models.enums.DepartmentEnum;
 import com.example.collateralmanagement.repositories.*;
-import com.example.collateralmanagement.services.AppraisalCompaniesService;
-import com.example.collateralmanagement.services.CollateralTypeService;
-import com.example.collateralmanagement.services.DepartmentService;
-import com.example.collateralmanagement.services.SeedService;
+import com.example.collateralmanagement.services.*;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -37,6 +34,8 @@ public class SeedServiceImpl implements SeedService {
 
     private final EvaluationRepository evaluationRepository;
 
+    private final UserRoleService userRoleService;
+
     private final DepartmentService departmentService;
 
     private final CollateralTypeService collateralTypeService;
@@ -47,13 +46,14 @@ public class SeedServiceImpl implements SeedService {
     public SeedServiceImpl(BankClientRepository bankClientRepository, LoanRepository loanRepository,
                            AssetRepository assetRepository, CollateralRepository collateralRepository,
                            AcquiredAssetRepository acquiredAssetRepository,
-                           EvaluationRepository evaluationRepository, DepartmentService departmentService, CollateralTypeService collateralTypeService, AppraisalCompaniesService appraisalCompaniesService) {
+                           EvaluationRepository evaluationRepository, UserRoleService userRoleService, DepartmentService departmentService, CollateralTypeService collateralTypeService, AppraisalCompaniesService appraisalCompaniesService) {
         this.bankClientRepository = bankClientRepository;
         this.loanRepository = loanRepository;
         this.assetRepository = assetRepository;
         this.collateralRepository = collateralRepository;
         this.acquiredAssetRepository = acquiredAssetRepository;
         this.evaluationRepository = evaluationRepository;
+        this.userRoleService = userRoleService;
         this.departmentService = departmentService;
         this.collateralTypeService = collateralTypeService;
 
@@ -166,12 +166,5 @@ public class SeedServiceImpl implements SeedService {
         if (this.acquiredAssetRepository.count() == 0) seedExampleAcquiredAssets();
         if (this.evaluationRepository.count() == 0) seedExampleEvaluations();
 
-    }
-
-    @Override
-    public void seedAllInitialData() throws IOException {
-        if (this.departmentService.isEmpty()) departmentService.seedDepartments();
-        if (this.collateralTypeService.isEmpty()) collateralTypeService.seedCollateralTypes();
-        if (this.appraisalCompaniesService.isEmpty()) appraisalCompaniesService.seedAppraisalCompanies();
     }
 }

@@ -1,7 +1,5 @@
 package com.example.collateralmanagement.services;
 
-import java.io.IOException;
-
 public interface SeedService {
 
     void seedExampleClients();
@@ -18,5 +16,4 @@ public interface SeedService {
 
     void seedAllExamples();
 
-    void seedAllInitialData() throws IOException;
 }

@@ -8,6 +8,7 @@ import com.example.collateralmanagement.repositories.AssetRepository;
 import com.example.collateralmanagement.repositories.DepartmentRepository;
 import com.example.collateralmanagement.repositories.UserRepository;
 import com.example.collateralmanagement.services.DepartmentService;
+import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -73,6 +73,12 @@ public class DepartmentServiceImpl implements DepartmentService {
 //        }
 //
 //    }
+
+    @Override
+    @PostConstruct
+    public void init() {
+        if (isEmpty()) seedDepartments();
+    }
 
     @Override
     @Transactional

@@ -3,6 +3,7 @@ package com.example.collateralmanagement.services;
 import com.example.collateralmanagement.models.dtos.asset.CollateralTypeDTO;
 import com.example.collateralmanagement.models.entities.asset.CollateralType;
 import com.example.collateralmanagement.models.enums.CollateralCategory;
+import jakarta.annotation.PostConstruct;
 
 import java.io.IOException;
 import java.util.List;
@@ -19,6 +20,9 @@ public interface CollateralTypeService {
    // void updateCollateralTypesMultipliers();
 
     //void updateCollateralTypesDescription();
+
+    @PostConstruct
+    void init() throws IOException;
 
     List<CollateralTypeDTO> getCollateralTypesInfo();
 

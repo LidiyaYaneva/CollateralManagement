@@ -21,9 +21,7 @@ public class ConsoleRunner implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
-
-        this.seedService.seedAllInitialData();
+    public void run(String... args)  {
 
         this.seedService.seedAllExamples();
 
