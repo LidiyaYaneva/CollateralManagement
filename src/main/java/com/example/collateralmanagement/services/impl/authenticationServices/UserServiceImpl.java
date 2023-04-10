@@ -7,11 +7,14 @@ import com.example.collateralmanagement.models.enums.DepartmentEnum;
 import com.example.collateralmanagement.models.entities.authentication.UserEntity;
 import com.example.collateralmanagement.repositories.DepartmentRepository;
 import com.example.collateralmanagement.repositories.UserRepository;
+import com.example.collateralmanagement.repositories.UserRoleRepository;
 import com.example.collateralmanagement.services.UserService;
 import com.example.collateralmanagement.utils.user.CurrentUser;
+import jakarta.annotation.PostConstruct;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -24,15 +27,21 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final DepartmentRepository departmentRepository;
+
+    private final UserRoleRepository userRoleRepository;
     private CurrentUser currentUser;
 
     private  final ModelMapper modelMapper;
 
     private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, DepartmentRepository departmentRepository, CurrentUser currentUser, ModelMapper modelMapper, PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserRepository userRepository, DepartmentRepository departmentRepository,
+                           UserRoleRepository userRoleRepository,
+                           CurrentUser currentUser, ModelMapper modelMapper,
+                           PasswordEncoder passwordEncoder, @Value("${app.default.password}") String defaultPassword) {
         this.userRepository = userRepository;
         this.departmentRepository = departmentRepository;
+        this.userRoleRepository = userRoleRepository;
         this.currentUser = currentUser;
         this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
@@ -107,6 +116,20 @@ public class UserServiceImpl implements UserService {
             this.userRepository.delete(userEntityOpt.get());
             return true;
         }
+    }
+
+    @Override
+    public void initAdmin(){
+        Department it = this.departmentRepository.findByName(DepartmentEnum.IT).orElseThrow();
+        UserEntity admin = new UserEntity("Admin", "Adminov", "admin@bank.com", "admin", it);
+        admin.setPassword(passwordEncoder.encode("topsecret"));
+        admin.setRoles(this.userRoleRepository.findAll());
+        this.userRepository.save(admin);
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return this.userRepository.count()==0;
     }
 
     private void login (UserEntity userEntity){

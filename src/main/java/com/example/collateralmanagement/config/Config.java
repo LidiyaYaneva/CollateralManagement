@@ -64,16 +64,19 @@ public class Config {
                 .anyRequest()
                 .authenticated()
                 .and()
-                .formLogin()
-                .loginPage("/")
-                .usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY)
-                .passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY)
-                .defaultSuccessUrl("/home")
-                .failureForwardUrl("/");
+                    .formLogin()
+                    .loginPage("/")
+                    .usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY)
+                    .passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY)
+                    .defaultSuccessUrl("/home")
+                    .failureForwardUrl("/")
+                .and()
+                .logout().logoutUrl("/users/logout").logoutSuccessUrl("/").invalidateHttpSession(true);
 
 //        .antMatchers('/').permitAll()
 //                .anyRequest().authenticated();
         return http.build();
+
     }
 
     @Bean

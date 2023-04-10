@@ -1,12 +1,12 @@
-<th:block>
+<th:block xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
         <header>
             <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
                 <a class="navbar-brand" href="/home">
-                    <img src="/img/logo.png" width="60" height="60" class="d-inline-block align-top" alt="home-image">
+                    <img src="/images/logo.png" width="60" height="60" class="d-inline-block align-top" alt="home-image">
                     <span class="navbar-text text-success">Collateral Management</span>
                 </a>
 
-                <ul class="nav justify-content-center">
+                <ul class="nav justify-content-center" sec:authorize = "isAuthenticated()">
                     <li class="nav-item text-primary">
                         <a class="nav-link" th:href="@{/business}">Business Section</a>
                     </li>
@@ -19,14 +19,14 @@
                     <li class="nav-item text-primary">
                         <a class="nav-link " th:href="@{/acquiredAssets}">Acquired assets</a>
                     </li>
-                    <li class="nav-item text-primary">
+                    <li class="nav-item text-primary" sec:authorize = "hasRole('ADMIN')">
                         <a class="nav-link " th:href="@{/adminPanel}">Admin Panel</a>
                     </li>
                 </ul>
 
-                <ul class="nav justify-content-end">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/userInfo"><span class="navbar-text text-dark">Full name</span></a>
+                <ul class="nav justify-content-end" sec:authorize = "isAuthenticated()">
+                    <li class="nav-item" >
+                        <a class="nav-link" href="/userInfo"><span class="navbar-text text-dark">Full name <th:block sec:authorize="name"></th:block></span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/logout"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button></a>

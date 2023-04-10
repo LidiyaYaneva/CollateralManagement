@@ -13,7 +13,6 @@ import com.example.collateralmanagement.repositories.*;
 import com.example.collateralmanagement.services.*;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
@@ -34,7 +33,7 @@ public class SeedServiceImpl implements SeedService {
 
     private final EvaluationRepository evaluationRepository;
 
-    private final UserRoleService userRoleService;
+    private final UserService userService;
 
     private final DepartmentService departmentService;
 
@@ -46,14 +45,14 @@ public class SeedServiceImpl implements SeedService {
     public SeedServiceImpl(BankClientRepository bankClientRepository, LoanRepository loanRepository,
                            AssetRepository assetRepository, CollateralRepository collateralRepository,
                            AcquiredAssetRepository acquiredAssetRepository,
-                           EvaluationRepository evaluationRepository, UserRoleService userRoleService, DepartmentService departmentService, CollateralTypeService collateralTypeService, AppraisalCompaniesService appraisalCompaniesService) {
+                           EvaluationRepository evaluationRepository, UserService userService, DepartmentService departmentService, CollateralTypeService collateralTypeService, AppraisalCompaniesService appraisalCompaniesService) {
         this.bankClientRepository = bankClientRepository;
         this.loanRepository = loanRepository;
         this.assetRepository = assetRepository;
         this.collateralRepository = collateralRepository;
         this.acquiredAssetRepository = acquiredAssetRepository;
         this.evaluationRepository = evaluationRepository;
-        this.userRoleService = userRoleService;
+        this.userService = userService;
         this.departmentService = departmentService;
         this.collateralTypeService = collateralTypeService;
 
@@ -157,6 +156,14 @@ public class SeedServiceImpl implements SeedService {
     }
 
     @Override
+    public void seedExampleUsers() {
+        this.userService.initAdmin();
+
+    }
+
+
+
+    @Override
     public void seedAllExamples() {
 
         if (this.bankClientRepository.count() == 0) seedExampleClients();
@@ -165,6 +172,7 @@ public class SeedServiceImpl implements SeedService {
         if (this.collateralRepository.count() == 0) seedExampleCollaterals();
         if (this.acquiredAssetRepository.count() == 0) seedExampleAcquiredAssets();
         if (this.evaluationRepository.count() == 0) seedExampleEvaluations();
+        if(this.userService.isEmpty()) seedExampleUsers();
 
     }
 }

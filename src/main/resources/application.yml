@@ -1,3 +1,7 @@
+app:
+    default:
+        password: topsecret
+
 logging:
     level:
         blog: WARN

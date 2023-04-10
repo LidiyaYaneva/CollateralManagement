@@ -32,11 +32,25 @@ public class UserEntity {
     @JoinColumn(name = "department_id", referencedColumnName = "id",nullable = true)
     private Department department;
 
-    @ManyToMany (targetEntity = UserEntity.class)
+    @ManyToMany
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private List<UserRoleEntity> roles;
 
     public UserEntity () {
         this.roles = new ArrayList<>();
+    }
+
+    public UserEntity(String firstName, String lastName, String email,
+                      String username, Department department) {
+        this();
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.username = username;
+        this.department = department;
+
     }
 
     public Long getId() {

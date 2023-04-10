@@ -12,4 +12,8 @@ public interface UserService {
     void logout();
 
     boolean deleteUser(String username);
+
+    void initAdmin();
+
+    boolean isEmpty();
 }

@@ -14,6 +14,8 @@ public interface SeedService {
 
     void seedExampleEvaluations();
 
+    void seedExampleUsers();
+
     void seedAllExamples();
 
 }
